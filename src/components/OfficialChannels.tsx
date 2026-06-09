@@ -9,10 +9,10 @@ import {
   ShoppingCart,
   Store,
 } from "lucide-react";
-import type { ComponentType } from "react";
+import type { LucideIcon } from "lucide-react";
 import { officialChannels, type LinkIcon, type OfficialLink } from "../data/links";
 
-const icons: Record<LinkIcon, ComponentType<{ className?: string; "aria-hidden"?: boolean }>> = {
+const icons: Record<LinkIcon, LucideIcon> = {
   shoppingBag: ShoppingBag,
   shoppingCart: ShoppingCart,
   messageCircle: MessageCircle,
@@ -98,7 +98,7 @@ function ChannelCard({ channel }: ChannelCardProps) {
 
   if (!isActive) {
     return (
-      <button type="button" className={`${className} cursor-default`} aria-disabled="true">
+      <button type="button" className={`${className} cursor-default`} disabled>
         {content}
       </button>
     );

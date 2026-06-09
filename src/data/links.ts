@@ -21,6 +21,15 @@ export type OfficialLink = {
   icon: LinkIcon;
 };
 
+export type LinkKey =
+  | "instagram"
+  | "whatsapp"
+  | "mercadoLivre"
+  | "shopee"
+  | "tiktok"
+  | "magalu"
+  | "amazon";
+
 export type MainLink = {
   label: string;
   url: string;
@@ -29,7 +38,7 @@ export type MainLink = {
   highlight?: boolean;
 };
 
-export const links = {
+export const links: Record<LinkKey, OfficialLink> = {
   instagram: {
     label: "Instagram",
     url: "https://www.instagram.com/r2printlab/",
@@ -72,9 +81,9 @@ export const links = {
     status: "soon",
     icon: "shoppingCart",
   },
-} satisfies Record<string, OfficialLink>;
+};
 
-export const officialChannels = Object.values(links);
+export const officialChannels: OfficialLink[] = Object.values(links);
 
 export const mainLinks: MainLink[] = [
   {

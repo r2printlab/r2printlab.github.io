@@ -23,7 +23,7 @@ export function FinalCta() {
             Chamar no WhatsApp
           </a>
         ) : (
-          <button type="button" className={`${ctaClassName} cursor-default`} aria-disabled="true">
+          <button type="button" className={`${ctaClassName} cursor-default`} disabled>
             <MessageCircle className="h-5 w-5" aria-hidden="true" />
             WhatsApp em breve
           </button>

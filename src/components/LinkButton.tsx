@@ -62,7 +62,7 @@ export function LinkButton({ link }: LinkButtonProps) {
 
   if (!isActive) {
     return (
-      <button type="button" className={`${className} cursor-default`} aria-disabled="true">
+      <button type="button" className={`${className} cursor-default`} disabled>
         {content}
       </button>
     );
