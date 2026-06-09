@@ -6,9 +6,10 @@ import type { MonsterShortcut } from "../data/monster";
 type FeaturedMonsterProps = {
   selectedMonster?: MonsterShortcut;
   onBackToCollection: () => void;
+  onBackToHome: () => void;
 };
 
-export function FeaturedMonster({ selectedMonster, onBackToCollection }: FeaturedMonsterProps) {
+export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToHome }: FeaturedMonsterProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = imageFailed ? monsterProduct.fallbackImage : (selectedMonster?.image ?? monsterProduct.image);
   const mercadoLivreUrl = selectedMonster?.mercadoLivreUrl ?? monsterProduct.mercadoLivreUrl;
@@ -29,6 +30,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection }: Feature
             src={monsterProduct.sideVideo}
             className="absolute left-4 top-10 hidden w-[34%] -rotate-1 sm:block"
             label="Video Monster branco neon"
+            enhance
           />
           <div className="absolute inset-x-0 bottom-3 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px] overflow-hidden rounded-[1.7rem] border border-white/85 bg-white shadow-lift dark:border-darkAccent/20 dark:bg-darkCard">
             <img
@@ -45,16 +47,14 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection }: Feature
           />
         </div>
         <div>
-          {selectedMonster ? (
-            <button
-              type="button"
-              onClick={onBackToCollection}
-              className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-2xl border border-mist bg-white px-3 text-sm font-black text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
-            >
-              <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-              Voltar para colecao
-            </button>
-          ) : null}
+          <button
+            type="button"
+            onClick={selectedMonster ? onBackToCollection : onBackToHome}
+            className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-2xl border border-mist bg-white px-3 text-sm font-black text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+            {selectedMonster ? "Voltar para colecao" : "Voltar para links"}
+          </button>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">{monsterProduct.subtitle}</p>
           <h2 className="mt-3 text-3xl font-black leading-tight text-textMain dark:text-darkText sm:text-4xl">
             {selectedMonster ? `${selectedMonster.name} | ` : ""}
@@ -77,10 +77,12 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection }: Feature
                 href={mercadoLivreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-brand px-5 font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#fff159] px-5 font-black text-brandDark shadow-sm transition hover:bg-[#ffe600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
               >
-                <ShoppingBag className="h-5 w-5" aria-hidden="true" />
-                Comprar no Mercado Livre
+                <span className="grid h-7 w-7 place-items-center rounded-full bg-brand text-[0.62rem] font-black text-[#fff159] shadow-sm" aria-hidden="true">
+                  ML
+                </span>
+                Comprar no <span className="text-[#6b5f00]">Mercado Livre</span>
               </a>
             ) : (
               <button
@@ -97,10 +99,10 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection }: Feature
                 href={shopeeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-mist bg-white px-5 font-black text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#ee4d2d] px-5 font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
               >
-                <Store className="h-5 w-5" aria-hidden="true" />
-                Comprar na Shopee
+                <Store className="h-5 w-5 text-white" aria-hidden="true" />
+                Comprar na <span className="text-white">Shopee</span>
               </a>
             ) : (
               <button
@@ -123,14 +125,15 @@ type VideoPanelProps = {
   src: string;
   className: string;
   label: string;
+  enhance?: boolean;
 };
 
-function VideoPanel({ src, className, label }: VideoPanelProps) {
+function VideoPanel({ src, className, label, enhance }: VideoPanelProps) {
   return (
     <div className={`${className} overflow-hidden rounded-3xl border border-white/80 bg-white shadow-soft dark:border-darkAccent/20 dark:bg-darkCard`}>
       <video
         src={src}
-        className="aspect-[9/16] w-full object-cover"
+        className={`aspect-[9/16] w-full object-cover ${enhance ? "brightness-125 contrast-125 saturate-150" : ""}`}
         autoPlay
         muted
         loop
@@ -138,6 +141,7 @@ function VideoPanel({ src, className, label }: VideoPanelProps) {
         preload="metadata"
         aria-label={label}
       />
+      {enhance ? <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/20 mix-blend-screen" /> : null}
       <div className="absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/85 text-brand shadow-sm dark:bg-darkBg/80 dark:text-darkAccent">
         <Play className="h-4 w-4 fill-current" aria-hidden="true" />
       </div>

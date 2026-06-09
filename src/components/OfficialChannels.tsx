@@ -8,7 +8,6 @@ import {
   Package,
   ShoppingBag,
   ShoppingCart,
-  Sparkles,
   Store,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -101,8 +100,8 @@ function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
         </span>
         <span className="min-w-0">
           {channel.badge ? (
-            <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-brand dark:bg-darkBg/90 dark:text-darkAccent">
-              <Sparkles className="h-3 w-3" aria-hidden="true" />
+            <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white shadow-sm">
+              <span aria-hidden="true">🔥</span>
               {channel.badge}
             </span>
           ) : null}

@@ -50,26 +50,32 @@ export default function App() {
 
   return (
     <div className="min-h-screen overflow-hidden bg-paper text-textMain transition-colors dark:bg-darkBg dark:text-darkText">
-      <div className="site-background pointer-events-none fixed inset-0 -z-10" />
-      <Header onHome={handleHome} />
-      <main>
-        {page === "home" ? (
-          <>
-            <BrandIntro />
-            <OfficialChannels onOpenMonsters={handleOpenMonsters} />
-            <FeaturesSection />
-          </>
-        ) : (
-          <>
-            <FeaturedMonster selectedMonster={selectedMonster ?? undefined} onBackToCollection={handleBackToCollection} />
-            <MonsterColors />
-            <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
-            {selectedMonster ? <MonsterGallery /> : null}
-            <FeaturesSection />
-          </>
-        )}
-      </main>
-      <Footer />
+      <div className="site-background pointer-events-none fixed inset-0 z-0" />
+      <div className="relative z-10">
+        <Header onHome={handleHome} />
+        <main>
+          {page === "home" ? (
+            <>
+              <BrandIntro />
+              <OfficialChannels onOpenMonsters={handleOpenMonsters} />
+              <FeaturesSection />
+            </>
+          ) : (
+            <>
+              <FeaturedMonster
+                selectedMonster={selectedMonster ?? undefined}
+                onBackToCollection={handleBackToCollection}
+                onBackToHome={handleHome}
+              />
+              <MonsterColors />
+              <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
+              {selectedMonster ? <MonsterGallery /> : null}
+              <FeaturesSection />
+            </>
+          )}
+        </main>
+        <Footer />
+      </div>
     </div>
   );
 }
