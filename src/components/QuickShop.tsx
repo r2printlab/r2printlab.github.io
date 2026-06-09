@@ -10,7 +10,7 @@ type QuickShopProps = {
 export function QuickShop({ onSelectMonster, selectedMonsterName }: QuickShopProps) {
   return (
     <section id="top" className="mx-auto w-full max-w-6xl px-5 pb-8 pt-4 sm:px-6 lg:px-8">
-      <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-white/74 px-5 py-6 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/72 sm:px-8">
+      <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-white/80 px-5 py-6 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/70 sm:px-8">
         <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-mist/80 blur-3xl dark:bg-darkAccent/10" />
         <div className="relative flex flex-col gap-5 sm:items-center">
           <div className="flex flex-col items-center gap-3 sm:flex-row">

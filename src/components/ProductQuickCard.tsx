@@ -23,12 +23,12 @@ export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCar
         isSelected ? "border-brand ring-2 ring-brand/15 dark:border-darkAccent dark:ring-darkAccent/20" : "border-mist dark:border-darkAccent/20"
       }`}
     >
-      <div className="product-grid flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white via-mist to-white dark:from-darkCard dark:via-darkCardAlt dark:to-darkCard">
+      <div className="product-grid flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white via-mist to-white p-2 dark:from-darkCard dark:via-darkCardAlt dark:to-darkCard">
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={item.name}
-            className="h-full w-full object-cover transition duration-300 group-hover:scale-[1.03]"
+            className="h-full w-full object-contain drop-shadow-xl transition duration-300 group-hover:scale-[1.04]"
             loading="lazy"
             onError={() => setImageFailed(true)}
           />

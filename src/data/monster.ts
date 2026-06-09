@@ -116,14 +116,6 @@ export const monsterShortcuts: MonsterShortcut[] = [
     mercadoLivreUrl: mercadoLivreStoreUrl,
     shopeeUrl: shopeeStoreUrl,
   },
-  {
-    name: "Colecao Monsters",
-    tag: "Colecao",
-    color: "#1f4564",
-    image: "/assets/monsters.png",
-    mercadoLivreUrl: mercadoLivreStoreUrl,
-    shopeeUrl: shopeeStoreUrl,
-  },
 ];
 
 export const monsterColors: MonsterColor[] = [

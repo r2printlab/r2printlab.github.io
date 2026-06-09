@@ -67,8 +67,8 @@ export default function App() {
                 onBackToCollection={handleBackToCollection}
                 onBackToHome={handleHome}
               />
-              <MonsterColors />
               <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
+              <MonsterColors />
               {selectedMonster ? <MonsterGallery /> : null}
               <FeaturesSection />
             </>

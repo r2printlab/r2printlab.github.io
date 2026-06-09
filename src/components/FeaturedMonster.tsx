@@ -86,10 +86,13 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 href={mercadoLivreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#ffe000] px-5 font-black text-[#27346a] shadow-sm transition hover:bg-[#ffd000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
+                className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ffd600] px-4 text-left font-black text-[#27346a] shadow-sm transition hover:bg-[#f2c900] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[205px]"
               >
                 <img src="/assets/mercado-livre-icone.png" alt="" className="h-7 w-7 rounded-full object-contain" />
-                Comprar no <span className="text-[#1f2d70]">Mercado Livre</span>
+                <span className="leading-tight">
+                  <span className="block text-sm">Comprar no</span>
+                  <span className="block text-[#1f2d70]">Mercado Livre</span>
+                </span>
               </a>
             ) : (
               <button
@@ -106,10 +109,13 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 href={shopeeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#ee4d2d] px-5 font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
+                className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ee4d2d] px-4 text-left font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[170px]"
               >
-                <img src="/assets/shopee-icone.png" alt="" className="h-7 w-7 object-contain" />
-                Comprar na <span className="text-white">Shopee</span>
+                <img src="/assets/shopee-icone2.png" alt="" className="h-7 w-7 object-contain" />
+                <span className="leading-tight">
+                  <span className="block text-sm">Comprar na</span>
+                  <span className="block text-white">Shopee</span>
+                </span>
               </a>
             ) : (
               <button
@@ -117,7 +123,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 disabled
                 className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-mist bg-white px-5 font-black text-brand disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
               >
-                <img src="/assets/shopee-icone.png" alt="" className="h-7 w-7 object-contain opacity-80" />
+                <img src="/assets/shopee-icone2.png" alt="" className="h-7 w-7 object-contain opacity-80" />
                 Shopee em breve
               </button>
             )}

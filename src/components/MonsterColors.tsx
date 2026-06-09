@@ -5,7 +5,7 @@ export function MonsterColors() {
     <section className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Cores disponiveis</p>
+          <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Paleta Monsters</p>
           <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Cores disponiveis</h2>
         </div>
         <p className="max-w-md text-sm leading-6 text-textMuted dark:text-darkMuted">
