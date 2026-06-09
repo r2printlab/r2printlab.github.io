@@ -44,7 +44,7 @@ export function Hero() {
             <div className="grid h-16 w-16 place-items-center overflow-hidden rounded-3xl border border-mist bg-white shadow-soft">
               <img src="/assets/logo-r2.png" alt="R2 Print Lab" className="h-full w-full object-cover" />
             </div>
-            <div className="rounded-full bg-white/85 px-3 py-2 text-xs font-bold text-textMuted shadow-sm">
+            <div className="rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-textMuted shadow-sm">
               3D Lab
             </div>
           </div>
@@ -67,7 +67,7 @@ type ProductPreviewProps = {
 
 function ProductPreview({ icon, label, wide }: ProductPreviewProps) {
   return (
-    <div className={`rounded-[1.35rem] bg-white/85 p-4 shadow-soft ${wide ? "col-span-2" : ""}`}>
+    <div className={`rounded-[1.35rem] bg-white/90 p-4 shadow-soft ${wide ? "col-span-2" : ""}`}>
       <div className="mb-5 grid h-16 place-items-center rounded-2xl bg-brand text-white">
         {icon}
       </div>

@@ -26,7 +26,7 @@ export function ProductCard({ product }: ProductCardProps) {
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <div className="grid h-24 w-24 place-items-center rounded-[1.75rem] border border-white bg-white/85 text-brand shadow-soft backdrop-blur">
+          <div className="grid h-24 w-24 place-items-center rounded-[1.75rem] border border-white bg-white/90 text-brand shadow-soft backdrop-blur">
             <ImageIcon className="h-10 w-10" aria-hidden="true" />
           </div>
         )}

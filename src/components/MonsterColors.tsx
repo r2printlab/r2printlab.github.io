@@ -1,5 +1,4 @@
 import { monsterColors } from "../data/monster";
-import { ShoppingBag } from "lucide-react";
 
 export function MonsterColors() {
   return (
@@ -7,42 +6,49 @@ export function MonsterColors() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Cores disponiveis</p>
-          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Escolha pela cor</h2>
+          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Cores disponiveis</h2>
         </div>
         <p className="max-w-md text-sm leading-6 text-textMuted dark:text-darkMuted">
-          Uma forma rapida de conferir as variacoes mais pedidas da colecao Monsters.
+          Toque em uma cor para abrir a variacao correspondente no Mercado Livre.
         </p>
       </div>
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
-        {monsterColors.map((color) => (
-          <div key={color.name} className="rounded-3xl border border-mist bg-white p-3 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard">
+        {monsterColors.map((color) => {
+          const content = (
+            <>
             <span
-              className="mx-auto block h-14 w-14 rounded-2xl border border-mist shadow-sm dark:border-darkAccent/20"
+              className="mx-auto block h-16 w-16 rounded-2xl border border-mist shadow-sm transition group-hover:scale-105 dark:border-darkAccent/20"
               style={{ backgroundColor: color.value }}
             />
             <p className="mt-3 text-sm font-black text-textMain dark:text-darkText">{color.name}</p>
-            {color.mercadoLivreUrl !== "#" ? (
-              <a
-                href={color.mercadoLivreUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-3 inline-flex min-h-9 w-full items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-xs font-black text-white transition hover:bg-brandDark dark:bg-darkAccent dark:text-darkBg"
-              >
-                <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-                ML
-              </a>
-            ) : (
-              <button
-                type="button"
-                disabled
-                className="mt-3 inline-flex min-h-9 w-full items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-xs font-black text-white disabled:cursor-default disabled:opacity-80 dark:bg-darkAccent dark:text-darkBg"
-              >
-                <ShoppingBag className="h-4 w-4" aria-hidden="true" />
-                ML breve
-              </button>
-            )}
-          </div>
-        ))}
+            <span className="mt-2 block text-[0.68rem] font-black uppercase tracking-[0.12em] text-brand/70 dark:text-darkAccent/80">
+              Mercado Livre
+            </span>
+            </>
+          );
+
+          return color.mercadoLivreUrl !== "#" ? (
+            <a
+              key={color.name}
+              href={color.mercadoLivreUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group rounded-3xl border border-mist bg-white p-3 text-center shadow-sm transition hover:-translate-y-1 hover:border-brand/25 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard"
+              aria-label={`Abrir Monster ${color.name} no Mercado Livre`}
+            >
+              {content}
+            </a>
+          ) : (
+            <button
+              key={color.name}
+              type="button"
+              disabled
+              className="group rounded-3xl border border-mist bg-white p-3 text-center shadow-sm disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCard"
+            >
+              {content}
+            </button>
+          );
+        })}
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { ArrowLeft, Play, ShoppingBag, Store } from "lucide-react";
+import { ArrowLeft, Maximize2, Play, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { monsterProduct } from "../data/monster";
 import type { MonsterShortcut } from "../data/monster";
@@ -11,6 +11,7 @@ type FeaturedMonsterProps = {
 
 export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToHome }: FeaturedMonsterProps) {
   const [imageFailed, setImageFailed] = useState(false);
+  const [preview, setPreview] = useState<MediaPreview | null>(null);
   const imageSrc = imageFailed ? monsterProduct.fallbackImage : (selectedMonster?.image ?? monsterProduct.image);
   const mercadoLivreUrl = selectedMonster?.mercadoLivreUrl ?? monsterProduct.mercadoLivreUrl;
   const shopeeUrl = selectedMonster?.shopeeUrl ?? monsterProduct.shopeeUrl;
@@ -31,19 +32,27 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
             className="absolute left-4 top-10 hidden w-[34%] -rotate-1 sm:block"
             label="Video Monster branco neon"
             enhance
+            onOpen={() => setPreview({ type: "video", src: monsterProduct.sideVideo, label: "Video Monster branco neon" })}
           />
-          <div className="absolute inset-x-0 bottom-3 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px] overflow-hidden rounded-[1.7rem] border border-white/85 bg-white shadow-lift dark:border-darkAccent/20 dark:bg-darkCard">
+          <button
+            type="button"
+            onClick={() => setPreview({ type: "image", src: imageSrc, label: monsterProduct.title })}
+            className="group/card absolute inset-x-0 bottom-3 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white text-left shadow-lift transition duration-300 hover:-translate-y-3 hover:rotate-1 hover:scale-[1.04] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard"
+            aria-label="Ampliar imagem do produto"
+          >
             <img
               src={imageSrc}
               alt={monsterProduct.title}
               className="aspect-[3/4] w-full object-cover"
               onError={() => setImageFailed(true)}
             />
-          </div>
+            <MediaOverlay />
+          </button>
           <VideoPanel
             src={monsterProduct.video}
             className="absolute right-4 top-24 z-20 w-[31%] rotate-1 sm:top-24"
             label="Video Monster em uso"
+            onOpen={() => setPreview({ type: "video", src: monsterProduct.video, label: "Video Monster em uso" })}
           />
         </div>
         <div>
@@ -77,12 +86,10 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 href={mercadoLivreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#fff159] px-5 font-black text-brandDark shadow-sm transition hover:bg-[#ffe600] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
+                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#ffe000] px-5 font-black text-[#27346a] shadow-sm transition hover:bg-[#ffd000] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
               >
-                <span className="grid h-7 w-7 place-items-center rounded-full bg-brand text-[0.62rem] font-black text-[#fff159] shadow-sm" aria-hidden="true">
-                  ML
-                </span>
-                Comprar no <span className="text-[#6b5f00]">Mercado Livre</span>
+                <img src="/assets/mercado-livre-icone.png" alt="" className="h-7 w-7 rounded-full object-contain" />
+                Comprar no <span className="text-[#1f2d70]">Mercado Livre</span>
               </a>
             ) : (
               <button
@@ -101,7 +108,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 rel="noopener noreferrer"
                 className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-[#ee4d2d] px-5 font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
               >
-                <Store className="h-5 w-5 text-white" aria-hidden="true" />
+                <img src="/assets/shopee-icone.png" alt="" className="h-7 w-7 object-contain" />
                 Comprar na <span className="text-white">Shopee</span>
               </a>
             ) : (
@@ -110,27 +117,40 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 disabled
                 className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-mist bg-white px-5 font-black text-brand disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
               >
-                <Store className="h-5 w-5" aria-hidden="true" />
+                <img src="/assets/shopee-icone.png" alt="" className="h-7 w-7 object-contain opacity-80" />
                 Shopee em breve
               </button>
             )}
           </div>
         </div>
       </div>
+      {preview ? <MediaLightbox preview={preview} onClose={() => setPreview(null)} /> : null}
     </section>
   );
 }
+
+type MediaPreview = {
+  type: "image" | "video";
+  src: string;
+  label: string;
+};
 
 type VideoPanelProps = {
   src: string;
   className: string;
   label: string;
   enhance?: boolean;
+  onOpen: () => void;
 };
 
-function VideoPanel({ src, className, label, enhance }: VideoPanelProps) {
+function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps) {
   return (
-    <div className={`${className} overflow-hidden rounded-3xl border border-white/80 bg-white shadow-soft dark:border-darkAccent/20 dark:bg-darkCard`}>
+    <button
+      type="button"
+      onClick={onOpen}
+      className={`${className} group/card overflow-hidden rounded-3xl border border-white/80 bg-white text-left shadow-soft transition duration-300 hover:z-30 hover:-translate-y-3 hover:rotate-0 hover:scale-[1.06] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard`}
+      aria-label={`Ampliar ${label}`}
+    >
       <video
         src={src}
         className={`aspect-[9/16] w-full object-cover ${enhance ? "brightness-125 contrast-125 saturate-150" : ""}`}
@@ -142,8 +162,47 @@ function VideoPanel({ src, className, label, enhance }: VideoPanelProps) {
         aria-label={label}
       />
       {enhance ? <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/20 mix-blend-screen" /> : null}
-      <div className="absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/85 text-brand shadow-sm dark:bg-darkBg/80 dark:text-darkAccent">
+      <div className="absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-brand shadow-sm dark:bg-darkBg/80 dark:text-darkAccent">
         <Play className="h-4 w-4 fill-current" aria-hidden="true" />
+      </div>
+      <MediaOverlay />
+    </button>
+  );
+}
+
+function MediaOverlay() {
+  return (
+    <span className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-brand/60 via-transparent to-transparent p-3 opacity-0 transition duration-200 group-hover/card:opacity-100">
+      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-black text-brand shadow-sm">
+        <Maximize2 className="h-4 w-4" aria-hidden="true" />
+        Ver maior
+      </span>
+    </span>
+  );
+}
+
+type MediaLightboxProps = {
+  preview: MediaPreview;
+  onClose: () => void;
+};
+
+function MediaLightbox({ preview, onClose }: MediaLightboxProps) {
+  return (
+    <div className="fixed inset-0 z-50 grid place-items-center bg-brandDark/80 px-4 py-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={preview.label}>
+      <button
+        type="button"
+        onClick={onClose}
+        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-brand shadow-soft transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        aria-label="Fechar visualizacao"
+      >
+        <X className="h-5 w-5" aria-hidden="true" />
+      </button>
+      <div className="max-h-[86vh] w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/20 bg-white shadow-2xl dark:bg-darkCard">
+        {preview.type === "video" ? (
+          <video src={preview.src} className="max-h-[86vh] w-full object-contain" autoPlay muted loop playsInline controls />
+        ) : (
+          <img src={preview.src} alt={preview.label} className="max-h-[86vh] w-full object-contain" />
+        )}
       </div>
     </div>
   );

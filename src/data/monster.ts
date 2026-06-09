@@ -64,7 +64,7 @@ export const monsterShortcuts: MonsterShortcut[] = [
     name: "Branco Neon",
     tag: "Brilha no escuro",
     color: "#ffffff",
-    image: "/assets/monster-branco.png",
+    image: "/assets/branco-neon.png",
     mercadoLivreUrl: monsterLinks.brancoNeon,
     shopeeUrl: shopeeStoreUrl,
   },
@@ -96,7 +96,7 @@ export const monsterShortcuts: MonsterShortcut[] = [
     name: "Monster Rosa Chiclete",
     tag: "Rosa chiclete",
     color: "#ef6fa6",
-    image: "/assets/monster-rosa.png",
+    image: "/assets/monster-rosa-chiclete.png",
     mercadoLivreUrl: monsterLinks.rosa,
     shopeeUrl: shopeeStoreUrl,
   },
@@ -104,7 +104,7 @@ export const monsterShortcuts: MonsterShortcut[] = [
     name: "Monster Bege",
     tag: "Bege",
     color: "#d7c2a3",
-    image: "/assets/monster-verde.png",
+    image: "/assets/monster-bege.png",
     mercadoLivreUrl: monsterLinks.bege,
     shopeeUrl: shopeeStoreUrl,
   },
@@ -120,7 +120,7 @@ export const monsterShortcuts: MonsterShortcut[] = [
     name: "Colecao Monsters",
     tag: "Colecao",
     color: "#1f4564",
-    image: "/assets/monster-colecao.png",
+    image: "/assets/monsters.png",
     mercadoLivreUrl: mercadoLivreStoreUrl,
     shopeeUrl: shopeeStoreUrl,
   },
@@ -138,8 +138,8 @@ export const monsterColors: MonsterColor[] = [
 ];
 
 export const monsterGallery: GalleryImage[] = [
-  { title: "Colecao Monsters", image: "/assets/monster-colecao.png" },
-  { title: "Monster destaque", image: "/assets/monster-destaque.png" },
+  { title: "Colecao Monsters", image: "/assets/monsters.png" },
+  { title: "Branco Neon", image: "/assets/branco-neon.png" },
   { title: "Monster preto", image: "/assets/monster-preto.png" },
-  { title: "Detalhe do produto", image: "/assets/monster-detalhe.png" },
+  { title: "Monster rosa chiclete", image: "/assets/monster-rosa-chiclete.png" },
 ];
