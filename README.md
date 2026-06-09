@@ -100,12 +100,14 @@ Cada item possui:
   tag: "Preto",
   color: "#111111",
   image: "/assets/monster-preto.png",
-  productUrl: "#",
-  whatsappUrl: "#",
+  mercadoLivreUrl: "#",
+  shopeeUrl: "#",
 }
 ```
 
-Quando `productUrl` ou `whatsappUrl` estiver como `"#"`, o botao aparece sem navegar.
+Quando `mercadoLivreUrl` ou `shopeeUrl` estiver como `"#"`, o botao aparece como "em breve" sem navegar.
+
+As cores em `monsterColors` tambem possuem `mercadoLivreUrl` e `shopeeUrl`, para permitir links diretos por cor.
 
 ## Imagens
 
@@ -129,6 +131,12 @@ public/assets/monster-rosa.png
 public/assets/monster-verde.png
 public/assets/monster-laranja.png
 public/assets/monster-detalhe.png
+```
+
+O video curto do produto fica em:
+
+```text
+public/assets/video-monster.mp4
 ```
 
 Se alguma imagem ainda nao existir, o card mostra um placeholder elegante sem quebrar a pagina.

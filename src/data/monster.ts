@@ -3,13 +3,15 @@ export type MonsterShortcut = {
   tag: string;
   color: string;
   image: string;
-  productUrl: string;
-  whatsappUrl: string;
+  mercadoLivreUrl: string;
+  shopeeUrl: string;
 };
 
 export type MonsterColor = {
   name: string;
   value: string;
+  mercadoLivreUrl: string;
+  shopeeUrl: string;
 };
 
 export type GalleryImage = {
@@ -24,8 +26,9 @@ export const monsterProduct = {
     "Porta lata em impressao 3D com visual marcante, tampa e abridor para deixar setup, presente ou colecao com mais personalidade.",
   image: "/assets/monster-destaque.png",
   fallbackImage: "/assets/monsters.png",
-  productUrl: "#",
-  whatsappUrl: "#",
+  video: "/assets/video-monster.mp4",
+  mercadoLivreUrl: "#",
+  shopeeUrl: "#",
 };
 
 export const monsterShortcuts: MonsterShortcut[] = [
@@ -34,84 +37,84 @@ export const monsterShortcuts: MonsterShortcut[] = [
     tag: "Preto",
     color: "#111111",
     image: "/assets/monster-preto.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Branco",
     tag: "Branco",
     color: "#ffffff",
     image: "/assets/monster-branco.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Azul",
     tag: "Azul",
     color: "#1664c0",
     image: "/assets/monster-azul.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Vermelho",
     tag: "Vermelho",
     color: "#df1f2d",
     image: "/assets/monster-vermelho.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Roxo",
     tag: "Roxo",
     color: "#6d35b8",
     image: "/assets/monster-roxo.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Rosa",
     tag: "Rosa",
     color: "#ef6fa6",
     image: "/assets/monster-rosa.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Verde",
     tag: "Verde",
     color: "#22a842",
     image: "/assets/monster-verde.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Monster Laranja",
     tag: "Laranja",
     color: "#f07921",
     image: "/assets/monster-laranja.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
   {
     name: "Colecao Monsters",
     tag: "Colecao",
     color: "#1f4564",
     image: "/assets/monster-colecao.png",
-    productUrl: "#",
-    whatsappUrl: "#",
+    mercadoLivreUrl: "#",
+    shopeeUrl: "#",
   },
 ];
 
 export const monsterColors: MonsterColor[] = [
-  { name: "Preto", value: "#111111" },
-  { name: "Branco", value: "#ffffff" },
-  { name: "Azul", value: "#1664c0" },
-  { name: "Vermelho", value: "#df1f2d" },
-  { name: "Roxo", value: "#6d35b8" },
-  { name: "Rosa", value: "#ef6fa6" },
-  { name: "Verde", value: "#22a842" },
-  { name: "Laranja", value: "#f07921" },
+  { name: "Preto", value: "#111111", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Branco", value: "#ffffff", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Azul", value: "#1664c0", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Vermelho", value: "#df1f2d", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Roxo", value: "#6d35b8", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Rosa", value: "#ef6fa6", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Verde", value: "#22a842", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Laranja", value: "#f07921", mercadoLivreUrl: "#", shopeeUrl: "#" },
 ];
 
 export const monsterGallery: GalleryImage[] = [

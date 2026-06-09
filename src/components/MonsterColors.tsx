@@ -1,4 +1,5 @@
 import { monsterColors } from "../data/monster";
+import { ShoppingBag } from "lucide-react";
 
 export function MonsterColors() {
   return (
@@ -20,6 +21,26 @@ export function MonsterColors() {
               style={{ backgroundColor: color.value }}
             />
             <p className="mt-3 text-sm font-black text-textMain dark:text-darkText">{color.name}</p>
+            {color.mercadoLivreUrl !== "#" ? (
+              <a
+                href={color.mercadoLivreUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex min-h-9 w-full items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-xs font-black text-white transition hover:bg-brandDark dark:bg-darkAccent dark:text-darkBg"
+              >
+                <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+                ML
+              </a>
+            ) : (
+              <button
+                type="button"
+                disabled
+                className="mt-3 inline-flex min-h-9 w-full items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-xs font-black text-white disabled:cursor-default disabled:opacity-80 dark:bg-darkAccent dark:text-darkBg"
+              >
+                <ShoppingBag className="h-4 w-4" aria-hidden="true" />
+                ML breve
+              </button>
+            )}
           </div>
         ))}
       </div>

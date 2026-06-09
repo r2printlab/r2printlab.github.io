@@ -52,14 +52,10 @@ export default function App() {
           </>
         ) : (
           <>
+            <FeaturedMonster selectedMonster={selectedMonster ?? undefined} />
+            <MonsterColors />
             <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
-            {selectedMonster ? (
-              <>
-                <FeaturedMonster selectedMonster={selectedMonster} />
-                <MonsterColors />
-                <MonsterGallery />
-              </>
-            ) : null}
+            {selectedMonster ? <MonsterGallery /> : null}
             <FeaturesSection />
           </>
         )}

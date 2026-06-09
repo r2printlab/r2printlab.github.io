@@ -1,4 +1,4 @@
-import { MessageCircle, ShoppingBag } from "lucide-react";
+import { ShoppingBag, Store } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { MonsterShortcut } from "../data/monster";
 
@@ -11,7 +11,7 @@ type ProductQuickCardProps = {
 export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = imageFailed ? undefined : item.image;
-  const whatsappIsActive = item.whatsappUrl !== "#";
+  const shopeeIsActive = item.shopeeUrl !== "#";
 
   useEffect(() => {
     setImageFailed(false);
@@ -58,22 +58,22 @@ export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCar
           >
             Ver produto
           </button>
-          {whatsappIsActive ? (
+          {shopeeIsActive ? (
             <a
-              href={item.whatsappUrl}
+              href={item.shopeeUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="grid h-10 w-10 place-items-center rounded-2xl border border-mist bg-white text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
-              aria-label={`Consultar ${item.name} no WhatsApp`}
+              aria-label={`Ver ${item.name} na Shopee`}
             >
-              <MessageCircle className="h-5 w-5" aria-hidden="true" />
+              <Store className="h-5 w-5" aria-hidden="true" />
             </a>
           ) : (
             <button
               type="button"
               disabled
               className="grid h-10 w-10 place-items-center rounded-2xl border border-mist bg-white text-brand disabled:cursor-default disabled:opacity-70 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
-              aria-label="WhatsApp em breve"
+              aria-label="Shopee em breve"
             >
               <ShoppingBag className="h-5 w-5" aria-hidden="true" />
             </button>
