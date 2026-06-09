@@ -12,7 +12,7 @@ export function MonsterColors() {
           Toque em uma cor para abrir a variacao correspondente no Mercado Livre.
         </p>
       </div>
-      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-9">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-5 lg:grid-cols-10">
         {monsterColors.map((color) => {
           const content = (
             <>

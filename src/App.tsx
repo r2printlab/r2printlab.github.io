@@ -5,14 +5,11 @@ import { FeaturesSection } from "./components/FeaturesSection";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { MonsterColors } from "./components/MonsterColors";
-import { MonsterGallery } from "./components/MonsterGallery";
 import { OfficialChannels } from "./components/OfficialChannels";
 import { QuickShop } from "./components/QuickShop";
-import type { MonsterShortcut } from "./data/monster";
 
 export default function App() {
   const [page, setPage] = useState<"home" | "monsters">("home");
-  const [selectedMonster, setSelectedMonster] = useState<MonsterShortcut | null>(null);
 
   function scrollTop() {
     window.requestAnimationFrame(() => {
@@ -22,27 +19,17 @@ export default function App() {
 
   function handleHome() {
     setPage("home");
-    setSelectedMonster(null);
     scrollTop();
   }
 
   function handleOpenMonsters() {
     setPage("monsters");
-    setSelectedMonster(null);
-    window.requestAnimationFrame(() => {
-      document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-
-  function handleSelectMonster(monster: MonsterShortcut) {
-    setSelectedMonster(monster);
     window.requestAnimationFrame(() => {
       document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
   }
 
   function handleBackToCollection() {
-    setSelectedMonster(null);
     window.requestAnimationFrame(() => {
       document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
     });
@@ -63,13 +50,11 @@ export default function App() {
           ) : (
             <>
               <FeaturedMonster
-                selectedMonster={selectedMonster ?? undefined}
                 onBackToCollection={handleBackToCollection}
                 onBackToHome={handleHome}
               />
-              <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
+              <QuickShop />
               <MonsterColors />
-              {selectedMonster ? <MonsterGallery /> : null}
               <FeaturesSection />
             </>
           )}

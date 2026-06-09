@@ -4,11 +4,9 @@ import type { MonsterShortcut } from "../data/monster";
 
 type ProductQuickCardProps = {
   item: MonsterShortcut;
-  isSelected?: boolean;
-  onSelect: () => void;
 };
 
-export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCardProps) {
+export function ProductQuickCard({ item }: ProductQuickCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = imageFailed ? undefined : item.image;
   const shopeeIsActive = item.shopeeUrl !== "#";
@@ -19,9 +17,7 @@ export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCar
 
   return (
     <article
-      className={`group overflow-hidden rounded-3xl border bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft dark:bg-darkCard ${
-        isSelected ? "border-brand ring-2 ring-brand/15 dark:border-darkAccent dark:ring-darkAccent/20" : "border-mist dark:border-darkAccent/20"
-      }`}
+      className="group overflow-hidden rounded-3xl border border-mist bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/20 dark:bg-darkCard"
     >
       <div className="product-grid flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white via-mist to-white p-2 dark:from-darkCard dark:via-darkCardAlt dark:to-darkCard">
         {imageSrc ? (
@@ -51,13 +47,14 @@ export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCar
           />
         </div>
         <div className="mt-4 grid grid-cols-[1fr_auto] gap-2">
-          <button
-            type="button"
-            onClick={onSelect}
+          <a
+            href={item.mercadoLivreUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
           >
             Ver produto
-          </button>
+          </a>
           {shopeeIsActive ? (
             <a
               href={item.shopeeUrl}

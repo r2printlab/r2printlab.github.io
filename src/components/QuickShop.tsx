@@ -1,13 +1,8 @@
 import { motion } from "framer-motion";
-import { monsterShortcuts, type MonsterShortcut } from "../data/monster";
+import { monsterShortcuts } from "../data/monster";
 import { ProductQuickCard } from "./ProductQuickCard";
 
-type QuickShopProps = {
-  onSelectMonster: (monster: MonsterShortcut) => void;
-  selectedMonsterName?: string;
-};
-
-export function QuickShop({ onSelectMonster, selectedMonsterName }: QuickShopProps) {
+export function QuickShop() {
   return (
     <section id="top" className="mx-auto w-full max-w-6xl px-5 pb-8 pt-4 sm:px-6 lg:px-8">
       <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-white/80 px-5 py-6 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/70 sm:px-8">
@@ -62,11 +57,7 @@ export function QuickShop({ onSelectMonster, selectedMonsterName }: QuickShopPro
             }}
             transition={{ duration: 0.3 }}
           >
-            <ProductQuickCard
-              item={item}
-              isSelected={selectedMonsterName === item.name}
-              onSelect={() => onSelectMonster(item)}
-            />
+            <ProductQuickCard item={item} />
           </motion.div>
         ))}
       </motion.div>

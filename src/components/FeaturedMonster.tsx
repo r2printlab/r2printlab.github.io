@@ -111,7 +111,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 rel="noopener noreferrer"
                 className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ee4d2d] px-4 text-left font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[170px]"
               >
-                <img src="/assets/shopee-icone-3.webp" alt="" className="h-7 w-7 object-contain" />
+                <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain" />
                 <span className="leading-tight">
                   <span className="block text-sm">Comprar na</span>
                   <span className="block text-white">Shopee</span>
@@ -123,7 +123,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 disabled
                 className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-mist bg-white px-5 font-black text-brand disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
               >
-                <img src="/assets/shopee-icone-3.webp" alt="" className="h-7 w-7 object-contain opacity-80" />
+                <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain opacity-80" />
                 Shopee em breve
               </button>
             )}

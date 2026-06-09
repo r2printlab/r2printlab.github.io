@@ -2,21 +2,25 @@ import { mercadoLivreStoreUrl, shopeeStoreUrl } from "./links";
 
 const monsterLinks = {
   preto:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3949425546?pdp_filters=seller_id%3A3134698851#polycard_client=recommendations_vip-seller_items-above&reco_backend=ranker-retsys-same-seller&reco_model=rk_entity_sameseller&reco_client=vip-seller_items-above&reco_item_pos=1&reco_backend_type=low_level&reco_id=2bea42b9-2351-4760-ad2b-260b7ee0837b&wid=MLB4656052071&sid=recos",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3949425546?pdp_filters=seller_id%3A3134698851#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=7&type=product&tracking_id=b37076da-4f0e-4f25-a40d-7df6d3bb8fbd&wid=MLB4656052071&sid=search",
   vermelho:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483526?product_trigger_id=MLBU3949425546&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483526?product_trigger_id=MLBU3987483522&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   azul:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483526?product_trigger_id=MLBU3949425546&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3984474672?product_trigger_id=MLBU3949425546&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   rosa:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4071017754?product_trigger_id=MLBU3984474672&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4071017754?product_trigger_id=MLBU4011060723&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   roxo:
     "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3990041336?product_trigger_id=MLBU4071017754&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   bege:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4040938236?product_trigger_id=MLBU3990041336&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4040938236?product_trigger_id=MLBU3984474672&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   brancoNeon:
-    "https://www.mercadolivre.com.br/porta-latas-monster-com-tampa-e-abridor-brilha-no-escuro/up/MLBU4025350483?pdp_filters=seller_id%3A3134698851#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=19&type=product&tracking_id=f3eff983-e920-4313-86a1-d1cb11d99bae&wid=MLB6868403826&sid=search",
+    "https://www.mercadolivre.com.br/porta-latas-monster-com-tampa-e-abridor-brilha-no-escuro/up/MLBU4025350483?pdp_filters=seller_id%3A3134698851#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=1&type=product&float_highlight=price_dropped&tracking_id=44d3b5e7-98a7-4554-8a7a-b8164187eb92&wid=MLB6868403826&sid=search",
   branco:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3971831437?product_trigger_id=MLBU3949425546&pdp_filters=seller_id:3134698851&applied_product_filters=MLBU3949425546&picker=true",
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3971831437?product_trigger_id=MLBU4040938236&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  laranja:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4011060723?product_trigger_id=MLBU3971831437&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  verde:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483522?product_trigger_id=MLBU3990041336&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
 };
 
 export type MonsterShortcut = {
@@ -123,7 +127,15 @@ export const monsterShortcuts: MonsterShortcut[] = [
     tag: "Laranja",
     color: "#f07921",
     image: "/assets/monster-laranja.png",
-    mercadoLivreUrl: mercadoLivreStoreUrl,
+    mercadoLivreUrl: monsterLinks.laranja,
+    shopeeUrl: shopeeStoreUrl,
+  },
+  {
+    name: "Monster Verde",
+    tag: "Verde",
+    color: "#20a84a",
+    image: "/assets/monster-verde.png",
+    mercadoLivreUrl: monsterLinks.verde,
     shopeeUrl: shopeeStoreUrl,
   },
 ];
@@ -142,7 +154,8 @@ export const monsterColors: MonsterColor[] = [
   { name: "Roxo", value: "#6d35b8", mercadoLivreUrl: monsterLinks.roxo, shopeeUrl: shopeeStoreUrl },
   { name: "Rosa Chiclete", value: "#ef6fa6", mercadoLivreUrl: monsterLinks.rosa, shopeeUrl: shopeeStoreUrl },
   { name: "Bege", value: "#d7c2a3", mercadoLivreUrl: monsterLinks.bege, shopeeUrl: shopeeStoreUrl },
-  { name: "Laranja", value: "#f07921", mercadoLivreUrl: mercadoLivreStoreUrl, shopeeUrl: shopeeStoreUrl },
+  { name: "Laranja", value: "#f07921", mercadoLivreUrl: monsterLinks.laranja, shopeeUrl: shopeeStoreUrl },
+  { name: "Verde", value: "#20a84a", mercadoLivreUrl: monsterLinks.verde, shopeeUrl: shopeeStoreUrl },
 ];
 
 export const monsterGallery: GalleryImage[] = [
