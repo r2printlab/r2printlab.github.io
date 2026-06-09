@@ -11,17 +11,22 @@ export function Hero() {
         transition={{ duration: 0.55 }}
         className="text-center lg:text-left"
       >
-        <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-clay/20 bg-white/75 px-3 py-2 text-xs font-bold uppercase tracking-[0.18em] text-clay shadow-sm backdrop-blur lg:mx-0">
+        <img
+          src="/assets/logo-r2.png"
+          alt="R2 Print Lab"
+          className="mx-auto mb-5 h-24 w-24 rounded-full border border-mist bg-white object-cover p-1 shadow-soft sm:h-28 sm:w-28 lg:mx-0"
+        />
+        <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand shadow-sm backdrop-blur lg:mx-0">
           <Sparkles className="h-4 w-4" aria-hidden="true" />
-          Feito sob demanda em impressao 3D
+          Impressao 3D sob demanda
         </div>
-        <h1 className="text-balance text-4xl font-black leading-[1.02] text-ink sm:text-5xl lg:text-6xl">
+        <h1 className="text-balance text-4xl font-black leading-[1.02] text-textMain sm:text-5xl lg:text-6xl">
           R2 Print Lab
         </h1>
-        <p className="mt-4 text-balance text-xl font-semibold text-ink/80 sm:text-2xl">
+        <p className="mt-4 text-balance text-xl font-semibold text-brandDark sm:text-2xl">
           Impressao 3D criativa, personalizada e sob medida
         </p>
-        <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-7 text-ink/62 lg:mx-0">
+        <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-7 text-textMuted lg:mx-0">
           Produtos decorativos, geeks, personalizados e presentes feitos em impressao 3D.
         </p>
       </motion.div>
@@ -34,19 +39,19 @@ export function Hero() {
         aria-label="Vitrine visual de produtos 3D"
       >
         <div className="absolute inset-4 rounded-[2rem] bg-white shadow-lift" />
-        <div className="product-grid absolute inset-0 rounded-[2.25rem] border border-white bg-gradient-to-br from-white via-orange-50 to-sky-50 p-5 shadow-soft">
+        <div className="product-grid absolute inset-0 rounded-[2.25rem] border border-mist bg-gradient-to-br from-white via-mist to-white p-5 shadow-soft">
           <div className="flex items-center justify-between">
-            <div className="grid h-16 w-16 place-items-center rounded-3xl bg-ink text-xl font-black text-white shadow-soft">
-              R2
+            <div className="grid h-16 w-16 place-items-center overflow-hidden rounded-3xl border border-mist bg-white shadow-soft">
+              <img src="/assets/logo-r2.png" alt="R2 Print Lab" className="h-full w-full object-cover" />
             </div>
-            <div className="rounded-full bg-white/80 px-3 py-2 text-xs font-bold text-ink/65 shadow-sm">
+            <div className="rounded-full bg-white/85 px-3 py-2 text-xs font-bold text-textMuted shadow-sm">
               3D Lab
             </div>
           </div>
           <div className="mt-9 grid grid-cols-2 gap-4">
-            <ProductPreview icon={<Box className="h-8 w-8" />} label="Decor" tone="bg-clay" />
-            <ProductPreview icon={<Sparkles className="h-8 w-8" />} label="Glow" tone="bg-skyshop" />
-            <ProductPreview icon={<BadgeCheck className="h-8 w-8" />} label="Geek" tone="bg-grape" wide />
+            <ProductPreview icon={<Box className="h-8 w-8" />} label="Decor" />
+            <ProductPreview icon={<Sparkles className="h-8 w-8" />} label="Glow" />
+            <ProductPreview icon={<BadgeCheck className="h-8 w-8" />} label="Geek" wide />
           </div>
         </div>
       </motion.div>
@@ -57,18 +62,17 @@ export function Hero() {
 type ProductPreviewProps = {
   icon: ReactNode;
   label: string;
-  tone: string;
   wide?: boolean;
 };
 
-function ProductPreview({ icon, label, tone, wide }: ProductPreviewProps) {
+function ProductPreview({ icon, label, wide }: ProductPreviewProps) {
   return (
-    <div className={`rounded-[1.35rem] bg-white/86 p-4 shadow-soft ${wide ? "col-span-2" : ""}`}>
-      <div className={`mb-5 grid h-16 place-items-center rounded-2xl text-white ${tone}`}>
+    <div className={`rounded-[1.35rem] bg-white/85 p-4 shadow-soft ${wide ? "col-span-2" : ""}`}>
+      <div className="mb-5 grid h-16 place-items-center rounded-2xl bg-brand text-white">
         {icon}
       </div>
-      <p className="text-sm font-black text-ink">{label}</p>
-      <div className="mt-2 h-2 w-20 rounded-full bg-ink/10" />
+      <p className="text-sm font-black text-textMain">{label}</p>
+      <div className="mt-2 h-2 w-20 rounded-full bg-mist" />
     </div>
   );
 }

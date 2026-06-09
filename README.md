@@ -82,9 +82,64 @@ Cada produto possui:
 - `description`
 - `tag`
 - `href`
-- `accent`
+- `image`
 
 Use `href` para apontar para a pagina do produto no Mercado Livre, Instagram ou outro canal comercial.
+
+Use `image` para apontar para uma imagem dentro da pasta `public/assets`.
+
+Exemplo:
+
+```ts
+image: "/assets/monsters.png",
+```
+
+Se a imagem nao existir ou falhar ao carregar, o card continua funcionando com um placeholder visual.
+
+## Logo e imagens
+
+A logo oficial deve ficar em:
+
+```text
+public/assets/logo-r2.png
+```
+
+As imagens de produtos devem ficar na mesma pasta:
+
+```text
+public/assets/
+```
+
+Exemplos:
+
+```text
+public/assets/monsters.png
+public/assets/produto-personalizado.png
+```
+
+Depois de adicionar uma imagem, atualize o caminho em:
+
+```text
+src/data/products.ts
+```
+
+## Cores da identidade visual
+
+As cores principais ficam centralizadas no arquivo:
+
+```text
+tailwind.config.js
+```
+
+Paleta usada:
+
+- Azul principal: `#1f4564`
+- Azul escuro: `#143047`
+- Azul suave: `#e8f0f6`
+- Preto texto: `#111111`
+- Branco: `#ffffff`
+- Off-white: `#f7f9fb`
+- Cinza texto: `#5f6b76`
 
 ## Publicar no GitHub Pages
 

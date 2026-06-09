@@ -6,8 +6,8 @@ export function FeaturedProducts() {
   return (
     <section className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-clay">Produtos em destaque</p>
-        <h2 className="mt-3 text-3xl font-black text-ink sm:text-4xl">Uma mini vitrine para escolher rapido</h2>
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-brand">Produtos em destaque</p>
+        <h2 className="mt-3 text-3xl font-black text-textMain sm:text-4xl">Uma mini vitrine para escolher rapido</h2>
       </div>
       <motion.div
         className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
