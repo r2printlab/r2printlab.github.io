@@ -4,6 +4,7 @@ import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { Hero } from "./components/Hero";
 import { MainLinks } from "./components/MainLinks";
+import { OfficialChannels } from "./components/OfficialChannels";
 import { TrustSection } from "./components/TrustSection";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
         <Hero />
         <MainLinks />
         <FeaturedProducts />
+        <OfficialChannels />
         <TrustSection />
         <FinalCta />
       </main>

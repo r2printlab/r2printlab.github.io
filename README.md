@@ -52,21 +52,41 @@ Edite o arquivo:
 src/data/links.ts
 ```
 
-Substitua os placeholders `"#"` pelos links reais:
+Os canais oficiais ficam no objeto `links`:
 
 - Mercado Livre
 - WhatsApp
 - Instagram
-- Produtos personalizados
-- Porta Monster / Porta Lata 3D
-- Mascotes de Times
-- Produtos que brilham no escuro
+- Shopee
+- TikTok
+- Magalu
+- Amazon
+
+Por enquanto, somente o Instagram possui link real:
+
+```ts
+instagram: {
+  label: "Instagram",
+  url: "https://www.instagram.com/r2printlab/",
+  status: "active",
+  icon: "instagram",
+},
+```
+
+Para ativar outro canal, troque `url` pelo link real e altere `status` de `"soon"` para `"active"`.
 
 Exemplo para WhatsApp:
 
 ```ts
-href: "https://wa.me/5500000000000",
+whatsapp: {
+  label: "WhatsApp",
+  url: "https://wa.me/5500000000000",
+  status: "active",
+  icon: "messageCircle",
+},
 ```
+
+Enquanto `status` estiver como `"soon"` ou `url` estiver como `"#"`, o site mostra o botao como "em breve" sem navegar para um link vazio.
 
 ## Trocar produtos
 

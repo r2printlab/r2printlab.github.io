@@ -1,10 +1,10 @@
-import { contactLinks } from "../data/links";
+import { links } from "../data/links";
 
 const footerLinks = [
-  { label: "Instagram", href: contactLinks.instagram },
-  { label: "WhatsApp", href: contactLinks.whatsapp },
-  { label: "Mercado Livre", href: contactLinks.mercadoLivre },
-  { label: "r2printlab3d@gmail.com", href: contactLinks.email },
+  links.instagram,
+  links.whatsapp,
+  links.mercadoLivre,
+  { label: "r2printlab3d@gmail.com", url: "mailto:r2printlab3d@gmail.com", status: "active" },
 ];
 
 export function Footer() {
@@ -17,15 +17,21 @@ export function Footer() {
         </div>
         <nav aria-label="Links do rodape" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-textMuted">
           {footerLinks.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-              rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
-              className="transition hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
-            >
-              {link.label}
-            </a>
+            link.status === "active" && link.url !== "#" ? (
+              <a
+                key={link.label}
+                href={link.url}
+                target={link.url.startsWith("mailto:") ? undefined : "_blank"}
+                rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                className="transition hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <span key={link.label} className="text-textMuted/70">
+                {link.label} em breve
+              </span>
+            )
           ))}
         </nav>
       </div>

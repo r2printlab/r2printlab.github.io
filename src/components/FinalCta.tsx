@@ -1,8 +1,12 @@
 import { motion } from "framer-motion";
 import { MessageCircle } from "lucide-react";
-import { contactLinks } from "../data/links";
+import { links } from "../data/links";
 
 export function FinalCta() {
+  const whatsappIsActive = links.whatsapp.status === "active" && links.whatsapp.url !== "#";
+  const ctaClassName =
+    "mt-7 inline-flex min-h-[54px] items-center justify-center gap-3 rounded-full bg-white px-6 py-3 font-black text-brandDark shadow-soft transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-brandDark";
+
   return (
     <section className="mx-auto w-full max-w-4xl px-5 py-14 sm:px-6">
       <motion.div
@@ -13,15 +17,17 @@ export function FinalCta() {
         transition={{ duration: 0.45 }}
       >
         <p className="text-3xl font-black sm:text-4xl">Quer um produto personalizado?</p>
-        <a
-          href={contactLinks.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-7 inline-flex min-h-[54px] items-center justify-center gap-3 rounded-full bg-white px-6 py-3 font-black text-brandDark shadow-soft transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-4 focus-visible:ring-offset-brandDark"
-        >
-          <MessageCircle className="h-5 w-5" aria-hidden="true" />
-          Chamar no WhatsApp
-        </a>
+        {whatsappIsActive ? (
+          <a href={links.whatsapp.url} target="_blank" rel="noopener noreferrer" className={ctaClassName}>
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            Chamar no WhatsApp
+          </a>
+        ) : (
+          <button type="button" className={`${ctaClassName} cursor-default`} aria-disabled="true">
+            <MessageCircle className="h-5 w-5" aria-hidden="true" />
+            WhatsApp em breve
+          </button>
+        )}
       </motion.div>
     </section>
   );

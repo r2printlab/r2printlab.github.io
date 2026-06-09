@@ -1,62 +1,100 @@
 export type LinkIcon =
   | "shoppingBag"
+  | "shoppingCart"
   | "messageCircle"
   | "instagram"
+  | "music"
+  | "store"
+  | "package"
+  | "externalLink"
   | "sparkles"
   | "cupSoda"
   | "shield"
   | "sun";
 
+export type LinkStatus = "active" | "soon";
+
+export type OfficialLink = {
+  label: string;
+  url: string;
+  status: LinkStatus;
+  icon: LinkIcon;
+};
+
 export type MainLink = {
   label: string;
-  href: string;
+  url: string;
+  status: LinkStatus;
   icon: LinkIcon;
   highlight?: boolean;
 };
 
-export const mainLinks: MainLink[] = [
-  {
-    label: "Comprar no Mercado Livre",
-    href: "#",
-    icon: "shoppingBag",
-    highlight: true,
-  },
-  {
-    label: "Falar no WhatsApp",
-    href: "#",
-    icon: "messageCircle",
-    highlight: true,
-  },
-  {
-    label: "Ver Instagram",
-    href: "#",
+export const links = {
+  instagram: {
+    label: "Instagram",
+    url: "https://www.instagram.com/r2printlab/",
+    status: "active",
     icon: "instagram",
   },
+  whatsapp: {
+    label: "WhatsApp",
+    url: "#",
+    status: "soon",
+    icon: "messageCircle",
+  },
+  mercadoLivre: {
+    label: "Mercado Livre",
+    url: "#",
+    status: "soon",
+    icon: "shoppingBag",
+  },
+  shopee: {
+    label: "Shopee",
+    url: "#",
+    status: "soon",
+    icon: "store",
+  },
+  tiktok: {
+    label: "TikTok",
+    url: "#",
+    status: "soon",
+    icon: "music",
+  },
+  magalu: {
+    label: "Magalu",
+    url: "#",
+    status: "soon",
+    icon: "package",
+  },
+  amazon: {
+    label: "Amazon",
+    url: "#",
+    status: "soon",
+    icon: "shoppingCart",
+  },
+} satisfies Record<string, OfficialLink>;
+
+export const officialChannels = Object.values(links);
+
+export const mainLinks: MainLink[] = [
   {
-    label: "Produtos personalizados",
-    href: "#",
-    icon: "sparkles",
+    label: links.instagram.label,
+    url: links.instagram.url,
+    status: links.instagram.status,
+    icon: links.instagram.icon,
+    highlight: true,
   },
   {
-    label: "Porta Monster / Porta Lata 3D",
-    href: "#",
-    icon: "cupSoda",
+    label: links.mercadoLivre.label,
+    url: links.mercadoLivre.url,
+    status: links.mercadoLivre.status,
+    icon: links.mercadoLivre.icon,
+    highlight: true,
   },
   {
-    label: "Mascotes de Times",
-    href: "#",
-    icon: "shield",
-  },
-  {
-    label: "Produtos que brilham no escuro",
-    href: "#",
-    icon: "sun",
+    label: links.whatsapp.label,
+    url: links.whatsapp.url,
+    status: links.whatsapp.status,
+    icon: links.whatsapp.icon,
   },
 ];
-
-export const contactLinks = {
-  instagram: "#",
-  whatsapp: "#",
-  mercadoLivre: "#",
-  email: "mailto:r2printlab3d@gmail.com",
-};
