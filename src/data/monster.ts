@@ -14,7 +14,9 @@ const monsterLinks = {
   bege:
     "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4040938236?product_trigger_id=MLBU3990041336&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
   brancoNeon:
-    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4044929805?product_trigger_id=MLBU4040938236&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+    "https://www.mercadolivre.com.br/porta-latas-monster-com-tampa-e-abridor-brilha-no-escuro/up/MLBU4025350483?pdp_filters=seller_id%3A3134698851#polycard_client=search-desktop&be_origin=backend&search_layout=grid&position=19&type=product&tracking_id=f3eff983-e920-4313-86a1-d1cb11d99bae&wid=MLB6868403826&sid=search",
+  branco:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3971831437?product_trigger_id=MLBU3949425546&pdp_filters=seller_id:3134698851&applied_product_filters=MLBU3949425546&picker=true",
 };
 
 export type MonsterShortcut = {
@@ -63,9 +65,17 @@ export const monsterShortcuts: MonsterShortcut[] = [
   {
     name: "Branco Neon",
     tag: "Brilha no escuro",
-    color: "#ffffff",
+    color: "linear-gradient(135deg, #ffffff 0 48%, #42d66b 52% 100%)",
     image: "/assets/branco-neon.png",
     mercadoLivreUrl: monsterLinks.brancoNeon,
+    shopeeUrl: shopeeStoreUrl,
+  },
+  {
+    name: "Monster Branco",
+    tag: "Branco",
+    color: "#ffffff",
+    image: "/assets/monster-branco.png",
+    mercadoLivreUrl: monsterLinks.branco,
     shopeeUrl: shopeeStoreUrl,
   },
   {
@@ -120,7 +130,13 @@ export const monsterShortcuts: MonsterShortcut[] = [
 
 export const monsterColors: MonsterColor[] = [
   { name: "Preto", value: "#111111", mercadoLivreUrl: monsterLinks.preto, shopeeUrl: shopeeStoreUrl },
-  { name: "Branco Neon", value: "#ffffff", mercadoLivreUrl: monsterLinks.brancoNeon, shopeeUrl: shopeeStoreUrl },
+  {
+    name: "Branco Neon",
+    value: "linear-gradient(135deg, #ffffff 0 48%, #42d66b 52% 100%)",
+    mercadoLivreUrl: monsterLinks.brancoNeon,
+    shopeeUrl: shopeeStoreUrl,
+  },
+  { name: "Branco", value: "#ffffff", mercadoLivreUrl: monsterLinks.branco, shopeeUrl: shopeeStoreUrl },
   { name: "Azul", value: "#1664c0", mercadoLivreUrl: monsterLinks.azul, shopeeUrl: shopeeStoreUrl },
   { name: "Vermelho", value: "#df1f2d", mercadoLivreUrl: monsterLinks.vermelho, shopeeUrl: shopeeStoreUrl },
   { name: "Roxo", value: "#6d35b8", mercadoLivreUrl: monsterLinks.roxo, shopeeUrl: shopeeStoreUrl },

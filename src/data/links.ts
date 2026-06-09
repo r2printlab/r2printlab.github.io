@@ -21,8 +21,7 @@ export type LinkKey =
   | "mercadoLivre"
   | "shopee"
   | "tiktok"
-  | "magalu"
-  | "amazon";
+  | "temu";
 
 export const mercadoLivreStoreUrl =
   "https://lista.mercadolivre.com.br/_CustId_3134698851?item_id=MLB4656052071&category_id=MLB271427&seller_id=3134698851&client=recoview-selleritems&recos_listing=true#origin=upp&component=sellerData&typeSeller=classic";
@@ -95,23 +94,24 @@ export const links: Record<LinkKey, OfficialLink> = {
     status: "soon",
     icon: "music",
   },
-  magalu: {
-    key: "magalu",
-    label: "Magalu",
-    url: "#",
-    status: "soon",
-    icon: "package",
-  },
-  amazon: {
-    key: "amazon",
-    label: "Amazon",
+  temu: {
+    key: "temu",
+    label: "Temu",
     url: "#",
     status: "soon",
     icon: "shoppingCart",
   },
 };
 
-export const officialChannels: OfficialLink[] = Object.values(links);
+export const officialChannels: OfficialLink[] = [
+  links.monsters,
+  links.mercadoLivre,
+  links.shopee,
+  links.tiktok,
+  links.temu,
+  links.instagram,
+  links.whatsapp,
+];
 
 export const mainLinks: MainLink[] = [
   {

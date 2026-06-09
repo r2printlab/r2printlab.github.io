@@ -13,18 +13,18 @@ export function QuickShop({ onSelectMonster, selectedMonsterName }: QuickShopPro
       <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-white/80 px-5 py-6 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/70 sm:px-8">
         <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-mist/80 blur-3xl dark:bg-darkAccent/10" />
         <div className="relative flex flex-col gap-5 sm:items-center">
-          <div className="flex flex-col items-center gap-3 sm:flex-row">
+          <div className="flex flex-col items-center gap-4 sm:flex-row">
             <img
               src="/assets/logo-r2.png"
               alt="R2 Print Lab"
-              className="h-16 w-16 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard"
+              className="h-16 w-16 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard sm:h-[4.25rem] sm:w-[4.25rem]"
             />
-            <div className="hidden h-12 w-px bg-mist dark:bg-darkAccent/20 sm:block" />
-            <div className="inline-flex items-center gap-3 rounded-3xl border border-mist bg-white px-4 py-3 shadow-soft dark:border-darkAccent/20 dark:bg-darkCardAlt">
+            <div className="hidden h-14 w-px bg-mist dark:bg-darkAccent/20 sm:block" />
+            <div className="inline-flex items-center gap-4 rounded-[1.7rem] border border-mist bg-white px-5 py-4 shadow-soft dark:border-darkAccent/20 dark:bg-darkCardAlt">
               <img
                 src="/assets/logo%20monster.png"
                 alt="Monster"
-                className="h-12 w-14 object-contain drop-shadow-md"
+                className="h-16 w-20 object-contain drop-shadow-lg sm:h-[4.5rem] sm:w-24"
               />
               <div className="text-left">
                 <p className="text-[0.66rem] font-black uppercase tracking-[0.16em] text-brand dark:text-darkAccent">

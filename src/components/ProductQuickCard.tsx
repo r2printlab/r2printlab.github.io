@@ -46,7 +46,7 @@ export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCar
           </div>
           <span
             className="h-6 w-6 shrink-0 rounded-full border border-mist shadow-sm dark:border-darkAccent/30"
-            style={{ backgroundColor: item.color }}
+            style={{ background: item.color }}
             aria-label={`Cor ${item.tag}`}
           />
         </div>

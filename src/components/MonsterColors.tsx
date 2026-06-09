@@ -12,13 +12,13 @@ export function MonsterColors() {
           Toque em uma cor para abrir a variacao correspondente no Mercado Livre.
         </p>
       </div>
-      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-8">
+      <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-9">
         {monsterColors.map((color) => {
           const content = (
             <>
             <span
               className="mx-auto block h-16 w-16 rounded-2xl border border-mist shadow-sm transition group-hover:scale-105 dark:border-darkAccent/20"
-              style={{ backgroundColor: color.value }}
+              style={{ background: color.value }}
             />
             <p className="mt-3 text-sm font-black text-textMain dark:text-darkText">{color.name}</p>
             <span className="mt-2 block text-[0.68rem] font-black uppercase tracking-[0.12em] text-brand/70 dark:text-darkAccent/80">
