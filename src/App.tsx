@@ -29,7 +29,9 @@ export default function App() {
   function handleOpenMonsters() {
     setPage("monsters");
     setSelectedMonster(null);
-    scrollTop();
+    window.requestAnimationFrame(() => {
+      document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
   }
 
   function handleSelectMonster(monster: MonsterShortcut) {
@@ -39,9 +41,16 @@ export default function App() {
     });
   }
 
+  function handleBackToCollection() {
+    setSelectedMonster(null);
+    window.requestAnimationFrame(() => {
+      document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   return (
     <div className="min-h-screen overflow-hidden bg-paper text-textMain transition-colors dark:bg-darkBg dark:text-darkText">
-      <div className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_top_left,rgba(232,240,246,0.92),transparent_34%),radial-gradient(circle_at_top_right,rgba(31,69,100,0.10),transparent_30%),linear-gradient(180deg,#f7f9fb_0%,#ffffff_52%,#f7f9fb_100%)] dark:bg-[radial-gradient(circle_at_top_left,rgba(127,176,214,0.12),transparent_32%),radial-gradient(circle_at_top_right,rgba(31,69,100,0.25),transparent_30%),linear-gradient(180deg,#071018_0%,#0b1722_52%,#071018_100%)]" />
+      <div className="site-background pointer-events-none fixed inset-0 -z-10" />
       <Header onHome={handleHome} />
       <main>
         {page === "home" ? (
@@ -52,7 +61,7 @@ export default function App() {
           </>
         ) : (
           <>
-            <FeaturedMonster selectedMonster={selectedMonster ?? undefined} />
+            <FeaturedMonster selectedMonster={selectedMonster ?? undefined} onBackToCollection={handleBackToCollection} />
             <MonsterColors />
             <QuickShop onSelectMonster={handleSelectMonster} selectedMonsterName={selectedMonster?.name} />
             {selectedMonster ? <MonsterGallery /> : null}

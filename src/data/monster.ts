@@ -1,3 +1,22 @@
+import { mercadoLivreStoreUrl, shopeeStoreUrl } from "./links";
+
+const monsterLinks = {
+  preto:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3949425546?pdp_filters=seller_id%3A3134698851#polycard_client=recommendations_vip-seller_items-above&reco_backend=ranker-retsys-same-seller&reco_model=rk_entity_sameseller&reco_client=vip-seller_items-above&reco_item_pos=1&reco_backend_type=low_level&reco_id=2bea42b9-2351-4760-ad2b-260b7ee0837b&wid=MLB4656052071&sid=recos",
+  vermelho:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483526?product_trigger_id=MLBU3949425546&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  azul:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3987483526?product_trigger_id=MLBU3949425546&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  rosa:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4071017754?product_trigger_id=MLBU3984474672&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  roxo:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU3990041336?product_trigger_id=MLBU4071017754&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  bege:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4040938236?product_trigger_id=MLBU3990041336&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+  brancoNeon:
+    "https://www.mercadolivre.com.br/porta-lata-monster-com-tampa-e-abridor-exclusivo-energetico/up/MLBU4044929805?product_trigger_id=MLBU4040938236&pdp_filters=seller_id%3A3134698851&applied_product_filters=MLBU3949425546&picker=true&quantity=1",
+};
+
 export type MonsterShortcut = {
   name: string;
   tag: string;
@@ -27,8 +46,9 @@ export const monsterProduct = {
   image: "/assets/monster-destaque.png",
   fallbackImage: "/assets/monsters.png",
   video: "/assets/video-monster.mp4",
-  mercadoLivreUrl: "#",
-  shopeeUrl: "#",
+  sideVideo: "/assets/monster-branco-neon.mp4",
+  mercadoLivreUrl: mercadoLivreStoreUrl,
+  shopeeUrl: shopeeStoreUrl,
 };
 
 export const monsterShortcuts: MonsterShortcut[] = [
@@ -37,84 +57,84 @@ export const monsterShortcuts: MonsterShortcut[] = [
     tag: "Preto",
     color: "#111111",
     image: "/assets/monster-preto.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.preto,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
-    name: "Monster Branco",
-    tag: "Branco",
+    name: "Branco Neon",
+    tag: "Brilha no escuro",
     color: "#ffffff",
     image: "/assets/monster-branco.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.brancoNeon,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
     name: "Monster Azul",
     tag: "Azul",
     color: "#1664c0",
     image: "/assets/monster-azul.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.azul,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
     name: "Monster Vermelho",
     tag: "Vermelho",
     color: "#df1f2d",
     image: "/assets/monster-vermelho.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.vermelho,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
     name: "Monster Roxo",
     tag: "Roxo",
     color: "#6d35b8",
     image: "/assets/monster-roxo.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.roxo,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
-    name: "Monster Rosa",
-    tag: "Rosa",
+    name: "Monster Rosa Chiclete",
+    tag: "Rosa chiclete",
     color: "#ef6fa6",
     image: "/assets/monster-rosa.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.rosa,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
-    name: "Monster Verde",
-    tag: "Verde",
-    color: "#22a842",
+    name: "Monster Bege",
+    tag: "Bege",
+    color: "#d7c2a3",
     image: "/assets/monster-verde.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: monsterLinks.bege,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
     name: "Monster Laranja",
     tag: "Laranja",
     color: "#f07921",
     image: "/assets/monster-laranja.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: mercadoLivreStoreUrl,
+    shopeeUrl: shopeeStoreUrl,
   },
   {
     name: "Colecao Monsters",
     tag: "Colecao",
     color: "#1f4564",
     image: "/assets/monster-colecao.png",
-    mercadoLivreUrl: "#",
-    shopeeUrl: "#",
+    mercadoLivreUrl: mercadoLivreStoreUrl,
+    shopeeUrl: shopeeStoreUrl,
   },
 ];
 
 export const monsterColors: MonsterColor[] = [
-  { name: "Preto", value: "#111111", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Branco", value: "#ffffff", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Azul", value: "#1664c0", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Vermelho", value: "#df1f2d", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Roxo", value: "#6d35b8", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Rosa", value: "#ef6fa6", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Verde", value: "#22a842", mercadoLivreUrl: "#", shopeeUrl: "#" },
-  { name: "Laranja", value: "#f07921", mercadoLivreUrl: "#", shopeeUrl: "#" },
+  { name: "Preto", value: "#111111", mercadoLivreUrl: monsterLinks.preto, shopeeUrl: shopeeStoreUrl },
+  { name: "Branco Neon", value: "#ffffff", mercadoLivreUrl: monsterLinks.brancoNeon, shopeeUrl: shopeeStoreUrl },
+  { name: "Azul", value: "#1664c0", mercadoLivreUrl: monsterLinks.azul, shopeeUrl: shopeeStoreUrl },
+  { name: "Vermelho", value: "#df1f2d", mercadoLivreUrl: monsterLinks.vermelho, shopeeUrl: shopeeStoreUrl },
+  { name: "Roxo", value: "#6d35b8", mercadoLivreUrl: monsterLinks.roxo, shopeeUrl: shopeeStoreUrl },
+  { name: "Rosa Chiclete", value: "#ef6fa6", mercadoLivreUrl: monsterLinks.rosa, shopeeUrl: shopeeStoreUrl },
+  { name: "Bege", value: "#d7c2a3", mercadoLivreUrl: monsterLinks.bege, shopeeUrl: shopeeStoreUrl },
+  { name: "Laranja", value: "#f07921", mercadoLivreUrl: mercadoLivreStoreUrl, shopeeUrl: shopeeStoreUrl },
 ];
 
 export const monsterGallery: GalleryImage[] = [

@@ -64,11 +64,11 @@ instagram: {
 Os demais canais ficam como `status: "soon"` e `url: "#"`:
 
 - WhatsApp
-- Mercado Livre
-- Shopee
 - TikTok
 - Magalu
 - Amazon
+
+Mercado Livre e Shopee ja possuem links oficiais da loja e ficam como `status: "active"`.
 
 Para ativar um canal, troque `url` pelo link real e altere `status` para `"active"`.
 
@@ -100,8 +100,8 @@ Cada item possui:
   tag: "Preto",
   color: "#111111",
   image: "/assets/monster-preto.png",
-  mercadoLivreUrl: "#",
-  shopeeUrl: "#",
+  mercadoLivreUrl: "https://www.mercadolivre.com.br/...",
+  shopeeUrl: "https://shopee.com.br/r2printlab3d...",
 }
 ```
 
@@ -133,10 +133,11 @@ public/assets/monster-laranja.png
 public/assets/monster-detalhe.png
 ```
 
-O video curto do produto fica em:
+Os videos curtos do produto ficam em:
 
 ```text
 public/assets/video-monster.mp4
+public/assets/monster-branco-neon.mp4
 ```
 
 Se alguma imagem ainda nao existir, o card mostra um placeholder elegante sem quebrar a pagina.

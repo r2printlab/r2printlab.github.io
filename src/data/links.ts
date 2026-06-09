@@ -24,12 +24,21 @@ export type LinkKey =
   | "magalu"
   | "amazon";
 
+export const mercadoLivreStoreUrl =
+  "https://lista.mercadolivre.com.br/_CustId_3134698851?item_id=MLB4656052071&category_id=MLB271427&seller_id=3134698851&client=recoview-selleritems&recos_listing=true#origin=upp&component=sellerData&typeSeller=classic";
+
+export const shopeeStoreUrl =
+  "https://shopee.com.br/r2printlab3d?uls_trackid=54prus1000um&utm_content=2UZZYw4xmEcpS84EyAtD5X1Fxnb1";
+
 export type OfficialLink = {
   key: LinkKey;
   label: string;
   url: string;
   status: LinkStatus;
   icon: LinkIcon;
+  badge?: string;
+  metric?: string;
+  note?: string;
 };
 
 export type MainLink = {
@@ -47,6 +56,9 @@ export const links: Record<LinkKey, OfficialLink> = {
     url: "#top",
     status: "active",
     icon: "package",
+    badge: "Em destaque",
+    metric: "+100 vendas",
+    note: "Porta lata 3D com tampa e abridor",
   },
   instagram: {
     key: "instagram",
@@ -65,15 +77,15 @@ export const links: Record<LinkKey, OfficialLink> = {
   mercadoLivre: {
     key: "mercadoLivre",
     label: "Mercado Livre",
-    url: "#",
-    status: "soon",
+    url: mercadoLivreStoreUrl,
+    status: "active",
     icon: "shoppingBag",
   },
   shopee: {
     key: "shopee",
     label: "Shopee",
-    url: "#",
-    status: "soon",
+    url: shopeeStoreUrl,
+    status: "active",
     icon: "store",
   },
   tiktok: {

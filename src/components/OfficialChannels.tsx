@@ -8,6 +8,7 @@ import {
   Package,
   ShoppingBag,
   ShoppingCart,
+  Sparkles,
   Store,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -83,28 +84,47 @@ function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
   const isMonsterChannel = channel.key === "monsters";
   const isInternalLink = channel.url.startsWith("#");
   const className = `group flex min-h-[82px] w-full items-center justify-between gap-4 rounded-3xl border px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 ${
-    isActive
+    isMonsterChannel
+      ? "relative overflow-hidden border-brand/20 bg-gradient-to-br from-brand via-brand to-brandDark text-white shadow-lift hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/30 dark:from-darkAccent dark:via-darkAccent dark:to-brand dark:text-darkBg"
+      : isActive
       ? "border-brand/15 bg-brand text-white shadow-sm hover:-translate-y-0.5 hover:bg-brandDark hover:shadow-soft dark:border-darkAccent/25 dark:bg-darkAccent dark:text-darkBg"
       : "border-mist bg-white/70 text-textMuted dark:border-darkAccent/20 dark:bg-darkCardAlt/70 dark:text-darkMuted"
   }`;
   const content = (
     <>
-      <span className="flex min-w-0 items-center gap-3">
+      {isMonsterChannel ? (
+        <span className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-white/10 blur-xl" />
+      ) : null}
+      <span className="relative flex min-w-0 items-center gap-3">
         <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl ${isActive ? "bg-white/15 text-white dark:bg-darkBg/10 dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCard dark:text-darkAccent"}`}>
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
         <span className="min-w-0">
+          {channel.badge ? (
+            <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-brand dark:bg-darkBg/90 dark:text-darkAccent">
+              <Sparkles className="h-3 w-3" aria-hidden="true" />
+              {channel.badge}
+            </span>
+          ) : null}
           <span className="block font-black">{channel.label}</span>
-          <span className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] ${isActive ? "bg-white/15 text-white dark:bg-darkBg/10 dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCard dark:text-darkAccent"}`}>
-            {isActive ? "acessar" : "em atualizacao"}
+          <span className="mt-1 flex flex-wrap items-center gap-2">
+            <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] ${isActive ? "bg-white/15 text-white dark:bg-darkBg/10 dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCard dark:text-darkAccent"}`}>
+              {isActive ? "acessar" : "em atualizacao"}
+            </span>
+            {channel.metric ? (
+              <span className="inline-flex rounded-full bg-white/95 px-2.5 py-1 text-xs font-black text-brand dark:bg-darkBg/90 dark:text-darkAccent">
+                {channel.metric}
+              </span>
+            ) : null}
           </span>
+          {channel.note ? <span className="mt-2 hidden text-xs font-semibold text-white/80 sm:block dark:text-darkBg/75">{channel.note}</span> : null}
         </span>
       </span>
       {isActive ? (
         isInternalLink ? (
-          <ChevronRight className="h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-1" aria-hidden="true" />
+          <ChevronRight className="relative h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-1" aria-hidden="true" />
         ) : (
-          <ExternalLink className="h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+          <ExternalLink className="relative h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
         )
       ) : null}
     </>
