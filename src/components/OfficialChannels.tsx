@@ -28,7 +28,11 @@ const icons: Record<LinkIcon, LucideIcon> = {
   sun: ExternalLink,
 };
 
-export function OfficialChannels() {
+type OfficialChannelsProps = {
+  onOpenMonsters: () => void;
+};
+
+export function OfficialChannels({ onOpenMonsters }: OfficialChannelsProps) {
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-8 sm:px-6">
       <div className="rounded-[2rem] border border-mist bg-white/90 p-5 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/90 sm:p-6">
@@ -59,7 +63,7 @@ export function OfficialChannels() {
               }}
               transition={{ duration: 0.3 }}
             >
-              <ChannelCard channel={channel} />
+              <ChannelCard channel={channel} onOpenMonsters={onOpenMonsters} />
             </motion.div>
           ))}
         </motion.div>
@@ -70,11 +74,13 @@ export function OfficialChannels() {
 
 type ChannelCardProps = {
   channel: OfficialLink;
+  onOpenMonsters: () => void;
 };
 
-function ChannelCard({ channel }: ChannelCardProps) {
+function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
   const Icon = icons[channel.icon];
   const isActive = channel.status === "active" && channel.url !== "#";
+  const isMonsterChannel = channel.key === "monsters";
   const isInternalLink = channel.url.startsWith("#");
   const className = `group flex min-h-[82px] w-full items-center justify-between gap-4 rounded-3xl border px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 ${
     isActive
@@ -107,6 +113,14 @@ function ChannelCard({ channel }: ChannelCardProps) {
   if (!isActive) {
     return (
       <button type="button" className={`${className} cursor-default`} disabled>
+        {content}
+      </button>
+    );
+  }
+
+  if (isMonsterChannel) {
+    return (
+      <button type="button" onClick={onOpenMonsters} className={className}>
         {content}
       </button>
     );

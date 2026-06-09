@@ -14,13 +14,6 @@ export type LinkIcon =
 
 export type LinkStatus = "active" | "soon";
 
-export type OfficialLink = {
-  label: string;
-  url: string;
-  status: LinkStatus;
-  icon: LinkIcon;
-};
-
 export type LinkKey =
   | "monsters"
   | "instagram"
@@ -30,6 +23,14 @@ export type LinkKey =
   | "tiktok"
   | "magalu"
   | "amazon";
+
+export type OfficialLink = {
+  key: LinkKey;
+  label: string;
+  url: string;
+  status: LinkStatus;
+  icon: LinkIcon;
+};
 
 export type MainLink = {
   label: string;
@@ -41,48 +42,56 @@ export type MainLink = {
 
 export const links: Record<LinkKey, OfficialLink> = {
   monsters: {
+    key: "monsters",
     label: "Colecao Monsters",
     url: "#top",
     status: "active",
     icon: "package",
   },
   instagram: {
+    key: "instagram",
     label: "Instagram",
     url: "https://www.instagram.com/r2printlab/",
     status: "active",
     icon: "instagram",
   },
   whatsapp: {
+    key: "whatsapp",
     label: "WhatsApp",
     url: "#",
     status: "soon",
     icon: "messageCircle",
   },
   mercadoLivre: {
+    key: "mercadoLivre",
     label: "Mercado Livre",
     url: "#",
     status: "soon",
     icon: "shoppingBag",
   },
   shopee: {
+    key: "shopee",
     label: "Shopee",
     url: "#",
     status: "soon",
     icon: "store",
   },
   tiktok: {
+    key: "tiktok",
     label: "TikTok",
     url: "#",
     status: "soon",
     icon: "music",
   },
   magalu: {
+    key: "magalu",
     label: "Magalu",
     url: "#",
     status: "soon",
     icon: "package",
   },
   amazon: {
+    key: "amazon",
     label: "Amazon",
     url: "#",
     status: "soon",

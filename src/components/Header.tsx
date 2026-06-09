@@ -1,11 +1,16 @@
 import { motion } from "framer-motion";
 import { ThemeToggle } from "./ThemeToggle";
 
-export function Header() {
+type HeaderProps = {
+  onHome: () => void;
+};
+
+export function Header({ onHome }: HeaderProps) {
   return (
     <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3 sm:px-6 lg:px-8">
-      <motion.a
-        href="#top"
+      <motion.button
+        type="button"
+        onClick={onHome}
         className="flex items-center gap-3 rounded-full outline-none transition focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4"
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -18,7 +23,7 @@ export function Header() {
         <span className="text-sm font-semibold tracking-wide text-textMuted dark:text-darkMuted">
           R2 Print Lab
         </span>
-      </motion.a>
+      </motion.button>
       <motion.div
         initial={{ opacity: 0, y: -10 }}
         animate={{ opacity: 1, y: 0 }}
