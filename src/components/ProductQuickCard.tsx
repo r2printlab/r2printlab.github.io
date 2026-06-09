@@ -4,12 +4,13 @@ import type { MonsterShortcut } from "../data/monster";
 
 type ProductQuickCardProps = {
   item: MonsterShortcut;
+  isSelected?: boolean;
+  onSelect: () => void;
 };
 
-export function ProductQuickCard({ item }: ProductQuickCardProps) {
+export function ProductQuickCard({ item, isSelected, onSelect }: ProductQuickCardProps) {
   const [imageFailed, setImageFailed] = useState(false);
   const imageSrc = imageFailed ? undefined : item.image;
-  const productIsActive = item.productUrl !== "#";
   const whatsappIsActive = item.whatsappUrl !== "#";
 
   useEffect(() => {
@@ -17,7 +18,11 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
   }, [item.image]);
 
   return (
-    <article className="group overflow-hidden rounded-3xl border border-mist bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/20 dark:bg-darkCard">
+    <article
+      className={`group overflow-hidden rounded-3xl border bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft dark:bg-darkCard ${
+        isSelected ? "border-brand ring-2 ring-brand/15 dark:border-darkAccent dark:ring-darkAccent/20" : "border-mist dark:border-darkAccent/20"
+      }`}
+    >
       <div className="product-grid flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white via-mist to-white dark:from-darkCard dark:via-darkCardAlt dark:to-darkCard">
         {imageSrc ? (
           <img
@@ -46,24 +51,13 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
           />
         </div>
         <div className="mt-4 grid grid-cols-[1fr_auto] gap-2">
-          {productIsActive ? (
-            <a
-              href={item.productUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
-            >
-              Ver produto
-            </a>
-          ) : (
-            <button
-              type="button"
-              disabled
-              className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white disabled:cursor-default disabled:opacity-90 dark:bg-darkAccent dark:text-darkBg"
-            >
-              Ver produto
-            </button>
-          )}
+          <button
+            type="button"
+            onClick={onSelect}
+            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
+          >
+            Ver produto
+          </button>
           {whatsappIsActive ? (
             <a
               href={item.whatsappUrl}

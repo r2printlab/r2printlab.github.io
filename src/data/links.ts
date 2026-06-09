@@ -22,6 +22,7 @@ export type OfficialLink = {
 };
 
 export type LinkKey =
+  | "monsters"
   | "instagram"
   | "whatsapp"
   | "mercadoLivre"
@@ -39,6 +40,12 @@ export type MainLink = {
 };
 
 export const links: Record<LinkKey, OfficialLink> = {
+  monsters: {
+    label: "Colecao Monsters",
+    url: "#top",
+    status: "active",
+    icon: "package",
+  },
   instagram: {
     label: "Instagram",
     url: "https://www.instagram.com/r2printlab/",
