@@ -17,6 +17,14 @@
     />
     <meta property="og:image" content="https://r2printlab.github.io/og-image.svg" />
     <title>R2 Print Lab | Impressao 3D personalizada</title>
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem("r2-theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const theme = storedTheme || (prefersDark ? "dark" : "light");
+        document.documentElement.classList.toggle("dark", theme === "dark");
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

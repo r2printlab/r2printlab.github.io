@@ -4,7 +4,7 @@ Landing page/bio link oficial da R2 Print Lab para o GitHub Pages:
 
 https://r2printlab.github.io
 
-O projeto funciona como um Linktree proprio com visual de marca, botoes comerciais, produtos em destaque e chamada direta para Mercado Livre, WhatsApp e Instagram.
+O site funciona como uma vitrine rapida da colecao Monsters, pensada para clientes que chegam pelo Instagram e querem encontrar rapidamente o produto, a cor ou o canal oficial da marca.
 
 ## Stack
 
@@ -16,51 +16,39 @@ O projeto funciona como um Linktree proprio com visual de marca, botoes comercia
 - Lucide React
 - GitHub Pages via GitHub Actions
 
-## Instalar dependencias
+## Rodar o projeto
+
+Instalar dependencias:
 
 ```bash
 npm install
 ```
 
-## Rodar localmente
+Rodar localmente:
 
 ```bash
 npm run dev
 ```
 
-Depois abra a URL exibida pelo Vite, normalmente `http://localhost:5173`.
-
-## Gerar build
+Gerar build:
 
 ```bash
 npm run build
 ```
 
-O build estatico sera criado na pasta `dist`.
-
-## Visualizar build local
+Visualizar build local:
 
 ```bash
 npm run preview
 ```
 
-## Trocar links
+## Links oficiais
 
-Edite o arquivo:
+Os canais oficiais ficam em:
 
 ```text
 src/data/links.ts
 ```
-
-Os canais oficiais ficam no objeto `links`:
-
-- Mercado Livre
-- WhatsApp
-- Instagram
-- Shopee
-- TikTok
-- Magalu
-- Amazon
 
 Por enquanto, somente o Instagram possui link real:
 
@@ -73,50 +61,53 @@ instagram: {
 },
 ```
 
-Para ativar outro canal, troque `url` pelo link real e altere `status` de `"soon"` para `"active"`.
+Os demais canais ficam como `status: "soon"` e `url: "#"`:
 
-Exemplo para WhatsApp:
+- WhatsApp
+- Mercado Livre
+- Shopee
+- TikTok
+- Magalu
+- Amazon
 
-```ts
-whatsapp: {
-  label: "WhatsApp",
-  url: "https://wa.me/5500000000000",
-  status: "active",
-  icon: "messageCircle",
-},
-```
+Para ativar um canal, troque `url` pelo link real e altere `status` para `"active"`.
 
-Enquanto `status` estiver como `"soon"` ou `url` estiver como `"#"`, o site mostra o botao como "em breve" sem navegar para um link vazio.
+Enquanto um canal estiver como `"soon"` ou `url: "#"`, o site exibe o badge "em breve" e nao navega para link vazio.
 
-## Trocar produtos
+## Vitrine Monsters
 
-Edite o arquivo:
+Os dados da colecao ficam em:
 
 ```text
-src/data/products.ts
+src/data/monster.ts
 ```
 
-Cada produto possui:
+Esse arquivo centraliza:
 
-- `title`
-- `description`
-- `tag`
-- `href`
-- `image`
+- produto principal
+- atalhos da vitrine rapida
+- cores disponiveis
+- imagens da galeria
+- textos da colecao
 
-Use `href` para apontar para a pagina do produto no Mercado Livre, Instagram ou outro canal comercial.
+Para alterar os cards do Quick Shop, edite `monsterShortcuts`.
 
-Use `image` para apontar para uma imagem dentro da pasta `public/assets`.
-
-Exemplo:
+Cada item possui:
 
 ```ts
-image: "/assets/monsters.png",
+{
+  name: "Monster Preto",
+  tag: "Preto",
+  color: "#111111",
+  image: "/assets/monster-preto.png",
+  productUrl: "#",
+  whatsappUrl: "#",
+}
 ```
 
-Se a imagem nao existir ou falhar ao carregar, o card continua funcionando com um placeholder visual.
+Quando `productUrl` ou `whatsappUrl` estiver como `"#"`, o botao aparece sem navegar.
 
-## Logo e imagens
+## Imagens
 
 A logo oficial deve ficar em:
 
@@ -124,42 +115,60 @@ A logo oficial deve ficar em:
 public/assets/logo-r2.png
 ```
 
-As imagens de produtos devem ficar na mesma pasta:
+As imagens previstas para a colecao Monsters ficam em:
 
 ```text
-public/assets/
+public/assets/monster-destaque.png
+public/assets/monster-colecao.png
+public/assets/monster-preto.png
+public/assets/monster-branco.png
+public/assets/monster-azul.png
+public/assets/monster-vermelho.png
+public/assets/monster-roxo.png
+public/assets/monster-rosa.png
+public/assets/monster-verde.png
+public/assets/monster-laranja.png
+public/assets/monster-detalhe.png
 ```
 
-Exemplos:
+Se alguma imagem ainda nao existir, o card mostra um placeholder elegante sem quebrar a pagina.
+
+## Tema Claro/Escuro
+
+O botao de tema fica no Header e usa `localStorage` com a chave:
 
 ```text
-public/assets/monsters.png
-public/assets/produto-personalizado.png
+r2-theme
 ```
 
-Depois de adicionar uma imagem, atualize o caminho em:
+O tema inicial usa a preferencia salva. Se nao houver preferencia salva, o site consulta `prefers-color-scheme`.
 
-```text
-src/data/products.ts
-```
+O script em `index.html` aplica a classe `dark` antes do React carregar para reduzir flash visual.
 
-## Cores da identidade visual
-
-As cores principais ficam centralizadas no arquivo:
+As cores principais ficam em:
 
 ```text
 tailwind.config.js
 ```
 
-Paleta usada:
+Tema claro:
 
+- Fundo: `#f7f9fb`
+- Cards: `#ffffff`
+- Texto principal: `#111111`
+- Texto secundario: `#5f6b76`
 - Azul principal: `#1f4564`
 - Azul escuro: `#143047`
 - Azul suave: `#e8f0f6`
-- Preto texto: `#111111`
-- Branco: `#ffffff`
-- Off-white: `#f7f9fb`
-- Cinza texto: `#5f6b76`
+
+Tema escuro:
+
+- Fundo: `#071018`
+- Cards: `#0f1b26`
+- Cards secundarios: `#122538`
+- Texto principal: `#f7f9fb`
+- Texto secundario: `#b7c3ce`
+- Azul destaque: `#7fb0d6`
 
 ## Publicar no GitHub Pages
 
@@ -175,49 +184,10 @@ O arquivo `vite.config.ts` usa:
 base: "/"
 ```
 
-Isso e o correto para repositorios do tipo `username.github.io` ou `organization.github.io`.
-
-## GitHub Actions
-
-O workflow fica em:
+O workflow de deploy fica em:
 
 ```text
 .github/workflows/deploy.yml
 ```
 
-Quando houver push na branch `main`, o GitHub Actions executa:
-
-1. Checkout do repositorio
-2. Instala Node
-3. Instala dependencias com `npm install`
-4. Gera build com `npm run build`
-5. Publica a pasta `dist` no GitHub Pages
-
-## Configurar GitHub Pages no GitHub
-
-No repositorio do GitHub:
-
-1. Abra `Settings`
-2. Entre em `Pages`
-3. Em `Build and deployment`, selecione `GitHub Actions`
-4. Salve a configuracao
-5. Faca push na branch `main`
-
-Depois do workflow concluir, o site ficara disponivel em:
-
-https://r2printlab.github.io
-
-## Estrutura principal
-
-```text
-src/
-  components/
-  data/
-  App.tsx
-  main.tsx
-  index.css
-public/
-.github/workflows/deploy.yml
-```
-
-Os componentes ficam separados em `src/components/` e os dados editaveis ficam em `src/data/`.
+No GitHub, configure `Settings > Pages > Build and deployment` como `GitHub Actions`.

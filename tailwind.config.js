@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 export default {
+  darkMode: "class",
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {
@@ -11,6 +12,12 @@ export default {
         textMuted: "#5f6b76",
         paper: "#f7f9fb",
         surface: "#ffffff",
+        darkBg: "#071018",
+        darkCard: "#0f1b26",
+        darkCardAlt: "#122538",
+        darkText: "#f7f9fb",
+        darkMuted: "#b7c3ce",
+        darkAccent: "#7fb0d6",
       },
       fontFamily: {
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],

@@ -29,11 +29,11 @@ const icons: Record<LinkIcon, LucideIcon> = {
 
 export function OfficialChannels() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-2xl text-center">
-        <p className="text-sm font-black uppercase tracking-[0.2em] text-brand">Canais oficiais</p>
-        <h2 className="mt-3 text-3xl font-black text-textMain sm:text-4xl">Onde encontrar a R2</h2>
-        <p className="mt-3 text-sm leading-6 text-textMuted">
+        <p className="text-sm font-black uppercase tracking-[0.2em] text-brand dark:text-darkAccent">Canais oficiais</p>
+        <h2 className="mt-3 text-3xl font-black text-textMain dark:text-darkText sm:text-4xl">Onde encontrar a R2</h2>
+        <p className="mt-3 text-sm leading-6 text-textMuted dark:text-darkMuted">
           Acompanhe a marca e veja os canais de venda que estao sendo preparados.
         </p>
       </div>
@@ -74,24 +74,24 @@ function ChannelCard({ channel }: ChannelCardProps) {
   const isActive = channel.status === "active" && channel.url !== "#";
   const className = `group flex min-h-[82px] w-full items-center justify-between gap-4 rounded-3xl border px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 ${
     isActive
-      ? "border-brand/15 bg-white text-textMain shadow-sm hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-soft"
-      : "border-mist bg-white/70 text-textMuted"
+      ? "border-brand/15 bg-white text-textMain shadow-sm hover:-translate-y-0.5 hover:border-brand/35 hover:shadow-soft dark:border-darkAccent/25 dark:bg-darkCard dark:text-darkText"
+      : "border-mist bg-white/70 text-textMuted dark:border-darkAccent/20 dark:bg-darkCard/70 dark:text-darkMuted"
   }`;
   const content = (
     <>
       <span className="flex min-w-0 items-center gap-3">
-        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-mist text-brand">
+        <span className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-mist text-brand dark:bg-darkCardAlt dark:text-darkAccent">
           <Icon className="h-5 w-5" aria-hidden="true" />
         </span>
         <span className="min-w-0">
           <span className="block font-black">{channel.label}</span>
-          <span className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] ${isActive ? "bg-brand text-white" : "bg-mist text-brand"}`}>
+          <span className={`mt-1 inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] ${isActive ? "bg-brand text-white dark:bg-darkAccent dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCardAlt dark:text-darkAccent"}`}>
             {isActive ? "ativo" : "em breve"}
           </span>
         </span>
       </span>
       {isActive ? (
-        <ExternalLink className="h-5 w-5 shrink-0 text-brand opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
+        <ExternalLink className="h-5 w-5 shrink-0 text-brand opacity-70 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5 dark:text-darkAccent" aria-hidden="true" />
       ) : null}
     </>
   );
