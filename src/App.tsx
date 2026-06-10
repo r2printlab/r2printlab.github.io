@@ -4,12 +4,13 @@ import { FeaturedMonster } from "./components/FeaturedMonster";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
+import { MascotsPage } from "./components/MascotsPage";
 import { MonsterColors } from "./components/MonsterColors";
 import { OfficialChannels } from "./components/OfficialChannels";
 import { QuickShop } from "./components/QuickShop";
 
 export default function App() {
-  const [page, setPage] = useState<"home" | "monsters">("home");
+  const [page, setPage] = useState<"home" | "monsters" | "mascots">("home");
 
   function scrollTop() {
     window.requestAnimationFrame(() => {
@@ -29,6 +30,13 @@ export default function App() {
     });
   }
 
+  function handleOpenMascots() {
+    setPage("mascots");
+    window.requestAnimationFrame(() => {
+      document.getElementById("mascots")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   function handleBackToCollection() {
     window.requestAnimationFrame(() => {
       document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -44,10 +52,10 @@ export default function App() {
           {page === "home" ? (
             <>
               <BrandIntro />
-              <OfficialChannels onOpenMonsters={handleOpenMonsters} />
+              <OfficialChannels onOpenMonsters={handleOpenMonsters} onOpenMascots={handleOpenMascots} />
               <FeaturesSection />
             </>
-          ) : (
+          ) : page === "monsters" ? (
             <>
               <FeaturedMonster
                 onBackToCollection={handleBackToCollection}
@@ -55,6 +63,11 @@ export default function App() {
               />
               <QuickShop />
               <MonsterColors />
+              <FeaturesSection />
+            </>
+          ) : (
+            <>
+              <MascotsPage onBackToHome={handleHome} />
               <FeaturesSection />
             </>
           )}

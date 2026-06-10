@@ -30,9 +30,10 @@ const icons: Record<LinkIcon, LucideIcon> = {
 
 type OfficialChannelsProps = {
   onOpenMonsters: () => void;
+  onOpenMascots: () => void;
 };
 
-export function OfficialChannels({ onOpenMonsters }: OfficialChannelsProps) {
+export function OfficialChannels({ onOpenMonsters, onOpenMascots }: OfficialChannelsProps) {
   return (
     <section className="mx-auto w-full max-w-3xl px-5 py-8 sm:px-6">
       <div className="rounded-[2rem] border border-mist bg-white/90 p-5 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/90 sm:p-6">
@@ -63,7 +64,7 @@ export function OfficialChannels({ onOpenMonsters }: OfficialChannelsProps) {
               }}
               transition={{ duration: 0.3 }}
             >
-              <ChannelCard channel={channel} onOpenMonsters={onOpenMonsters} />
+              <ChannelCard channel={channel} onOpenMonsters={onOpenMonsters} onOpenMascots={onOpenMascots} />
             </motion.div>
           ))}
         </motion.div>
@@ -75,15 +76,18 @@ export function OfficialChannels({ onOpenMonsters }: OfficialChannelsProps) {
 type ChannelCardProps = {
   channel: OfficialLink;
   onOpenMonsters: () => void;
+  onOpenMascots: () => void;
 };
 
-function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
+function ChannelCard({ channel, onOpenMonsters, onOpenMascots }: ChannelCardProps) {
   const Icon = icons[channel.icon];
   const isActive = channel.status === "active" && channel.url !== "#";
   const isMonsterChannel = channel.key === "monsters";
+  const isMascotChannel = channel.key === "mascots";
+  const isFeaturedChannel = isMonsterChannel || isMascotChannel;
   const isInternalLink = channel.url.startsWith("#");
   const className = `group flex min-h-[82px] w-full items-center justify-between gap-4 rounded-3xl border px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 ${
-    isMonsterChannel
+    isFeaturedChannel
       ? "relative overflow-hidden border-brand/20 bg-gradient-to-br from-brand via-brand to-brandDark text-white shadow-lift hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/30 dark:from-darkAccent dark:via-darkAccent dark:to-brand dark:text-darkBg"
       : isActive
       ? "border-brand/15 bg-brand text-white shadow-sm hover:-translate-y-0.5 hover:bg-brandDark hover:shadow-soft dark:border-darkAccent/25 dark:bg-darkAccent dark:text-darkBg"
@@ -91,7 +95,7 @@ function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
   }`;
   const content = (
     <>
-      {isMonsterChannel ? (
+      {isFeaturedChannel ? (
         <span className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-white/10 blur-xl" />
       ) : null}
       <span className="relative flex min-w-0 items-center gap-3">
@@ -137,9 +141,9 @@ function ChannelCard({ channel, onOpenMonsters }: ChannelCardProps) {
     );
   }
 
-  if (isMonsterChannel) {
+  if (isMonsterChannel || isMascotChannel) {
     return (
-      <button type="button" onClick={onOpenMonsters} className={className}>
+      <button type="button" onClick={isMascotChannel ? onOpenMascots : onOpenMonsters} className={className}>
         {content}
       </button>
     );

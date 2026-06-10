@@ -16,6 +16,7 @@ export type LinkStatus = "active" | "soon";
 
 export type LinkKey =
   | "monsters"
+  | "mascots"
   | "instagram"
   | "whatsapp"
   | "mercadoLivre"
@@ -28,6 +29,9 @@ export const mercadoLivreStoreUrl =
 
 export const shopeeStoreUrl =
   "https://shopee.com.br/r2printlab3d?uls_trackid=54prus1000um&utm_content=2UZZYw4xmEcpS84EyAtD5X1Fxnb1";
+
+export const shopeeMonsterProductUrl =
+  "https://shopee.com.br/Porta-Lata-Monster-Com-Tampa-e-Abridor-Exclusivo-para-Energeticos-i.223269576.22794964126?extraParams=%7B%22display_model_id%22%3A209189605306%2C%22model_selection_logic%22%3A3%7D";
 
 export type OfficialLink = {
   key: LinkKey;
@@ -58,6 +62,15 @@ export const links: Record<LinkKey, OfficialLink> = {
     badge: "Em destaque",
     metric: "+100 vendas",
     note: "Porta lata 3D com tampa e abridor",
+  },
+  mascots: {
+    key: "mascots",
+    label: "Mascotes ⚽",
+    url: "#mascots",
+    status: "active",
+    icon: "shield",
+    badge: "Em destaque",
+    note: "Mascotes 3D em preparacao",
   },
   instagram: {
     key: "instagram",
@@ -105,6 +118,7 @@ export const links: Record<LinkKey, OfficialLink> = {
 
 export const officialChannels: OfficialLink[] = [
   links.monsters,
+  links.mascots,
   links.mercadoLivre,
   links.shopee,
   links.tiktok,

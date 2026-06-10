@@ -1,4 +1,4 @@
-import { mercadoLivreStoreUrl, shopeeStoreUrl } from "./links";
+import { shopeeMonsterProductUrl, shopeeStoreUrl } from "./links";
 
 const monsterLinks = {
   preto:
@@ -53,8 +53,8 @@ export const monsterProduct = {
   fallbackImage: "/assets/monsters.png",
   video: "/assets/video-monster.mp4",
   sideVideo: "/assets/monster-branco-neon.mp4",
-  mercadoLivreUrl: mercadoLivreStoreUrl,
-  shopeeUrl: shopeeStoreUrl,
+  mercadoLivreUrl: monsterLinks.preto,
+  shopeeUrl: shopeeMonsterProductUrl,
 };
 
 export const monsterShortcuts: MonsterShortcut[] = [
