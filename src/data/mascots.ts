@@ -26,6 +26,8 @@ const mascotLinks = {
     "https://www.mercadolivre.com.br/mascote-do-botafogo-pitbull-enraivado-estatua-27cm/up/MLBU4039568326?pdp_filters=item_id:MLB4725326073",
   galoDoido:
     "https://www.mercadolivre.com.br/mascote-galo-doido-atletico-mineiro-estatua-decorativa-cam/up/MLBU3888702606?pdp_filters=item_id:MLB6573053234",
+  gaviao:
+    "https://www.mercadolivre.com.br/mascote-gaviao-do-corinthians-fiel-decorativo-com-asas/up/MLBU3916814896",
   pirata:
     "https://www.mercadolivre.com.br/mascote-do-vasco-da-gama-pirata-estatua-decorativa-com-base/up/MLBU3955666782?pdp_filters=item_id:MLB4662673145",
   porcoGigante:
@@ -95,7 +97,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/GAVIAO%20CORINTHIANS%20.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.gaviao),
       },
     ],
   },
