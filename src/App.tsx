@@ -9,6 +9,7 @@ import { MonsterColors } from "./components/MonsterColors";
 import { OfficialChannels } from "./components/OfficialChannels";
 import { QuickShop } from "./components/QuickShop";
 import { ReviewsPage } from "./components/ReviewsPage";
+import { links } from "./data/links";
 
 export default function App() {
   const [page, setPage] = useState<"home" | "monsters" | "mascots" | "reviews">("home");
@@ -45,6 +46,13 @@ export default function App() {
     });
   }
 
+  function handleOpenCollections() {
+    setPage("home");
+    window.requestAnimationFrame(() => {
+      document.getElementById("official-channels")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   function handleBackToCollection() {
     window.requestAnimationFrame(() => {
       document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -59,7 +67,11 @@ export default function App() {
         <main>
           {page === "home" ? (
             <>
-              <BrandIntro onOpenReviews={handleOpenReviews} />
+              <BrandIntro
+                onOpenCollections={handleOpenCollections}
+                onOpenReviews={handleOpenReviews}
+                instagramUrl={links.instagram.url}
+              />
               <OfficialChannels onOpenMonsters={handleOpenMonsters} onOpenMascots={handleOpenMascots} />
               <FeaturesSection />
             </>

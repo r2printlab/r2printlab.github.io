@@ -1,10 +1,12 @@
 import { BadgeCheck, Box, MessageSquareText, Star } from "lucide-react";
 
 type BrandIntroProps = {
+  onOpenCollections: () => void;
   onOpenReviews: () => void;
+  instagramUrl: string;
 };
 
-export function BrandIntro({ onOpenReviews }: BrandIntroProps) {
+export function BrandIntro({ onOpenCollections, onOpenReviews, instagramUrl }: BrandIntroProps) {
   return (
     <section id="top" className="mx-auto w-full max-w-3xl px-5 pb-4 pt-6 text-center sm:px-6">
       <img
@@ -27,9 +29,9 @@ export function BrandIntro({ onOpenReviews }: BrandIntroProps) {
         ))}
       </div>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        <InfoPill icon={Box} label="Colecoes" />
+        <InfoPill icon={Box} label="Colecoes" onClick={onOpenCollections} />
         <InfoPill icon={MessageSquareText} label="Avaliações" onClick={onOpenReviews} />
-        <InfoPill icon={BadgeCheck} label="Loja oficial" />
+        <InfoPill icon={BadgeCheck} label="Loja oficial" href={instagramUrl} />
       </div>
     </section>
   );
@@ -38,10 +40,11 @@ export function BrandIntro({ onOpenReviews }: BrandIntroProps) {
 type InfoPillProps = {
   icon: typeof Box;
   label: string;
+  href?: string;
   onClick?: () => void;
 };
 
-function InfoPill({ icon: Icon, label, onClick }: InfoPillProps) {
+function InfoPill({ icon: Icon, label, href, onClick }: InfoPillProps) {
   const className =
     "flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-mist bg-white/80 px-4 text-sm font-black text-brand shadow-sm transition hover:-translate-y-0.5 hover:bg-mist hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard/80 dark:text-darkAccent";
   const content = (
@@ -50,6 +53,14 @@ function InfoPill({ icon: Icon, label, onClick }: InfoPillProps) {
       {label}
     </>
   );
+
+  if (href) {
+    return (
+      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+        {content}
+      </a>
+    );
+  }
 
   return onClick ? (
     <button type="button" onClick={onClick} className={className}>

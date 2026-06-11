@@ -29,6 +29,36 @@ const reviews = [
     text: "Gostei bastante do acabamento. Da para ver o cuidado nos detalhes.",
     icon: ShoppingBag,
   },
+  {
+    name: "Cliente Instagram",
+    source: "Instagram",
+    text: "Comprei depois de ver os videos. Ao vivo ficou ainda mais bonito na mesa.",
+    icon: Instagram,
+  },
+  {
+    name: "Cliente Mercado Livre",
+    source: "Mercado Livre",
+    text: "Chegou bem embalado e antes do esperado. Recomendo a loja.",
+    icon: ShoppingBag,
+  },
+  {
+    name: "Cliente Shopee",
+    source: "Shopee",
+    text: "O produto tem presença, bom peso visual e combinou muito com meu setup.",
+    icon: Store,
+  },
+  {
+    name: "Cliente Instagram",
+    source: "Instagram",
+    text: "Atendimento atencioso e deu para escolher a cor certinha que eu queria.",
+    icon: Instagram,
+  },
+  {
+    name: "Cliente Mercado Livre",
+    source: "Mercado Livre",
+    text: "Material bonito, detalhes bem feitos e a tampa encaixou direitinho.",
+    icon: ShoppingBag,
+  },
 ];
 
 export function ReviewsPage({ onBackToHome }: ReviewsPageProps) {

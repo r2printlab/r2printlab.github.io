@@ -35,7 +35,7 @@ type OfficialChannelsProps = {
 
 export function OfficialChannels({ onOpenMonsters, onOpenMascots }: OfficialChannelsProps) {
   return (
-    <section className="mx-auto w-full max-w-3xl px-5 py-8 sm:px-6">
+    <section id="official-channels" className="scroll-mt-6 mx-auto w-full max-w-3xl px-5 py-8 sm:px-6">
       <div className="rounded-[2rem] border border-mist bg-white/90 p-5 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/90 sm:p-6">
         <div className="text-center">
           <p className="text-sm font-black uppercase tracking-[0.2em] text-brand dark:text-darkAccent">Links oficiais</p>
