@@ -15,11 +15,11 @@ export function BrandIntro() {
         R2 Print Lab
       </h1>
       <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
-        Impressao 3D criativa para produtos decorativos, geeks, personalizados e presentes sob demanda.
+        Produtos criativos, colecionaveis e presentes com acabamento caprichado para o dia a dia.
       </p>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        <InfoPill icon={Box} label="Produtos 3D" />
-        <InfoPill icon={Sparkles} label="Personalizados" />
+        <InfoPill icon={Box} label="Colecoes" />
+        <InfoPill icon={Sparkles} label="Presentes" />
         <InfoPill icon={BadgeCheck} label="Loja oficial" />
       </div>
     </section>

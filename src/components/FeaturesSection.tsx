@@ -1,7 +1,7 @@
 import { MessageCircle, PackageCheck, Palette, ShieldCheck } from "lucide-react";
 
 const features = [
-  { title: "Impressao 3D sob demanda", icon: PackageCheck },
+  { title: "Produtos sob encomenda", icon: PackageCheck },
   { title: "Varias cores disponiveis", icon: Palette },
   { title: "Compra segura pelo Mercado Livre", icon: ShieldCheck },
   { title: "Atendimento rapido pelo WhatsApp", icon: MessageCircle },

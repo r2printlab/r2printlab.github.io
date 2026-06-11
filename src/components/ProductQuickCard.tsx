@@ -30,7 +30,7 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
           />
         ) : (
           <div className="grid h-20 w-20 place-items-center rounded-3xl bg-white text-brand shadow-soft dark:bg-darkCardAlt dark:text-darkAccent">
-            <span className="text-2xl font-black">3D</span>
+            <span className="text-2xl font-black">R2</span>
           </div>
         )}
       </div>

@@ -19,7 +19,7 @@ export function Footer() {
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
         <div>
           <p className="text-lg font-black text-textMain dark:text-darkText">R2 Print Lab</p>
-          <p className="mt-1 text-sm text-textMuted dark:text-darkMuted">Impressao 3D criativa e personalizada.</p>
+          <p className="mt-1 text-sm text-textMuted dark:text-darkMuted">Produtos criativos, colecionaveis e presentes.</p>
         </div>
         <nav aria-label="Links do rodape" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-textMuted dark:text-darkMuted">
           {footerLinks.map((link) => (

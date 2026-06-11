@@ -18,16 +18,16 @@ export function Hero() {
         />
         <div className="mx-auto mb-5 inline-flex items-center gap-2 rounded-full border border-brand/15 bg-white/80 px-3 py-2 text-xs font-bold uppercase tracking-[0.16em] text-brand shadow-sm backdrop-blur lg:mx-0">
           <Sparkles className="h-4 w-4" aria-hidden="true" />
-          Impressao 3D sob demanda
+          Colecoes sob encomenda
         </div>
         <h1 className="text-balance text-4xl font-black leading-[1.02] text-textMain sm:text-5xl lg:text-6xl">
           R2 Print Lab
         </h1>
         <p className="mt-4 text-balance text-xl font-semibold text-brandDark sm:text-2xl">
-          Impressao 3D criativa, personalizada e sob medida
+          Produtos criativos, presentes e colecionaveis
         </p>
         <p className="mx-auto mt-4 max-w-2xl text-pretty text-base leading-7 text-textMuted lg:mx-0">
-          Produtos decorativos, geeks, personalizados e presentes feitos em impressao 3D.
+          Cores, modelos e itens especiais em um so lugar.
         </p>
       </motion.div>
 
@@ -36,7 +36,7 @@ export function Hero() {
         initial={{ opacity: 0, scale: 0.96, y: 20 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.08 }}
-        aria-label="Vitrine visual de produtos 3D"
+        aria-label="Vitrine visual de produtos"
       >
         <div className="absolute inset-4 rounded-[2rem] bg-white shadow-lift" />
         <div className="product-grid absolute inset-0 rounded-[2.25rem] border border-mist bg-gradient-to-br from-white via-mist to-white p-5 shadow-soft">
@@ -45,7 +45,7 @@ export function Hero() {
               <img src="/assets/logo-r2.png" alt="R2 Print Lab" className="h-full w-full object-cover" />
             </div>
             <div className="rounded-full bg-white/90 px-3 py-2 text-xs font-bold text-textMuted shadow-sm">
-              3D Lab
+              R2 Lab
             </div>
           </div>
           <div className="mt-9 grid grid-cols-2 gap-4">

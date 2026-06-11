@@ -8,8 +8,8 @@ export type Product = {
 
 export const products: Product[] = [
   {
-    title: "Porta Monster 3D",
-    description: "Suporte robusto e estiloso para latas, feito sob demanda em impressao 3D.",
+    title: "Porta Monster",
+    description: "Suporte robusto e estiloso para latas, com tampa e abridor.",
     tag: "Porta lata",
     href: "#",
     image: "/assets/monsters.png",
@@ -27,7 +27,7 @@ export const products: Product[] = [
     href: "#",
   },
   {
-    title: "Presentes personalizados em 3D",
+    title: "Presentes personalizados",
     description: "Ideias criativas para datas especiais, empresas, lembrancas e decoracao.",
     tag: "Personalizado",
     href: "#",

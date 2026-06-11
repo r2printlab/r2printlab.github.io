@@ -61,7 +61,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     icon: "package",
     badge: "Em destaque",
     metric: "+100 vendas",
-    note: "Porta lata 3D com tampa e abridor",
+    note: "Porta lata com tampa e abridor",
   },
   mascots: {
     key: "mascots",
@@ -70,7 +70,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     status: "active",
     icon: "shield",
     badge: "Em destaque",
-    note: "Mascotes 3D em preparacao",
+    note: "Novos mascotes em preparacao",
   },
   instagram: {
     key: "instagram",

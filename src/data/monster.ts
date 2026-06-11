@@ -48,7 +48,7 @@ export const monsterProduct = {
   title: "Porta Lata Monster com Tampa e Abridor",
   subtitle: "Colecao Monsters",
   description:
-    "Porta lata em impressao 3D com visual marcante, tampa e abridor para deixar setup, presente ou colecao com mais personalidade.",
+    "Porta lata com visual marcante, tampa e abridor para deixar setup, presente ou colecao com mais personalidade.",
   image: "/assets/monster-destaque.png",
   fallbackImage: "/assets/monsters.png",
   video: "/assets/video-monster.mp4",
