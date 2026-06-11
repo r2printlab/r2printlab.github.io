@@ -8,9 +8,10 @@ import { MascotsPage } from "./components/MascotsPage";
 import { MonsterColors } from "./components/MonsterColors";
 import { OfficialChannels } from "./components/OfficialChannels";
 import { QuickShop } from "./components/QuickShop";
+import { ReviewsPage } from "./components/ReviewsPage";
 
 export default function App() {
-  const [page, setPage] = useState<"home" | "monsters" | "mascots">("home");
+  const [page, setPage] = useState<"home" | "monsters" | "mascots" | "reviews">("home");
 
   function scrollTop() {
     window.requestAnimationFrame(() => {
@@ -37,6 +38,13 @@ export default function App() {
     });
   }
 
+  function handleOpenReviews() {
+    setPage("reviews");
+    window.requestAnimationFrame(() => {
+      document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    });
+  }
+
   function handleBackToCollection() {
     window.requestAnimationFrame(() => {
       document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -51,7 +59,7 @@ export default function App() {
         <main>
           {page === "home" ? (
             <>
-              <BrandIntro />
+              <BrandIntro onOpenReviews={handleOpenReviews} />
               <OfficialChannels onOpenMonsters={handleOpenMonsters} onOpenMascots={handleOpenMascots} />
               <FeaturesSection />
             </>
@@ -63,6 +71,11 @@ export default function App() {
               />
               <QuickShop />
               <MonsterColors />
+              <FeaturesSection />
+            </>
+          ) : page === "reviews" ? (
+            <>
+              <ReviewsPage onBackToHome={handleHome} />
               <FeaturesSection />
             </>
           ) : (

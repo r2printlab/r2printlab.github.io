@@ -1,6 +1,10 @@
-import { BadgeCheck, Box, Sparkles } from "lucide-react";
+import { BadgeCheck, Box, MessageSquareText, Star } from "lucide-react";
 
-export function BrandIntro() {
+type BrandIntroProps = {
+  onOpenReviews: () => void;
+};
+
+export function BrandIntro({ onOpenReviews }: BrandIntroProps) {
   return (
     <section id="top" className="mx-auto w-full max-w-3xl px-5 pb-4 pt-6 text-center sm:px-6">
       <img
@@ -17,9 +21,14 @@ export function BrandIntro() {
       <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
         Produtos criativos, colecionaveis e presentes com acabamento caprichado para o dia a dia.
       </p>
+      <div className="mt-4 flex items-center justify-center gap-1 text-[#f2b705]" aria-label="5 estrelas de avaliacao">
+        {Array.from({ length: 5 }).map((_, index) => (
+          <Star key={index} className="h-5 w-5 fill-current drop-shadow-sm" aria-hidden="true" />
+        ))}
+      </div>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
         <InfoPill icon={Box} label="Colecoes" />
-        <InfoPill icon={Sparkles} label="Presentes" />
+        <InfoPill icon={MessageSquareText} label="Avaliações" onClick={onOpenReviews} />
         <InfoPill icon={BadgeCheck} label="Loja oficial" />
       </div>
     </section>
@@ -29,13 +38,24 @@ export function BrandIntro() {
 type InfoPillProps = {
   icon: typeof Box;
   label: string;
+  onClick?: () => void;
 };
 
-function InfoPill({ icon: Icon, label }: InfoPillProps) {
-  return (
-    <div className="flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-mist bg-white/80 px-4 text-sm font-black text-brand shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/80 dark:text-darkAccent">
+function InfoPill({ icon: Icon, label, onClick }: InfoPillProps) {
+  const className =
+    "flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-mist bg-white/80 px-4 text-sm font-black text-brand shadow-sm transition hover:-translate-y-0.5 hover:bg-mist hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard/80 dark:text-darkAccent";
+  const content = (
+    <>
       <Icon className="h-5 w-5" aria-hidden="true" />
       {label}
-    </div>
+    </>
+  );
+
+  return onClick ? (
+    <button type="button" onClick={onClick} className={className}>
+      {content}
+    </button>
+  ) : (
+    <div className={className}>{content}</div>
   );
 }

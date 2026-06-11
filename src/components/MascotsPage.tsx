@@ -1,4 +1,4 @@
-import { ArrowLeft, Shield, ShoppingBag } from "lucide-react";
+import { ArrowLeft, CircleDot, ShoppingBag } from "lucide-react";
 import { mascotItems } from "../data/mascots";
 
 type MascotsPageProps = {
@@ -7,8 +7,8 @@ type MascotsPageProps = {
 
 export function MascotsPage({ onBackToHome }: MascotsPageProps) {
   return (
-    <section id="mascots" className="mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 lg:px-8">
-      <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-gradient-to-br from-white via-paper to-mist/70 p-5 shadow-lift dark:border-darkAccent/20 dark:from-darkCard dark:via-darkCard dark:to-darkCardAlt sm:p-8">
+    <section id="mascots" className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+      <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-gradient-to-br from-white via-paper to-mist/70 p-4 shadow-lift dark:border-darkAccent/20 dark:from-darkCard dark:via-darkCard dark:to-darkCardAlt sm:p-8">
         <span className="pointer-events-none absolute -right-24 top-8 h-24 w-80 rotate-12 rounded-[2rem] bg-brand/10 dark:bg-darkAccent/10" />
         <span className="pointer-events-none absolute -left-24 bottom-20 h-28 w-96 -rotate-12 rounded-[2rem] bg-white/70 dark:bg-darkCardAlt/50" />
         <div className="relative z-10">
@@ -21,12 +21,12 @@ export function MascotsPage({ onBackToHome }: MascotsPageProps) {
             Voltar para links
           </button>
 
-          <div className="grid items-center gap-8 lg:grid-cols-[1.08fr_0.92fr]">
+          <div className="grid items-center gap-7 lg:grid-cols-[1.08fr_0.92fr] lg:gap-8">
             <MascotsMediaDeck />
-            <div>
-              <div className="mb-5 inline-flex items-center gap-4 rounded-[1.7rem] border border-mist bg-white/80 p-4 shadow-sm dark:border-darkAccent/20 dark:bg-darkCardAlt">
+            <div className="text-center lg:text-left">
+              <div className="mx-auto mb-5 inline-flex items-center gap-4 rounded-[1.7rem] border border-mist bg-white/80 p-4 shadow-sm dark:border-darkAccent/20 dark:bg-darkCardAlt lg:mx-0">
                 <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-brand text-white shadow-sm dark:bg-darkAccent dark:text-darkBg">
-                  <Shield className="h-7 w-7" aria-hidden="true" />
+                  <CircleDot className="h-7 w-7" aria-hidden="true" />
                 </span>
                 <div className="text-left">
                   <p className="text-sm font-black text-textMain dark:text-darkText">Mascotes R2 Print Lab</p>
@@ -34,7 +34,7 @@ export function MascotsPage({ onBackToHome }: MascotsPageProps) {
               </div>
               <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Linha de mascotes</p>
               <h1 className="mt-3 text-4xl font-black leading-tight text-textMain dark:text-darkText sm:text-5xl">Escolha seu Mascote</h1>
-              <p className="mt-4 max-w-xl text-base leading-7 text-textMuted dark:text-darkMuted">
+              <p className="mx-auto mt-4 max-w-xl text-base leading-7 text-textMuted dark:text-darkMuted lg:mx-0">
                 Mascotes para torcedores, colecionadores e presentes personalizados.
               </p>
             </div>
@@ -63,23 +63,23 @@ export function MascotsPage({ onBackToHome }: MascotsPageProps) {
 
 function MascotsMediaDeck() {
   return (
-    <div className="relative min-h-[390px] overflow-hidden rounded-[1.7rem] border border-white/80 bg-gradient-to-br from-brand/10 via-white to-mist shadow-soft dark:border-darkAccent/20 dark:from-darkCardAlt dark:via-darkCard dark:to-darkCardAlt">
-      <div className="absolute inset-x-8 top-9 h-[76%] rounded-[2rem] border border-white/80 bg-white/70 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/60" />
+    <div className="relative mx-auto min-h-[320px] w-full max-w-[520px] overflow-hidden rounded-[1.7rem] border border-white/80 bg-gradient-to-br from-brand/10 via-white to-mist shadow-soft dark:border-darkAccent/20 dark:from-darkCardAlt dark:via-darkCard dark:to-darkCardAlt sm:min-h-[390px] lg:max-w-none">
+      <div className="absolute inset-x-5 top-9 h-[74%] rounded-[2rem] border border-white/80 bg-white/70 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/60 sm:inset-x-8 sm:h-[76%]" />
       <MascotVideo
         src="/assets/Mascotes/sp2.mp4"
         label="Video mascote Sao Paulo"
-        className="absolute left-3 top-10 w-[31%] -rotate-1 sm:left-4 sm:w-[34%]"
+        className="absolute left-2 top-12 w-[29%] -rotate-1 sm:left-4 sm:top-10 sm:w-[34%]"
       />
       <MascotVideo
         src="/assets/Mascotes/mascotes.mp4"
         label="Video central dos mascotes"
-        className="absolute inset-x-0 bottom-3 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px]"
+        className="absolute inset-x-0 bottom-4 z-10 mx-auto w-[50%] min-w-[150px] max-w-[220px] sm:bottom-3 sm:w-[54%] sm:min-w-[190px] sm:max-w-[280px]"
         featured
       />
       <MascotVideo
         src="/assets/Mascotes/urubuzao.mp4"
         label="Video mascote Urubu"
-        className="absolute right-4 top-24 z-20 w-[31%] rotate-1 sm:top-24"
+        className="absolute right-2 top-24 z-20 w-[29%] rotate-1 sm:right-4 sm:w-[31%]"
       />
     </div>
   );
