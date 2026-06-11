@@ -19,6 +19,37 @@ const soonLinks = {
   status: "soon" as const,
 };
 
+const mascotLinks = {
+  baleia:
+    "https://www.mercadolivre.com.br/mascote-baleia-santos-estatua-decorativa-do-peixao-sfc/up/MLBU3926298037?picker=true&quantity=1",
+  cachorrao:
+    "https://www.mercadolivre.com.br/mascote-do-botafogo-pitbull-enraivado-estatua-27cm/up/MLBU4039568326?pdp_filters=item_id:MLB4725326073",
+  galoDoido:
+    "https://www.mercadolivre.com.br/mascote-galo-doido-atletico-mineiro-estatua-decorativa-cam/up/MLBU3888702606?pdp_filters=item_id:MLB6573053234",
+  pirata:
+    "https://www.mercadolivre.com.br/mascote-do-vasco-da-gama-pirata-estatua-decorativa-com-base/up/MLBU3955666782?pdp_filters=item_id:MLB4662673145",
+  porcoGigante:
+    "https://www.mercadolivre.com.br/mascote-do-palmeiras-porco-27cm-gigante-estatua-decorativa/up/MLBU4023362009?pdp_filters=item_id:MLB6865144734",
+  porcoMedio:
+    "https://www.mercadolivre.com.br/mascote-palmeiras-porco-loko-estatua-decorativa-torcedor/up/MLBU3890911942?pdp_filters=item_id:MLB6577112444",
+  raposao:
+    "https://www.mercadolivre.com.br/mascote-raposa-cruzeiro-estatua-decorativa-torcedor-com-base/up/MLBU3946321932?pdp_filters=item_id:MLB6713679106",
+  saci:
+    "https://www.mercadolivre.com.br/mascote-internacional-saci-estatua-decorativa-torcedor-inter/up/MLBU4039609104?pdp_filters=item_id:MLB4725317773",
+  santo:
+    "https://www.mercadolivre.com.br/mascote-sao-paulo-estatua-decorativa-torcedor-anjo-spfc/up/MLBU3877589083?pdp_filters=item_id:MLB6572612846",
+  urubu:
+    "https://www.mercadolivre.com.br/boneco-mascote-urubu-do-flamengo-estatueta-decorativa/p/MLB2076127507?pdp_filters=item_id:MLB4585780731",
+};
+
+function activeMercadoLivre(url: string) {
+  return {
+    mercadoLivreUrl: url,
+    shopeeUrl: "#",
+    status: "active" as const,
+  };
+}
+
 export const mascotItems: MascotItem[] = [
   {
     name: "Baleia",
@@ -28,7 +59,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Uniforme 1",
         image: "/assets/Mascotes/BALEIA%20SANTOS%20UNIFORME%201.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.baleia),
       },
     ],
   },
@@ -40,7 +71,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/CACHORRAO%20BOTAFOGO.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.cachorrao),
       },
     ],
   },
@@ -52,7 +83,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/GALO%20DOIDO%20ATLETICO.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.galoDoido),
       },
     ],
   },
@@ -76,7 +107,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/PIRATA%20VASCO%20DA%20GAMA.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.pirata),
       },
     ],
   },
@@ -88,7 +119,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Uniforme 1",
         image: "/assets/Mascotes/PORCO%20GIGANTE%20UNIFORME%201.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.porcoGigante),
       },
     ],
   },
@@ -100,7 +131,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Uniforme 1",
         image: "/assets/Mascotes/PORCO%20M%C3%89DIO%20C-BASE%20UNIFORME%201.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.porcoMedio),
       },
     ],
   },
@@ -112,7 +143,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/RAPOSAO%20CRUZEIRO.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.raposao),
       },
     ],
   },
@@ -124,7 +155,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Modelo principal",
         image: "/assets/Mascotes/SACI%20INTERNACIONAL.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.saci),
       },
     ],
   },
@@ -136,7 +167,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Uniforme 1",
         image: "/assets/Mascotes/SANTO%20SP%20UNIFORME%201.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.santo),
       },
     ],
   },
@@ -148,7 +179,7 @@ export const mascotItems: MascotItem[] = [
       {
         label: "Uniforme 1",
         image: "/assets/Mascotes/URUBU%20FLAMENGO%20UNIFORME%201.jpeg",
-        ...soonLinks,
+        ...activeMercadoLivre(mascotLinks.urubu),
       },
     ],
   },
