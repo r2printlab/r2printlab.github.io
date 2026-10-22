@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import {
   ChevronRight,
   ExternalLink,
@@ -12,6 +11,7 @@ import {
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { officialChannels, type LinkIcon, type OfficialLink } from "../data/links";
+import { trackCollectionOpen, trackOutboundClick } from "../lib/analytics";
 
 const icons: Record<LinkIcon, LucideIcon> = {
   shoppingBag: ShoppingBag,
@@ -41,33 +41,17 @@ export function OfficialChannels({ onOpenMonsters, onOpenMascots }: OfficialChan
           <p className="text-sm font-black uppercase tracking-[0.2em] text-brand dark:text-darkAccent">Links oficiais</p>
           <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Onde comprar e acompanhar</h2>
           <p className="mt-2 text-sm leading-6 text-textMuted dark:text-darkMuted">
-            Acesse os canais da R2 Print Lab em um so lugar.
+            Acesse os canais da R2 Print Lab em um só lugar.
           </p>
         </div>
 
-        <motion.div
-          className="mt-6 grid gap-3"
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.18 }}
-          variants={{
-            hidden: {},
-            show: { transition: { staggerChildren: 0.055 } },
-          }}
-        >
+        <div className="mt-6 grid gap-3">
           {officialChannels.map((channel) => (
-            <motion.div
-              key={channel.label}
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                show: { opacity: 1, y: 0 },
-              }}
-              transition={{ duration: 0.3 }}
-            >
+            <div key={channel.label}>
               <ChannelCard channel={channel} onOpenMonsters={onOpenMonsters} onOpenMascots={onOpenMascots} />
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
@@ -143,14 +127,27 @@ function ChannelCard({ channel, onOpenMonsters, onOpenMascots }: ChannelCardProp
 
   if (isMonsterChannel || isMascotChannel) {
     return (
-      <button type="button" onClick={isMascotChannel ? onOpenMascots : onOpenMonsters} className={className}>
+      <button
+        type="button"
+        onClick={() => {
+          trackCollectionOpen(isMascotChannel ? "mascots" : "monsters", "official_channels");
+          (isMascotChannel ? onOpenMascots : onOpenMonsters)();
+        }}
+        className={className}
+      >
         {content}
       </button>
     );
   }
 
   return (
-    <a href={channel.url} target={isInternalLink ? undefined : "_blank"} rel={isInternalLink ? undefined : "noopener noreferrer"} className={className}>
+    <a
+      href={channel.url}
+      target={isInternalLink ? undefined : "_blank"}
+      rel={isInternalLink ? undefined : "noopener noreferrer"}
+      className={className}
+      onClick={() => trackOutboundClick({ channel: channel.key, placement: "official_channels" })}
+    >
       {content}
     </a>
   );

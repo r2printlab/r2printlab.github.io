@@ -21,8 +21,7 @@ export type LinkKey =
   | "whatsapp"
   | "mercadoLivre"
   | "shopee"
-  | "tiktok"
-  | "temu";
+  | "tiktok";
 
 export const mercadoLivreStoreUrl =
   "https://lista.mercadolivre.com.br/_CustId_3134698851?item_id=MLB4656052071&category_id=MLB271427&seller_id=3134698851&client=recoview-selleritems&recos_listing=true#origin=upp&component=sellerData&typeSeller=classic";
@@ -32,6 +31,11 @@ export const shopeeStoreUrl =
 
 export const shopeeMonsterProductUrl =
   "https://shopee.com.br/Porta-Lata-Monster-Com-Tampa-e-Abridor-Exclusivo-para-Energeticos-i.223269576.22794964126?extraParams=%7B%22display_model_id%22%3A209189605306%2C%22model_selection_logic%22%3A3%7D";
+
+export const whatsappUrl =
+  "https://wa.me/5511989753419?text=Ol%C3%A1%21%20Vim%20pelo%20site%20da%20R2%20Print%20Lab%20e%20quero%20conhecer%20os%20produtos.";
+
+export const tiktokUrl = "https://www.tiktok.com/@r2printlab";
 
 export type OfficialLink = {
   key: LinkKey;
@@ -44,24 +48,15 @@ export type OfficialLink = {
   note?: string;
 };
 
-export type MainLink = {
-  label: string;
-  url: string;
-  status: LinkStatus;
-  icon: LinkIcon;
-  highlight?: boolean;
-};
-
 export const links: Record<LinkKey, OfficialLink> = {
   monsters: {
     key: "monsters",
-    label: "Colecao Monsters",
+    label: "Coleção Monsters",
     url: "#top",
     status: "active",
     icon: "package",
     badge: "Em destaque",
-    metric: "+100 vendas",
-    note: "Porta lata com tampa e abridor",
+    note: "Porta-lata com tampa e abridor",
   },
   mascots: {
     key: "mascots",
@@ -70,7 +65,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     status: "active",
     icon: "shield",
     badge: "Em destaque",
-    note: "Novos mascotes em preparacao",
+    note: "Novos mascotes em preparação",
   },
   instagram: {
     key: "instagram",
@@ -82,9 +77,10 @@ export const links: Record<LinkKey, OfficialLink> = {
   whatsapp: {
     key: "whatsapp",
     label: "WhatsApp",
-    url: "#",
-    status: "soon",
+    url: whatsappUrl,
+    status: "active",
     icon: "messageCircle",
+    note: "Fale diretamente com a R2",
   },
   mercadoLivre: {
     key: "mercadoLivre",
@@ -103,16 +99,10 @@ export const links: Record<LinkKey, OfficialLink> = {
   tiktok: {
     key: "tiktok",
     label: "TikTok",
-    url: "#",
-    status: "soon",
+    url: tiktokUrl,
+    status: "active",
     icon: "music",
-  },
-  temu: {
-    key: "temu",
-    label: "Temu",
-    url: "#",
-    status: "soon",
-    icon: "shoppingCart",
+    note: "Vídeos, bastidores e novidades",
   },
 };
 
@@ -122,30 +112,6 @@ export const officialChannels: OfficialLink[] = [
   links.mercadoLivre,
   links.shopee,
   links.tiktok,
-  links.temu,
   links.instagram,
   links.whatsapp,
-];
-
-export const mainLinks: MainLink[] = [
-  {
-    label: links.instagram.label,
-    url: links.instagram.url,
-    status: links.instagram.status,
-    icon: links.instagram.icon,
-    highlight: true,
-  },
-  {
-    label: links.mercadoLivre.label,
-    url: links.mercadoLivre.url,
-    status: links.mercadoLivre.status,
-    icon: links.mercadoLivre.icon,
-    highlight: true,
-  },
-  {
-    label: links.whatsapp.label,
-    url: links.whatsapp.url,
-    status: links.whatsapp.status,
-    icon: links.whatsapp.icon,
-  },
 ];

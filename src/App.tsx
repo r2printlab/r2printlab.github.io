@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { BrandIntro } from "./components/BrandIntro";
 import { FeaturedMonster } from "./components/FeaturedMonster";
 import { FeaturesSection } from "./components/FeaturesSection";
@@ -8,91 +8,114 @@ import { MascotsPage } from "./components/MascotsPage";
 import { MonsterColors } from "./components/MonsterColors";
 import { OfficialChannels } from "./components/OfficialChannels";
 import { QuickShop } from "./components/QuickShop";
-import { ReviewsPage } from "./components/ReviewsPage";
+import { SeasonalHero } from "./components/SeasonalHero";
+import { resolveCampaign } from "./config/campaigns";
 import { links } from "./data/links";
+import { trackPageView } from "./lib/analytics";
 
+type Page = "home" | "monsters" | "mascots";
+
+const paths: Record<Page, string> = {
+  home: "/",
+  monsters: "/colecoes/monsters",
+  mascots: "/colecoes/mascotes",
+};
+
+function pageFromPath(pathname: string): Page {
+  if (pathname.startsWith(paths.monsters)) {
+    return "monsters";
+  }
+
+  if (pathname.startsWith(paths.mascots)) {
+    return "mascots";
+  }
+
+  return "home";
+}
 export default function App() {
-  const [page, setPage] = useState<"home" | "monsters" | "mascots" | "reviews">("home");
+  const campaign = useMemo(() => resolveCampaign(), []);
+  const [page, setPage] = useState<Page>(() => pageFromPath(window.location.pathname));
+  const isChristmas = campaign.id === "natal-2026";
 
-  function scrollTop() {
-    window.requestAnimationFrame(() => {
-      document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
+  useEffect(() => {
+    const handlePopState = () => {
+      setPage(pageFromPath(window.location.pathname));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    };
 
-  function handleHome() {
-    setPage("home");
-    scrollTop();
-  }
+    window.addEventListener("popstate", handlePopState);
+    return () => window.removeEventListener("popstate", handlePopState);
+  }, []);
 
-  function handleOpenMonsters() {
-    setPage("monsters");
-    window.requestAnimationFrame(() => {
-      document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
+  useEffect(() => {
+    const titles: Record<Page, string> = {
+      home: isChristmas ? "Natal em 3D | R2 Print Lab" : "R2 Print Lab | Produtos criativos em 3D",
+      monsters: "Coleção Monsters | R2 Print Lab",
+      mascots: "Mascotes de Times | R2 Print Lab",
+    };
 
-  function handleOpenMascots() {
-    setPage("mascots");
-    window.requestAnimationFrame(() => {
-      document.getElementById("mascots")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
+    const title = titles[page];
+    document.title = title;
+    trackPageView(paths[page], title);
+  }, [isChristmas, page]);
 
-  function handleOpenReviews() {
-    setPage("reviews");
-    window.requestAnimationFrame(() => {
-      document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-
-  function handleOpenCollections() {
-    setPage("home");
-    window.requestAnimationFrame(() => {
-      document.getElementById("official-channels")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
-  }
-
-  function handleBackToCollection() {
-    window.requestAnimationFrame(() => {
-      document.getElementById("monster-detail")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    });
+  function navigate(nextPage: Page) {
+    if (window.location.pathname !== paths[nextPage]) {
+      window.history.pushState({}, "", paths[nextPage]);
+    }
+    setPage(nextPage);
+    window.requestAnimationFrame(() => window.scrollTo({ top: 0, behavior: "smooth" }));
   }
 
   return (
-    <div className="min-h-screen overflow-hidden bg-paper text-textMain transition-colors dark:bg-darkBg dark:text-darkText">
+    <div
+      className={`min-h-screen overflow-hidden bg-paper text-textMain transition-colors dark:bg-darkBg dark:text-darkText ${
+        isChristmas ? "campaign-christmas" : ""
+      }`}
+    >
       <div className="site-background pointer-events-none fixed inset-0 z-0" />
       <div className="relative z-10">
-        <Header onHome={handleHome} />
+        <Header
+          onHome={() => navigate("home")}
+          logo={campaign.logo}
+          campaignLabel={isChristmas ? campaign.label : undefined}
+        />
         <main>
           {page === "home" ? (
             <>
-              <BrandIntro
-                onOpenCollections={handleOpenCollections}
-                onOpenReviews={handleOpenReviews}
-                instagramUrl={links.instagram.url}
+              {isChristmas ? (
+                <SeasonalHero campaign={campaign} onOpenMonsters={() => navigate("monsters")} />
+              ) : (
+                <BrandIntro
+                  onOpenCollections={() =>
+                    document.getElementById("official-channels")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                  logo={campaign.logo}
+                  tiktokUrl={links.tiktok.url}
+                  whatsappUrl={links.whatsapp.url}
+                />
+              )}
+              <OfficialChannels
+                onOpenMonsters={() => navigate("monsters")}
+                onOpenMascots={() => navigate("mascots")}
               />
-              <OfficialChannels onOpenMonsters={handleOpenMonsters} onOpenMascots={handleOpenMascots} />
               <FeaturesSection />
             </>
           ) : page === "monsters" ? (
             <>
               <FeaturedMonster
-                onBackToCollection={handleBackToCollection}
-                onBackToHome={handleHome}
+                onBackToCollection={() =>
+                  document.getElementById("top")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                }
+                onBackToHome={() => navigate("home")}
               />
               <QuickShop />
               <MonsterColors />
               <FeaturesSection />
             </>
-          ) : page === "reviews" ? (
-            <>
-              <ReviewsPage onBackToHome={handleHome} />
-              <FeaturesSection />
-            </>
           ) : (
             <>
-              <MascotsPage onBackToHome={handleHome} />
+              <MascotsPage onBackToHome={() => navigate("home")} />
               <FeaturesSection />
             </>
           )}

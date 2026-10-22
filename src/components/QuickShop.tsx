@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { monsterShortcuts } from "../data/monster";
 import { ProductQuickCard } from "./ProductQuickCard";
 
@@ -10,7 +9,7 @@ export function QuickShop() {
         <div className="relative flex flex-col gap-5 sm:items-center">
           <div className="flex flex-col items-center gap-4 sm:flex-row">
             <img
-              src="/assets/logo-r2.png"
+              src="/assets/logo-r2.webp"
               alt="R2 Print Lab"
               className="h-16 w-16 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard sm:h-[4.25rem] sm:w-[4.25rem]"
             />
@@ -23,7 +22,7 @@ export function QuickShop() {
               />
               <div className="text-left">
                 <p className="text-[0.66rem] font-black uppercase tracking-[0.16em] text-brand dark:text-darkAccent">
-                  Colecao original
+                  Coleção original
                 </p>
                 <p className="text-sm font-black text-textMain dark:text-darkText">R2 Monsters</p>
               </div>
@@ -33,34 +32,19 @@ export function QuickShop() {
             <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Quick Shop Monsters</p>
             <h1 className="mt-2 text-4xl font-black leading-tight text-textMain dark:text-darkText sm:text-5xl">Escolha seu Monster</h1>
             <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
-              Encontre rapido a cor ou modelo que voce viu no Instagram.
+              Encontre rápido a cor ou modelo que você viu no Instagram.
             </p>
           </div>
         </div>
       </div>
 
-      <motion.div
-        className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5"
-        initial="hidden"
-        animate="show"
-        variants={{
-          hidden: {},
-          show: { transition: { staggerChildren: 0.045 } },
-        }}
-      >
+      <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
         {monsterShortcuts.map((item) => (
-          <motion.div
-            key={item.name}
-            variants={{
-              hidden: { opacity: 0, y: 12 },
-              show: { opacity: 1, y: 0 },
-            }}
-            transition={{ duration: 0.3 }}
-          >
+          <div key={item.name}>
             <ProductQuickCard item={item} />
-          </motion.div>
+          </div>
         ))}
-      </motion.div>
+      </div>
     </section>
   );
 }

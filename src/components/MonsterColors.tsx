@@ -1,4 +1,5 @@
 import { monsterColors } from "../data/monster";
+import { trackOutboundClick } from "../lib/analytics";
 
 export function MonsterColors() {
   return (
@@ -6,10 +7,10 @@ export function MonsterColors() {
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Paleta Monsters</p>
-          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Cores disponiveis</h2>
+          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Cores disponíveis</h2>
         </div>
         <p className="max-w-md text-sm leading-6 text-textMuted dark:text-darkMuted">
-          Toque em uma cor para abrir a variacao correspondente no Mercado Livre.
+          Toque em uma cor para abrir a variação correspondente no Mercado Livre.
         </p>
       </div>
       <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-5 lg:grid-cols-10">
@@ -33,6 +34,13 @@ export function MonsterColors() {
               href={color.mercadoLivreUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackOutboundClick({
+                  channel: "mercado_livre",
+                  placement: "monster_color",
+                  item: color.name,
+                })
+              }
               className="group rounded-3xl border border-mist bg-white p-3 text-center shadow-sm transition hover:-translate-y-1 hover:border-brand/25 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard"
               aria-label={`Abrir Monster ${color.name} no Mercado Livre`}
             >

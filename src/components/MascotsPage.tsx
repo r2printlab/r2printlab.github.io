@@ -1,5 +1,7 @@
 import { ArrowLeft, CircleDot, ShoppingBag } from "lucide-react";
 import { mascotItems } from "../data/mascots";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+import { trackOutboundClick } from "../lib/analytics";
 
 type MascotsPageProps = {
   onBackToHome: () => void;
@@ -42,7 +44,7 @@ export function MascotsPage({ onBackToHome }: MascotsPageProps) {
 
           <div className="mt-10 flex flex-col justify-between gap-3 border-t border-mist pt-6 dark:border-darkAccent/20 sm:flex-row sm:items-end">
             <div>
-              <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Mascotes disponiveis</p>
+              <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Mascotes disponíveis</p>
               <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Escolha pelo time</h2>
             </div>
             <p className="max-w-md text-sm leading-6 text-textMuted dark:text-darkMuted">
@@ -62,24 +64,29 @@ export function MascotsPage({ onBackToHome }: MascotsPageProps) {
 }
 
 function MascotsMediaDeck() {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <div className="relative mx-auto min-h-[320px] w-full max-w-[520px] overflow-hidden rounded-[1.7rem] border border-white/80 bg-gradient-to-br from-brand/10 via-white to-mist shadow-soft dark:border-darkAccent/20 dark:from-darkCardAlt dark:via-darkCard dark:to-darkCardAlt sm:min-h-[390px] lg:max-w-none">
       <div className="absolute inset-x-5 top-9 h-[74%] rounded-[2rem] border border-white/80 bg-white/70 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/60 sm:inset-x-8 sm:h-[76%]" />
       <MascotVideo
         src="/assets/Mascotes/sp2.mp4"
-        label="Video mascote Sao Paulo"
+        label="Vídeo mascote São Paulo"
         className="absolute left-2 top-12 w-[29%] -rotate-1 sm:left-4 sm:top-10 sm:w-[34%]"
+        reduceMotion={shouldReduceMotion}
       />
       <MascotVideo
         src="/assets/Mascotes/mascotes.mp4"
-        label="Video central dos mascotes"
+        label="Vídeo central dos mascotes"
         className="absolute inset-x-0 bottom-4 z-10 mx-auto w-[50%] min-w-[150px] max-w-[220px] sm:bottom-3 sm:w-[54%] sm:min-w-[190px] sm:max-w-[280px]"
         featured
+        reduceMotion={shouldReduceMotion}
       />
       <MascotVideo
         src="/assets/Mascotes/urubuzao.mp4"
-        label="Video mascote Urubu"
+        label="Vídeo mascote Urubu"
         className="absolute right-2 top-24 z-20 w-[29%] rotate-1 sm:right-4 sm:w-[31%]"
+        reduceMotion={shouldReduceMotion}
       />
     </div>
   );
@@ -90,9 +97,10 @@ type MascotVideoProps = {
   label: string;
   className: string;
   featured?: boolean;
+  reduceMotion: boolean;
 };
 
-function MascotVideo({ src, label, className, featured }: MascotVideoProps) {
+function MascotVideo({ src, label, className, featured, reduceMotion }: MascotVideoProps) {
   return (
     <div
       className={`${className} overflow-hidden rounded-3xl border border-white/80 bg-white text-left shadow-soft transition duration-300 hover:z-30 hover:-translate-y-3 hover:rotate-0 hover:scale-[1.05] hover:shadow-2xl dark:border-darkAccent/20 dark:bg-darkCard ${
@@ -102,11 +110,12 @@ function MascotVideo({ src, label, className, featured }: MascotVideoProps) {
       <video
         src={src}
         className="aspect-[9/16] w-full object-cover"
-        autoPlay
+        autoPlay={!reduceMotion}
         muted
         loop
         playsInline
         preload="metadata"
+        controls={reduceMotion}
         aria-label={label}
       />
     </div>
@@ -155,6 +164,13 @@ function MascotCard({ item }: MascotCardProps) {
             href={primaryUniform.mercadoLivreUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackOutboundClick({
+                channel: "mercado_livre",
+                placement: "mascot_card",
+                item: `${item.name} ${item.team}`,
+              })
+            }
             className="mt-4 inline-flex min-h-10 w-full items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
           >
             <ShoppingBag className="h-4 w-4" aria-hidden="true" />

@@ -66,7 +66,7 @@ export const mascotItems: MascotItem[] = [
     ],
   },
   {
-    name: "Cachorrao",
+    name: "Cachorrão",
     team: "Botafogo",
     color: "#111111",
     uniforms: [
@@ -79,7 +79,7 @@ export const mascotItems: MascotItem[] = [
   },
   {
     name: "Galo Doido",
-    team: "Atletico",
+    team: "Atlético",
     color: "#111111",
     uniforms: [
       {
@@ -90,7 +90,7 @@ export const mascotItems: MascotItem[] = [
     ],
   },
   {
-    name: "Gaviao",
+    name: "Gavião",
     team: "Corinthians",
     color: "#111111",
     uniforms: [
@@ -126,7 +126,7 @@ export const mascotItems: MascotItem[] = [
     ],
   },
   {
-    name: "Porco Medio",
+    name: "Porco Médio",
     team: "Palmeiras C/Base",
     color: "#14783f",
     uniforms: [
@@ -138,7 +138,7 @@ export const mascotItems: MascotItem[] = [
     ],
   },
   {
-    name: "Raposao",
+    name: "Raposão",
     team: "Cruzeiro",
     color: "#1d5fbf",
     uniforms: [
@@ -163,7 +163,7 @@ export const mascotItems: MascotItem[] = [
   },
   {
     name: "Santo",
-    team: "Sao Paulo",
+    team: "São Paulo",
     color: "#d71920",
     uniforms: [
       {

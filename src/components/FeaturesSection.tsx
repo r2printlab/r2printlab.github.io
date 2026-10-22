@@ -2,9 +2,9 @@ import { MessageCircle, PackageCheck, Palette, ShieldCheck } from "lucide-react"
 
 const features = [
   { title: "Produtos sob encomenda", icon: PackageCheck },
-  { title: "Varias cores disponiveis", icon: Palette },
+  { title: "Várias cores disponíveis", icon: Palette },
   { title: "Compra segura pelo Mercado Livre", icon: ShieldCheck },
-  { title: "Atendimento rapido pelo WhatsApp", icon: MessageCircle },
+  { title: "Atendimento direto pelo WhatsApp", icon: MessageCircle },
 ];
 
 export function FeaturesSection() {

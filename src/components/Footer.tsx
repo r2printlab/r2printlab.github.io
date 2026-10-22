@@ -1,4 +1,5 @@
 import { links, type LinkStatus } from "../data/links";
+import { trackOutboundClick } from "../lib/analytics";
 
 type FooterLink = {
   label: string;
@@ -8,6 +9,7 @@ type FooterLink = {
 
 const footerLinks: FooterLink[] = [
   links.instagram,
+  links.tiktok,
   links.whatsapp,
   links.mercadoLivre,
   { label: "r2printlab3d@gmail.com", url: "mailto:r2printlab3d@gmail.com", status: "active" },
@@ -19,9 +21,9 @@ export function Footer() {
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-5 text-center sm:flex-row sm:text-left">
         <div>
           <p className="text-lg font-black text-textMain dark:text-darkText">R2 Print Lab</p>
-          <p className="mt-1 text-sm text-textMuted dark:text-darkMuted">Produtos criativos, colecionaveis e presentes.</p>
+          <p className="mt-1 text-sm text-textMuted dark:text-darkMuted">Produtos criativos, colecionáveis e presentes.</p>
         </div>
-        <nav aria-label="Links do rodape" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-textMuted dark:text-darkMuted">
+        <nav aria-label="Links do rodapé" className="flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm font-semibold text-textMuted dark:text-darkMuted">
           {footerLinks.map((link) => (
             link.status === "active" && link.url !== "#" ? (
               <a
@@ -29,6 +31,12 @@ export function Footer() {
                 href={link.url}
                 target={link.url.startsWith("mailto:") ? undefined : "_blank"}
                 rel={link.url.startsWith("mailto:") ? undefined : "noopener noreferrer"}
+                onClick={() =>
+                  trackOutboundClick({
+                    channel: link.url.startsWith("mailto:") ? "email" : link.label.toLowerCase().replace(" ", "_"),
+                    placement: "footer",
+                  })
+                }
                 className="transition hover:text-brand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:hover:text-darkAccent"
               >
                 {link.label}

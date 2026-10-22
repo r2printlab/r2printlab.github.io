@@ -1,6 +1,7 @@
 import { ShoppingBag, Store } from "lucide-react";
 import { useEffect, useState } from "react";
 import type { MonsterShortcut } from "../data/monster";
+import { trackOutboundClick } from "../lib/analytics";
 
 type ProductQuickCardProps = {
   item: MonsterShortcut;
@@ -51,6 +52,9 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
             href={item.mercadoLivreUrl}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() =>
+              trackOutboundClick({ channel: "mercado_livre", placement: "monster_card", item: item.name })
+            }
             className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
           >
             Ver produto
@@ -60,6 +64,7 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
               href={item.shopeeUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => trackOutboundClick({ channel: "shopee", placement: "monster_card", item: item.name })}
               className="grid h-10 w-10 place-items-center rounded-2xl border border-mist bg-white text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
               aria-label={`Ver ${item.name} na Shopee`}
             >

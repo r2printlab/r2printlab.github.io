@@ -1,202 +1,89 @@
-# R2 Print Lab GitHub Pages
+# Hub de links da R2 Print Lab
 
-Landing page/bio link oficial da R2 Print Lab para o GitHub Pages:
-
-https://r2printlab.github.io
-
-O site funciona como uma vitrine rapida da colecao Monsters, pensada para clientes que chegam pelo Instagram e querem encontrar rapidamente o produto, a cor ou o canal oficial da marca.
+Vitrine oficial da R2 Print Lab para visitantes vindos do Instagram, TikTok e outros canais sociais. O projeto reúne coleções, marketplaces e contato direto em uma experiência rápida, responsiva e mensurável.
 
 ## Stack
 
-- React
-- Vite
-- TypeScript
-- Tailwind CSS
-- Framer Motion
-- Lucide React
-- GitHub Pages via GitHub Actions
+- React 19, TypeScript e Vite
+- Tailwind CSS 4
+- Cloudflare Pages Free
+- Cloudflare Web Analytics para tráfego e desempenho
+- Google Analytics 4 opcional para eventos de clique
 
-## Rodar o projeto
+> A versão pública atual ainda está no GitHub Pages. A migração aprovada para Cloudflare Pages está preparada no código, mas conectar contas, publicar e alterar o link da bio continuam pendentes.
 
-Instalar dependencias:
+## Rodar localmente
 
 ```bash
 npm install
-```
-
-Rodar localmente:
-
-```bash
 npm run dev
 ```
 
-Gerar build:
+Gerar e testar a versão de produção:
 
 ```bash
 npm run build
-```
-
-Visualizar build local:
-
-```bash
 npm run preview
 ```
 
-## Links oficiais
+## Rotas compartilháveis
 
-Os canais oficiais ficam em:
+- `/` — página principal e canais oficiais
+- `/colecoes/monsters` — coleção Monsters
+- `/colecoes/mascotes` — coleção de mascotes
 
-```text
-src/data/links.ts
-```
+O arquivo `public/_redirects` redireciona as rotas de coleção para a aplicação React no Cloudflare Pages, permitindo abrir e recarregar os links diretamente. `public/_headers` centraliza cache e cabeçalhos básicos de segurança.
 
-Por enquanto, somente o Instagram possui link real:
+## Campanhas sazonais
 
-```ts
-instagram: {
-  label: "Instagram",
-  url: "https://www.instagram.com/r2printlab/",
-  status: "active",
-  icon: "instagram",
-},
-```
+As campanhas ficam em `src/config/campaigns.ts`. Cada campanha define período, identidade visual e textos. Fora da janela configurada, o site volta automaticamente ao tema padrão.
 
-Os demais canais ficam como `status: "soon"` e `url: "#"`:
+A campanha `natal-2026` está configurada para:
 
-- WhatsApp
-- TikTok
-- Magalu
-- Amazon
+- início: 22/10/2026 às 00:00, horário de Brasília;
+- término: 06/01/2027 às 23:59:59, horário de Brasília;
+- prévia manual: `/?campaign=natal-2026`.
 
-Mercado Livre e Shopee ja possuem links oficiais da loja e ficam como `status: "active"`.
+Antes da publicação, valide as datas com a R2.
 
-Para ativar um canal, troque `url` pelo link real e altere `status` para `"active"`.
+Os arquivos visuais do Natal usados pelo site ficam em `public/assets/campaigns/natal-2026/`. Os originais continuam preservados no repositório operacional da R2.
 
-Enquanto um canal estiver como `"soon"` ou `url: "#"`, o site exibe o badge "em breve" e nao navega para link vazio.
+## Conteúdo e links
 
-## Vitrine Monsters
+- canais oficiais e contato: `src/data/links.ts`;
+- produtos Monsters: `src/data/monster.ts`;
+- mascotes: `src/data/mascots.ts`.
 
-Os dados da colecao ficam em:
+Adicionar novos itens às coleções exige somente incluir os dados e os arquivos visuais correspondentes. Links com `#` permanecem indisponíveis e não são tratados como destino válido.
 
-```text
-src/data/monster.ts
-```
+## Métricas gratuitas
 
-Esse arquivo centraliza:
+O Cloudflare Web Analytics pode ser habilitado com um clique no painel do projeto para medir tráfego e desempenho de forma gratuita e orientada à privacidade.
 
-- produto principal
-- atalhos da vitrine rapida
-- cores disponiveis
-- imagens da galeria
-- textos da colecao
+Para medir ações de negócio, o código está preparado para enviar ao GA4:
 
-Para alterar os cards do Quick Shop, edite `monsterShortcuts`.
+- `outbound_click`: clique em WhatsApp, TikTok, Instagram, Mercado Livre ou Shopee;
+- `collection_open`: abertura das coleções Monsters ou Mascotes.
+- `page_view`: visualização da página principal ou de uma rota de coleção.
 
-Cada item possui:
+Os eventos carregam apenas rótulos operacionais como canal, posição e item; não devem receber PII. O GA4 permanece desligado quando `VITE_GA_MEASUREMENT_ID` não está definido e também não carrega em ambiente local. Para ativar depois da criação e aprovação da propriedade, copie `.env.example` para uma variável de ambiente do projeto na Cloudflare.
 
-```ts
-{
-  name: "Monster Preto",
-  tag: "Preto",
-  color: "#111111",
-  image: "/assets/monster-preto.png",
-  mercadoLivreUrl: "https://www.mercadolivre.com.br/...",
-  shopeeUrl: "https://shopee.com.br/r2printlab3d...",
-}
-```
+## Publicação proposta
 
-Quando `mercadoLivreUrl` ou `shopeeUrl` estiver como `"#"`, o botao aparece como "em breve" sem navegar.
+1. Criar ou selecionar a conta gratuita da Cloudflare.
+2. Conectar este repositório.
+3. Criar um projeto Pages com comando `npm run build` e diretório de saída `dist`.
+4. Ativar Cloudflare Web Analytics no painel.
+5. Opcionalmente, criar a propriedade GA4 e definir `VITE_GA_MEASUREMENT_ID` para medir os eventos de clique.
+6. Publicar uma prévia e homologar em celular e desktop.
+7. Configurar o domínio definitivo e, depois da validação, atualizar Instagram e demais canais.
 
-As cores em `monsterColors` tambem possuem `mercadoLivreUrl` e `shopeeUrl`, para permitir links diretos por cor.
+Não criar conta, conectar o GitHub, publicar ou alterar domínio sem autorização explícita para a ação exata.
 
-## Imagens
+## Acessibilidade e desempenho
 
-A logo oficial deve ficar em:
-
-```text
-public/assets/logo-r2.png
-```
-
-As imagens previstas para a colecao Monsters ficam em:
-
-```text
-public/assets/monster-destaque.png
-public/assets/monster-colecao.png
-public/assets/monster-preto.png
-public/assets/monster-branco.png
-public/assets/monster-azul.png
-public/assets/monster-vermelho.png
-public/assets/monster-roxo.png
-public/assets/monster-rosa.png
-public/assets/monster-verde.png
-public/assets/monster-laranja.png
-public/assets/monster-detalhe.png
-```
-
-Os videos curtos do produto ficam em:
-
-```text
-public/assets/video-monster.mp4
-public/assets/monster-branco-neon.mp4
-```
-
-Se alguma imagem ainda nao existir, o card mostra um placeholder elegante sem quebrar a pagina.
-
-## Tema Claro/Escuro
-
-O botao de tema fica no Header e usa `localStorage` com a chave:
-
-```text
-r2-theme
-```
-
-O tema inicial usa a preferencia salva. Se nao houver preferencia salva, o site consulta `prefers-color-scheme`.
-
-O script em `index.html` aplica a classe `dark` antes do React carregar para reduzir flash visual.
-
-As cores principais ficam em:
-
-```text
-tailwind.config.js
-```
-
-Tema claro:
-
-- Fundo: `#f7f9fb`
-- Cards: `#ffffff`
-- Texto principal: `#111111`
-- Texto secundario: `#5f6b76`
-- Azul principal: `#1f4564`
-- Azul escuro: `#143047`
-- Azul suave: `#e8f0f6`
-
-Tema escuro:
-
-- Fundo: `#071018`
-- Cards: `#0f1b26`
-- Cards secundarios: `#122538`
-- Texto principal: `#f7f9fb`
-- Texto secundario: `#b7c3ce`
-- Azul destaque: `#7fb0d6`
-
-## Publicar no GitHub Pages
-
-Este repositorio foi configurado para o dominio raiz:
-
-```text
-https://r2printlab.github.io
-```
-
-O arquivo `vite.config.ts` usa:
-
-```ts
-base: "/"
-```
-
-O workflow de deploy fica em:
-
-```text
-.github/workflows/deploy.yml
-```
-
-No GitHub, configure `Settings > Pages > Build and deployment` como `GitHub Actions`.
+- suporte a tema claro e escuro;
+- respeito a `prefers-reduced-motion`;
+- navegação por teclado e foco visível;
+- imagens principais otimizadas em WebP;
+- cabeçalhos básicos de segurança e cache configurados para Cloudflare Pages.

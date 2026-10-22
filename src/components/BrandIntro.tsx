@@ -1,16 +1,18 @@
-import { BadgeCheck, Box, MessageSquareText, Star } from "lucide-react";
+import { Box, MessageCircle, Music2 } from "lucide-react";
+import { trackOutboundClick } from "../lib/analytics";
 
 type BrandIntroProps = {
   onOpenCollections: () => void;
-  onOpenReviews: () => void;
-  instagramUrl: string;
+  logo: string;
+  tiktokUrl: string;
+  whatsappUrl: string;
 };
 
-export function BrandIntro({ onOpenCollections, onOpenReviews, instagramUrl }: BrandIntroProps) {
+export function BrandIntro({ onOpenCollections, logo, tiktokUrl, whatsappUrl }: BrandIntroProps) {
   return (
     <section id="top" className="mx-auto w-full max-w-3xl px-5 pb-4 pt-6 text-center sm:px-6">
       <img
-        src="/assets/logo-r2.png"
+        src={logo}
         alt="R2 Print Lab"
         className="mx-auto h-24 w-24 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard"
       />
@@ -21,17 +23,12 @@ export function BrandIntro({ onOpenCollections, onOpenReviews, instagramUrl }: B
         R2 Print Lab
       </h1>
       <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
-        Produtos criativos, colecionaveis e presentes com acabamento caprichado para o dia a dia.
+        Produtos criativos, colecionáveis e presentes com acabamento caprichado para o dia a dia.
       </p>
-      <div className="mt-4 flex items-center justify-center gap-1 text-[#f2b705]" aria-label="5 estrelas de avaliacao">
-        {Array.from({ length: 5 }).map((_, index) => (
-          <Star key={index} className="h-5 w-5 fill-current drop-shadow-sm" aria-hidden="true" />
-        ))}
-      </div>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
-        <InfoPill icon={Box} label="Colecoes" onClick={onOpenCollections} />
-        <InfoPill icon={MessageSquareText} label="Avaliações" onClick={onOpenReviews} />
-        <InfoPill icon={BadgeCheck} label="Loja oficial" href={instagramUrl} />
+        <InfoPill icon={Box} label="Coleções" onClick={onOpenCollections} />
+        <InfoPill icon={Music2} label="TikTok" href={tiktokUrl} channel="tiktok" />
+        <InfoPill icon={MessageCircle} label="WhatsApp" href={whatsappUrl} channel="whatsapp" />
       </div>
     </section>
   );
@@ -42,9 +39,10 @@ type InfoPillProps = {
   label: string;
   href?: string;
   onClick?: () => void;
+  channel?: string;
 };
 
-function InfoPill({ icon: Icon, label, href, onClick }: InfoPillProps) {
+function InfoPill({ icon: Icon, label, href, onClick, channel }: InfoPillProps) {
   const className =
     "flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-mist bg-white/80 px-4 text-sm font-black text-brand shadow-sm transition hover:-translate-y-0.5 hover:bg-mist hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard/80 dark:text-darkAccent";
   const content = (
@@ -56,7 +54,13 @@ function InfoPill({ icon: Icon, label, href, onClick }: InfoPillProps) {
 
   if (href) {
     return (
-      <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        onClick={() => channel && trackOutboundClick({ channel, placement: "brand_intro" })}
+      >
         {content}
       </a>
     );

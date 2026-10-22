@@ -39,18 +39,13 @@ export type MonsterColor = {
   shopeeUrl: string;
 };
 
-export type GalleryImage = {
-  title: string;
-  image: string;
-};
-
 export const monsterProduct = {
   title: "Porta Lata Monster com Tampa e Abridor",
-  subtitle: "Colecao Monsters",
+  subtitle: "Coleção Monsters",
   description:
-    "Porta lata com visual marcante, tampa e abridor para deixar setup, presente ou colecao com mais personalidade.",
+    "Porta-lata com visual marcante, tampa e abridor para deixar setup, presente ou coleção com mais personalidade.",
   image: "/assets/monster-destaque.png",
-  fallbackImage: "/assets/monsters.png",
+  fallbackImage: "/assets/monsters.webp",
   video: "/assets/video-monster.mp4",
   sideVideo: "/assets/monster-branco-neon.mp4",
   mercadoLivreUrl: monsterLinks.preto,
@@ -156,11 +151,4 @@ export const monsterColors: MonsterColor[] = [
   { name: "Bege", value: "#d7c2a3", mercadoLivreUrl: monsterLinks.bege, shopeeUrl: shopeeStoreUrl },
   { name: "Laranja", value: "#f07921", mercadoLivreUrl: monsterLinks.laranja, shopeeUrl: shopeeStoreUrl },
   { name: "Verde", value: "#20a84a", mercadoLivreUrl: monsterLinks.verde, shopeeUrl: shopeeStoreUrl },
-];
-
-export const monsterGallery: GalleryImage[] = [
-  { title: "Colecao Monsters", image: "/assets/monsters.png" },
-  { title: "Branco Neon", image: "/assets/branco-neon.png" },
-  { title: "Monster preto", image: "/assets/monster-preto.png" },
-  { title: "Monster rosa chiclete", image: "/assets/monster-rosa-chiclete.png" },
 ];

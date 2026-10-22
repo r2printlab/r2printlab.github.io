@@ -2,6 +2,8 @@ import { ArrowLeft, Maximize2, Play, ShoppingBag, X } from "lucide-react";
 import { useEffect, useState } from "react";
 import { monsterProduct } from "../data/monster";
 import type { MonsterShortcut } from "../data/monster";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+import { trackOutboundClick } from "../lib/analytics";
 
 type FeaturedMonsterProps = {
   selectedMonster?: MonsterShortcut;
@@ -30,9 +32,9 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
           <VideoPanel
             src={monsterProduct.sideVideo}
             className="absolute left-3 top-10 w-[31%] -rotate-1 sm:left-4 sm:w-[34%]"
-            label="Video Monster branco neon"
+            label="Vídeo Monster branco neon"
             enhance
-            onOpen={() => setPreview({ type: "video", src: monsterProduct.sideVideo, label: "Video Monster branco neon" })}
+            onOpen={() => setPreview({ type: "video", src: monsterProduct.sideVideo, label: "Vídeo Monster branco neon" })}
           />
           <button
             type="button"
@@ -51,8 +53,8 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
           <VideoPanel
             src={monsterProduct.video}
             className="absolute right-4 top-24 z-20 w-[31%] rotate-1 sm:top-24"
-            label="Video Monster em uso"
-            onOpen={() => setPreview({ type: "video", src: monsterProduct.video, label: "Video Monster em uso" })}
+            label="Vídeo Monster em uso"
+            onOpen={() => setPreview({ type: "video", src: monsterProduct.video, label: "Vídeo Monster em uso" })}
           />
         </div>
         <div>
@@ -62,7 +64,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
             className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-2xl border border-mist bg-white px-3 text-sm font-black text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            {selectedMonster ? "Voltar para colecao" : "Voltar para links"}
+            {selectedMonster ? "Voltar para coleção" : "Voltar para links"}
           </button>
           <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">{monsterProduct.subtitle}</p>
           <h2 className="mt-3 text-3xl font-black leading-tight text-textMain dark:text-darkText sm:text-4xl">
@@ -86,6 +88,13 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 href={mercadoLivreUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackOutboundClick({
+                    channel: "mercado_livre",
+                    placement: "featured_monster",
+                    item: selectedMonster?.name ?? monsterProduct.title,
+                  })
+                }
                 className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ffd600] px-4 text-left font-black text-[#27346a] shadow-sm transition hover:bg-[#f2c900] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[205px]"
               >
                 <img src="/assets/mercado-livre-icone.png" alt="" className="h-7 w-7 rounded-full object-contain" />
@@ -109,6 +118,13 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                 href={shopeeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() =>
+                  trackOutboundClick({
+                    channel: "shopee",
+                    placement: "featured_monster",
+                    item: selectedMonster?.name ?? monsterProduct.title,
+                  })
+                }
                 className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ee4d2d] px-4 text-left font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[170px]"
               >
                 <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain" />
@@ -150,6 +166,8 @@ type VideoPanelProps = {
 };
 
 function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps) {
+  const shouldReduceMotion = useReducedMotion();
+
   return (
     <button
       type="button"
@@ -160,11 +178,12 @@ function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps)
       <video
         src={src}
         className={`aspect-[9/16] w-full object-cover ${enhance ? "brightness-125 contrast-125 saturate-150" : ""}`}
-        autoPlay
+        autoPlay={!shouldReduceMotion}
         muted
         loop
         playsInline
         preload="metadata"
+        controls={shouldReduceMotion}
         aria-label={label}
       />
       {enhance ? <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/20 mix-blend-screen" /> : null}
@@ -199,7 +218,7 @@ function MediaLightbox({ preview, onClose }: MediaLightboxProps) {
         type="button"
         onClick={onClose}
         className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-brand shadow-soft transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
-        aria-label="Fechar visualizacao"
+        aria-label="Fechar visualização"
       >
         <X className="h-5 w-5" aria-hidden="true" />
       </button>

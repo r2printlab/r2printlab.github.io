@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 @layer base {
   :root {
@@ -105,6 +104,46 @@
     opacity: 0.58;
   }
 
+  .campaign-christmas .site-background {
+    background:
+      radial-gradient(circle at 18% 8%, rgba(165, 29, 45, 0.16), transparent 26%),
+      radial-gradient(circle at 86% 12%, rgba(14, 74, 54, 0.2), transparent 28%),
+      linear-gradient(90deg, rgba(213, 166, 58, 0.055) 1px, transparent 1px),
+      linear-gradient(rgba(213, 166, 58, 0.045) 1px, transparent 1px),
+      linear-gradient(180deg, #f8f5ef 0%, #ffffff 46%, #f7f9fb 100%);
+    background-size: auto, auto, 42px 42px, 42px 42px, 100% 100%;
+  }
+
+  .dark .campaign-christmas .site-background {
+    background:
+      radial-gradient(circle at 18% 8%, rgba(165, 29, 45, 0.22), transparent 28%),
+      radial-gradient(circle at 86% 12%, rgba(14, 74, 54, 0.28), transparent 30%),
+      linear-gradient(90deg, rgba(213, 166, 58, 0.05) 1px, transparent 1px),
+      linear-gradient(rgba(213, 166, 58, 0.04) 1px, transparent 1px),
+      linear-gradient(180deg, #071018 0%, #0b1722 48%, #071018 100%);
+    background-size: auto, auto, 42px 42px, 42px 42px, 100% 100%;
+  }
+
+  .christmas-hero {
+    background:
+      radial-gradient(circle at 85% 18%, rgba(213, 166, 58, 0.2), transparent 28%),
+      linear-gradient(135deg, #071018 0%, #0e4a36 54%, #7c1724 100%);
+  }
+
+  .christmas-garland {
+    display: none;
+    background-image: url("/assets/campaigns/natal-2026/garland-header.webp");
+    background-position: center top;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  @media (min-width: 640px) {
+    .christmas-garland {
+      display: block;
+    }
+  }
+
   .product-grid {
     background-image:
       linear-gradient(rgba(31, 69, 100, 0.08) 1px, transparent 1px),
@@ -116,5 +155,20 @@
     background-image:
       linear-gradient(rgba(127, 176, 214, 0.12) 1px, transparent 1px),
       linear-gradient(90deg, rgba(127, 176, 214, 0.12) 1px, transparent 1px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }
