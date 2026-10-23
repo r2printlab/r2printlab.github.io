@@ -3,13 +3,16 @@ import { trackOutboundClick } from "../lib/analytics";
 
 export function MonsterColors() {
   return (
-    <section className="mx-auto w-full max-w-6xl px-5 py-10 sm:px-6 lg:px-8">
+    <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
         <div>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Paleta Monsters</p>
-          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Cores disponíveis</h2>
+          <p className="flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.2em] text-berry">
+            <span className="h-0.5 w-8 bg-berry" aria-hidden="true" />
+            Paleta Monsters
+          </p>
+          <h2 className="mt-3 font-display text-4xl leading-tight text-pine">Cores disponíveis</h2>
         </div>
-        <p className="max-w-md text-sm leading-6 text-textMuted dark:text-darkMuted">
+        <p className="max-w-md text-sm leading-6 text-muted">
           Toque em uma cor para abrir a variação correspondente no Mercado Livre.
         </p>
       </div>
@@ -17,14 +20,14 @@ export function MonsterColors() {
         {monsterColors.map((color) => {
           const content = (
             <>
-            <span
-              className="mx-auto block h-16 w-16 rounded-2xl border border-mist shadow-sm transition group-hover:scale-105 dark:border-darkAccent/20"
-              style={{ background: color.value }}
-            />
-            <p className="mt-3 text-sm font-black text-textMain dark:text-darkText">{color.name}</p>
-            <span className="mt-2 block text-[0.68rem] font-black uppercase tracking-[0.12em] text-brand/70 dark:text-darkAccent/80">
-              Mercado Livre
-            </span>
+              <span
+                className="mx-auto block h-16 w-16 rounded-full border border-black/10 shadow-sm transition group-hover:scale-110"
+                style={{ background: color.value }}
+              />
+              <p className="mt-3 text-sm font-extrabold text-ink">{color.name}</p>
+              <span className="mt-1 block text-[0.68rem] font-bold uppercase tracking-[0.12em] text-berry">
+                Mercado Livre
+              </span>
             </>
           );
 
@@ -41,7 +44,7 @@ export function MonsterColors() {
                   item: color.name,
                 })
               }
-              className="group rounded-3xl border border-mist bg-white p-3 text-center shadow-sm transition hover:-translate-y-1 hover:border-brand/25 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard"
+              className="group rounded-2xl border border-line bg-paper p-3 text-center shadow-card transition hover:-translate-y-1 hover:border-pine/30 hover:shadow-lift"
               aria-label={`Abrir Monster ${color.name} no Mercado Livre`}
             >
               {content}
@@ -51,7 +54,7 @@ export function MonsterColors() {
               key={color.name}
               type="button"
               disabled
-              className="group rounded-3xl border border-mist bg-white p-3 text-center shadow-sm disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCard"
+              className="group rounded-2xl border border-line bg-paper p-3 text-center shadow-card disabled:cursor-default disabled:opacity-70"
             >
               {content}
             </button>

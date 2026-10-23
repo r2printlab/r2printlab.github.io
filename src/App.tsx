@@ -68,18 +68,9 @@ export default function App() {
   }
 
   return (
-    <div
-      className={`min-h-screen overflow-hidden bg-paper text-textMain transition-colors dark:bg-darkBg dark:text-darkText ${
-        isChristmas ? "campaign-christmas" : ""
-      }`}
-    >
-      <div className="site-background pointer-events-none fixed inset-0 z-0" />
-      <div className="relative z-10">
-        <Header
-          onHome={() => navigate("home")}
-          logo={campaign.logo}
-          campaignLabel={isChristmas ? campaign.label : undefined}
-        />
+    <div className="min-h-screen overflow-x-hidden bg-snow font-sans text-ink">
+      <div>
+        <Header onHome={() => navigate("home")} logo={campaign.logo} />
         <main>
           {page === "home" ? (
             <>

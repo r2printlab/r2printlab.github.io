@@ -11,18 +11,12 @@ type BrandIntroProps = {
 export function BrandIntro({ onOpenCollections, logo, tiktokUrl, whatsappUrl }: BrandIntroProps) {
   return (
     <section id="top" className="mx-auto w-full max-w-3xl px-5 pb-4 pt-6 text-center sm:px-6">
-      <img
-        src={logo}
-        alt="R2 Print Lab"
-        className="mx-auto h-24 w-24 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard"
-      />
-      <p className="mt-5 text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">
-        Bio oficial
-      </p>
-      <h1 className="mt-2 text-4xl font-black leading-tight text-textMain dark:text-darkText sm:text-5xl">
-        R2 Print Lab
-      </h1>
-      <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
+      <span className="mx-auto block h-28 w-28 overflow-hidden rounded-full border-2 border-gold bg-white shadow-card">
+        <img src={logo} alt="R2 Print Lab" className="h-full w-full scale-[1.16] object-cover" />
+      </span>
+      <p className="mt-5 text-xs font-extrabold uppercase tracking-[0.2em] text-berry">Bio oficial</p>
+      <h1 className="mt-2 font-display text-5xl leading-tight text-pine">R2 Print Lab</h1>
+      <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-muted">
         Produtos criativos, colecionáveis e presentes com acabamento caprichado para o dia a dia.
       </p>
       <div className="mt-6 grid gap-3 sm:grid-cols-3">
@@ -44,7 +38,7 @@ type InfoPillProps = {
 
 function InfoPill({ icon: Icon, label, href, onClick, channel }: InfoPillProps) {
   const className =
-    "flex min-h-14 items-center justify-center gap-2 rounded-2xl border border-mist bg-white/80 px-4 text-sm font-black text-brand shadow-sm transition hover:-translate-y-0.5 hover:bg-mist hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard/80 dark:text-darkAccent";
+    "flex min-h-14 items-center justify-center gap-2 rounded-full border-2 border-pine/15 bg-paper px-4 text-sm font-extrabold text-pine shadow-card transition hover:-translate-y-0.5 hover:border-pine/40";
   const content = (
     <>
       <Icon className="h-5 w-5" aria-hidden="true" />

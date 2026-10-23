@@ -1,154 +1,186 @@
-import {
-  ChevronRight,
-  ExternalLink,
-  Instagram,
-  MessageCircle,
-  Music2,
-  Package,
-  ShoppingBag,
-  ShoppingCart,
-  Store,
-} from "lucide-react";
-import type { LucideIcon } from "lucide-react";
-import { officialChannels, type LinkIcon, type OfficialLink } from "../data/links";
+import { ArrowUpRight, ChevronRight, Instagram, MessageCircle, Music2 } from "lucide-react";
+import { links, officialChannels, type OfficialLink } from "../data/links";
 import { trackCollectionOpen, trackOutboundClick } from "../lib/analytics";
-
-const icons: Record<LinkIcon, LucideIcon> = {
-  shoppingBag: ShoppingBag,
-  shoppingCart: ShoppingCart,
-  messageCircle: MessageCircle,
-  instagram: Instagram,
-  music: Music2,
-  store: Store,
-  package: Package,
-  externalLink: ExternalLink,
-  sparkles: ExternalLink,
-  cupSoda: Store,
-  shield: Package,
-  sun: ExternalLink,
-};
 
 type OfficialChannelsProps = {
   onOpenMonsters: () => void;
   onOpenMascots: () => void;
 };
 
-export function OfficialChannels({ onOpenMonsters, onOpenMascots }: OfficialChannelsProps) {
-  return (
-    <section id="official-channels" className="scroll-mt-6 mx-auto w-full max-w-3xl px-5 py-8 sm:px-6">
-      <div className="rounded-[2rem] border border-mist bg-white/90 p-5 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/90 sm:p-6">
-        <div className="text-center">
-          <p className="text-sm font-black uppercase tracking-[0.2em] text-brand dark:text-darkAccent">Links oficiais</p>
-          <h2 className="mt-2 text-3xl font-black text-textMain dark:text-darkText">Onde comprar e acompanhar</h2>
-          <p className="mt-2 text-sm leading-6 text-textMuted dark:text-darkMuted">
-            Acesse os canais da R2 Print Lab em um só lugar.
-          </p>
-        </div>
+const collectionKeys = ["monsters", "mascots"];
+const storeKeys = ["mercadoLivre", "shopee", "instagram", "tiktok"];
 
-        <div className="mt-6 grid gap-3">
-          {officialChannels.map((channel) => (
-            <div key={channel.label}>
-              <ChannelCard channel={channel} onOpenMonsters={onOpenMonsters} onOpenMascots={onOpenMascots} />
-            </div>
+const monsterPhoto = "/assets/monsters-640.webp";
+const mascotPhotos = [
+  "/assets/Mascotes/URUBU%20FLAMENGO%20UNIFORME%201.jpeg",
+  "/assets/Mascotes/SANTO%20SP%20UNIFORME%201.jpeg",
+  "/assets/Mascotes/GAVIAO%20CORINTHIANS%20.jpeg",
+];
+
+export function OfficialChannels({ onOpenMonsters, onOpenMascots }: OfficialChannelsProps) {
+  const collections = officialChannels.filter((channel) => collectionKeys.includes(channel.key));
+  const stores = officialChannels.filter((channel) => storeKeys.includes(channel.key));
+
+  return (
+    <div id="official-channels" className="scroll-mt-6">
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow="Coleções" title="Escolha seu presente" />
+        <div className="mt-8 grid gap-5 md:grid-cols-2">
+          {collections.map((channel) => (
+            <CollectionCard
+              key={channel.key}
+              channel={channel}
+              onOpen={() => {
+                const isMascots = channel.key === "mascots";
+                trackCollectionOpen(isMascots ? "mascots" : "monsters", "official_channels");
+                (isMascots ? onOpenMascots : onOpenMonsters)();
+              }}
+            />
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+
+      <section className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <SectionHeading eyebrow="Canais oficiais" title="Onde comprar e acompanhar" />
+        <p className="mt-3 text-base text-muted">Acesse os canais da R2 Print Lab em um só lugar.</p>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+          {stores.map((channel) => (
+            <StoreLink key={channel.key} channel={channel} />
+          ))}
+        </div>
+        <WhatsappBanner />
+      </section>
+    </div>
   );
 }
 
-type ChannelCardProps = {
-  channel: OfficialLink;
-  onOpenMonsters: () => void;
-  onOpenMascots: () => void;
+function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+  return (
+    <div>
+      <p className="flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.2em] text-berry">
+        <span className="h-0.5 w-8 bg-berry" aria-hidden="true" />
+        {eyebrow}
+      </p>
+      <h2 className="mt-3 font-display text-4xl leading-tight text-pine sm:text-5xl">{title}</h2>
+    </div>
+  );
+}
+
+function CollectionCard({ channel, onOpen }: { channel: OfficialLink; onOpen: () => void }) {
+  const isMonsters = channel.key === "monsters";
+
+  return (
+    <button
+      type="button"
+      onClick={onOpen}
+      className="group flex flex-col overflow-hidden rounded-[1.75rem] border border-line bg-paper text-left shadow-card transition duration-300 hover:-translate-y-1 hover:shadow-lift"
+    >
+      <div className="relative h-60 overflow-hidden bg-white sm:h-72">
+        {isMonsters ? (
+          <img
+            src={monsterPhoto}
+            alt="Porta-latas Monster em várias cores, produzidos em 3D pela R2 Print Lab"
+            className="h-full w-full object-cover object-[50%_62%] transition duration-500 group-hover:scale-105"
+            loading="lazy"
+          />
+        ) : (
+          <div className="grid h-full grid-cols-3 items-end bg-[#f1ede4]">
+            {mascotPhotos.map((photo, index) => (
+              <img
+                key={photo}
+                src={photo}
+                alt=""
+                className={`h-full w-full object-contain mix-blend-multiply transition duration-500 group-hover:scale-105 ${index === 1 ? "scale-110" : ""}`}
+                loading="lazy"
+              />
+            ))}
+          </div>
+        )}
+        {channel.badge ? (
+          <span className="absolute left-4 top-4 rounded-full bg-berry px-3 py-1 text-xs font-extrabold uppercase tracking-[0.12em] text-white shadow-sm">
+            {channel.badge}
+          </span>
+        ) : null}
+      </div>
+      <div className="flex items-center justify-between gap-4 p-5 sm:p-6">
+        <div>
+          <h3 className="font-display text-2xl text-pine">{channel.label}</h3>
+          {channel.note ? <p className="mt-1 text-sm text-muted">{channel.note}</p> : null}
+        </div>
+        <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-pine text-gold transition group-hover:bg-berry group-hover:text-white">
+          <ChevronRight className="h-6 w-6 transition group-hover:translate-x-0.5" aria-hidden="true" />
+        </span>
+      </div>
+    </button>
+  );
+}
+
+function StoreIcon({ channelKey }: { channelKey: string }) {
+  if (channelKey === "mercadoLivre") {
+    return <img src="/assets/mercado-livre-icone.png" alt="" className="h-full w-full object-cover" />;
+  }
+
+  if (channelKey === "shopee") {
+    return <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain" />;
+  }
+
+  if (channelKey === "instagram") {
+    return <Instagram className="h-6 w-6 text-white" aria-hidden="true" />;
+  }
+
+  return <Music2 className="h-6 w-6 text-white" aria-hidden="true" />;
+}
+
+const tileStyles: Record<string, string> = {
+  mercadoLivre: "bg-[#ffe600]",
+  shopee: "bg-white border border-line",
+  instagram: "bg-gradient-to-br from-[#f58529] via-[#dd2a7b] to-[#8134af]",
+  tiktok: "bg-ink",
 };
 
-function ChannelCard({ channel, onOpenMonsters, onOpenMascots }: ChannelCardProps) {
-  const Icon = icons[channel.icon];
-  const isActive = channel.status === "active" && channel.url !== "#";
-  const isMonsterChannel = channel.key === "monsters";
-  const isMascotChannel = channel.key === "mascots";
-  const isFeaturedChannel = isMonsterChannel || isMascotChannel;
-  const isInternalLink = channel.url.startsWith("#");
-  const className = `group flex min-h-[82px] w-full items-center justify-between gap-4 rounded-3xl border px-4 py-4 text-left transition duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 ${
-    isFeaturedChannel
-      ? "relative overflow-hidden border-brand/20 bg-gradient-to-br from-brand via-brand to-brandDark text-white shadow-lift hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/30 dark:from-darkAccent dark:via-darkAccent dark:to-brand dark:text-darkBg"
-      : isActive
-      ? "border-brand/15 bg-brand text-white shadow-sm hover:-translate-y-0.5 hover:bg-brandDark hover:shadow-soft dark:border-darkAccent/25 dark:bg-darkAccent dark:text-darkBg"
-      : "border-mist bg-white/70 text-textMuted dark:border-darkAccent/20 dark:bg-darkCardAlt/70 dark:text-darkMuted"
-  }`;
-  const content = (
-    <>
-      {isFeaturedChannel ? (
-        <span className="pointer-events-none absolute -right-12 -top-12 h-28 w-28 rounded-full bg-white/10 blur-xl" />
-      ) : null}
-      <span className="relative flex min-w-0 items-center gap-3">
-        <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-2xl ${isActive ? "bg-white/15 text-white dark:bg-darkBg/10 dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCard dark:text-darkAccent"}`}>
-          <Icon className="h-5 w-5" aria-hidden="true" />
-        </span>
-        <span className="min-w-0">
-          {channel.badge ? (
-            <span className="mb-1 inline-flex items-center gap-1 rounded-full bg-red-600 px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white shadow-sm">
-              <span aria-hidden="true">🔥</span>
-              {channel.badge}
-            </span>
-          ) : null}
-          <span className="block font-black">{channel.label}</span>
-          <span className="mt-1 flex flex-wrap items-center gap-2">
-            <span className={`inline-flex rounded-full px-2.5 py-1 text-xs font-bold uppercase tracking-[0.12em] ${isActive ? "bg-white/15 text-white dark:bg-darkBg/10 dark:text-darkBg" : "bg-mist text-brand dark:bg-darkCard dark:text-darkAccent"}`}>
-              {isActive ? "acessar" : "em atualizacao"}
-            </span>
-            {channel.metric ? (
-              <span className="inline-flex rounded-full bg-white/95 px-2.5 py-1 text-xs font-black text-brand dark:bg-darkBg/90 dark:text-darkAccent">
-                {channel.metric}
-              </span>
-            ) : null}
-          </span>
-          {channel.note ? <span className="mt-2 hidden text-xs font-semibold text-white/80 sm:block dark:text-darkBg/75">{channel.note}</span> : null}
-        </span>
-      </span>
-      {isActive ? (
-        isInternalLink ? (
-          <ChevronRight className="relative h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-1" aria-hidden="true" />
-        ) : (
-          <ExternalLink className="relative h-5 w-5 shrink-0 opacity-80 transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" aria-hidden="true" />
-        )
-      ) : null}
-    </>
-  );
-
-  if (!isActive) {
-    return (
-      <button type="button" className={`${className} cursor-default`} disabled>
-        {content}
-      </button>
-    );
-  }
-
-  if (isMonsterChannel || isMascotChannel) {
-    return (
-      <button
-        type="button"
-        onClick={() => {
-          trackCollectionOpen(isMascotChannel ? "mascots" : "monsters", "official_channels");
-          (isMascotChannel ? onOpenMascots : onOpenMonsters)();
-        }}
-        className={className}
-      >
-        {content}
-      </button>
-    );
-  }
-
+function StoreLink({ channel }: { channel: OfficialLink }) {
   return (
     <a
       href={channel.url}
-      target={isInternalLink ? undefined : "_blank"}
-      rel={isInternalLink ? undefined : "noopener noreferrer"}
-      className={className}
+      target="_blank"
+      rel="noopener noreferrer"
       onClick={() => trackOutboundClick({ channel: channel.key, placement: "official_channels" })}
+      className="group flex items-center gap-4 rounded-2xl border border-line bg-paper p-4 shadow-card transition duration-200 hover:-translate-y-0.5 hover:border-pine/30 hover:shadow-lift"
     >
-      {content}
+      <span className={`grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-2xl ${tileStyles[channel.key]}`}>
+        <StoreIcon channelKey={channel.key} />
+      </span>
+      <span className="min-w-0 flex-1">
+        <span className="block text-lg font-extrabold text-ink">{channel.label}</span>
+        {channel.note ? <span className="mt-0.5 block text-sm text-muted">{channel.note}</span> : null}
+      </span>
+      <ArrowUpRight className="h-5 w-5 shrink-0 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-berry" aria-hidden="true" />
+    </a>
+  );
+}
+
+function WhatsappBanner() {
+  return (
+    <a
+      href={links.whatsapp.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={() => trackOutboundClick({ channel: "whatsapp", placement: "official_channels" })}
+      className="on-dark layer-lines group mt-4 flex flex-col items-start justify-between gap-4 rounded-2xl bg-berry p-5 text-white shadow-lift transition hover:bg-berry-dark sm:flex-row sm:items-center sm:p-6"
+    >
+      <span className="flex items-center gap-4">
+        <span className="grid h-14 w-14 shrink-0 place-items-center rounded-2xl bg-white/15">
+          <MessageCircle className="h-7 w-7" aria-hidden="true" />
+        </span>
+        <span>
+          <span className="block font-display text-2xl leading-tight">Fale direto com a R2</span>
+          <span className="mt-0.5 block text-sm text-white/85">Tire dúvidas e combine seu pedido pelo WhatsApp.</span>
+        </span>
+      </span>
+      <span className="inline-flex min-h-12 items-center gap-2 rounded-full bg-white px-6 text-sm font-extrabold text-berry transition group-hover:bg-gold-soft group-hover:text-berry-dark">
+        Chamar no WhatsApp
+        <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
+      </span>
     </a>
   );
 }

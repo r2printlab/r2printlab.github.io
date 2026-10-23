@@ -44,7 +44,7 @@ export const monsterProduct = {
   subtitle: "Coleção Monsters",
   description:
     "Porta-lata com visual marcante, tampa e abridor para deixar setup, presente ou coleção com mais personalidade.",
-  image: "/assets/monster-destaque.png",
+  image: "/assets/monsters-640.webp",
   fallbackImage: "/assets/monsters.webp",
   video: "/assets/video-monster.mp4",
   sideVideo: "/assets/monster-branco-neon.mp4",

@@ -25,13 +25,21 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
   }, [selectedMonster?.image]);
 
   return (
-    <section id="monster-detail" className="scroll-mt-4 mx-auto w-full max-w-6xl px-5 py-12 sm:px-6 lg:px-8">
-      <div className="grid items-center gap-8 rounded-[2rem] border border-mist bg-white p-5 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative min-h-[390px] overflow-hidden rounded-[1.7rem] bg-gradient-to-br from-mist via-white to-mist dark:from-darkCardAlt dark:via-darkCard dark:to-darkCardAlt">
-          <div className="absolute inset-x-8 top-9 h-[76%] rounded-[2rem] border border-white/80 bg-white/60 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard/60" />
+    <section id="monster-detail" className="mx-auto w-full max-w-6xl scroll-mt-4 px-4 py-8 sm:px-6 lg:px-8">
+      <button
+        type="button"
+        onClick={selectedMonster ? onBackToCollection : onBackToHome}
+        className="mb-5 inline-flex min-h-11 items-center gap-2 rounded-full border-2 border-pine/20 bg-paper px-4 text-sm font-extrabold text-pine transition hover:border-pine hover:bg-pine hover:text-white"
+      >
+        <ArrowLeft className="h-4 w-4" aria-hidden="true" />
+        {selectedMonster ? "Voltar para coleção" : "Voltar para links"}
+      </button>
+
+      <div className="grid items-center gap-8 overflow-hidden rounded-[2rem] border border-line bg-paper p-4 shadow-card sm:p-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div className="on-dark layer-lines relative min-h-[390px] overflow-hidden rounded-[1.6rem] bg-pine">
           <VideoPanel
             src={monsterProduct.sideVideo}
-            className="absolute left-3 top-10 w-[31%] -rotate-1 sm:left-4 sm:w-[34%]"
+            className="absolute left-3 top-10 w-[31%] -rotate-2 sm:left-4 sm:w-[32%]"
             label="Vídeo Monster branco neon"
             enhance
             onOpen={() => setPreview({ type: "video", src: monsterProduct.sideVideo, label: "Vídeo Monster branco neon" })}
@@ -39,7 +47,7 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
           <button
             type="button"
             onClick={() => setPreview({ type: "image", src: imageSrc, label: monsterProduct.title })}
-            className="group/card absolute inset-x-0 bottom-3 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px] overflow-hidden rounded-[1.7rem] border border-white/80 bg-white text-left shadow-lift transition duration-300 hover:-translate-y-3 hover:rotate-1 hover:scale-[1.04] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard"
+            className="group/card absolute inset-x-0 bottom-4 z-10 mx-auto w-[54%] min-w-[190px] max-w-[280px] overflow-hidden rounded-3xl border-4 border-gold bg-white text-left shadow-lift transition duration-300 hover:-translate-y-2 hover:rotate-1"
             aria-label="Ampliar imagem do produto"
           >
             <img
@@ -52,36 +60,31 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
           </button>
           <VideoPanel
             src={monsterProduct.video}
-            className="absolute right-4 top-24 z-20 w-[31%] rotate-1 sm:top-24"
+            className="absolute right-3 top-20 z-20 w-[31%] rotate-2 sm:right-4"
             label="Vídeo Monster em uso"
             onOpen={() => setPreview({ type: "video", src: monsterProduct.video, label: "Vídeo Monster em uso" })}
           />
         </div>
         <div>
-          <button
-            type="button"
-            onClick={selectedMonster ? onBackToCollection : onBackToHome}
-            className="mb-5 inline-flex min-h-10 items-center gap-2 rounded-2xl border border-mist bg-white px-3 text-sm font-black text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
-          >
-            <ArrowLeft className="h-4 w-4" aria-hidden="true" />
-            {selectedMonster ? "Voltar para coleção" : "Voltar para links"}
-          </button>
-          <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">{monsterProduct.subtitle}</p>
-          <h2 className="mt-3 text-3xl font-black leading-tight text-textMain dark:text-darkText sm:text-4xl">
+          <p className="flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.2em] text-berry">
+            <span className="h-0.5 w-8 bg-berry" aria-hidden="true" />
+            {monsterProduct.subtitle}
+          </p>
+          <h2 className="mt-3 font-display text-3xl leading-tight text-pine sm:text-4xl">
             {selectedMonster ? `${selectedMonster.name} | ` : ""}
             {monsterProduct.title}
           </h2>
           {selectedMonster ? (
-            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-mist px-3 py-2 text-xs font-black uppercase tracking-[0.14em] text-brand dark:bg-darkCardAlt dark:text-darkAccent">
+            <div className="mt-4 inline-flex items-center gap-2 rounded-full bg-snow px-3 py-2 text-xs font-extrabold uppercase tracking-[0.12em] text-pine">
               <span
-                className="h-4 w-4 rounded-full border border-white/70"
+                className="h-4 w-4 rounded-full border border-black/10"
                 style={{ background: selectedMonster.color }}
                 aria-hidden="true"
               />
               {selectedMonster.tag}
             </div>
           ) : null}
-          <p className="mt-4 text-base leading-7 text-textMuted dark:text-darkMuted">{monsterProduct.description}</p>
+          <p className="mt-4 text-base leading-7 text-muted">{monsterProduct.description}</p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             {mercadoLivreIsActive ? (
               <a
@@ -95,19 +98,19 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                     item: selectedMonster?.name ?? monsterProduct.title,
                   })
                 }
-                className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ffd600] px-4 text-left font-black text-[#27346a] shadow-sm transition hover:bg-[#f2c900] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[205px]"
+                className="inline-grid min-h-14 grid-cols-[auto_1fr] items-center gap-3 rounded-full bg-[#ffe600] px-5 text-left font-extrabold text-[#27346a] transition hover:-translate-y-0.5 hover:bg-[#f2d900] sm:min-w-[210px]"
               >
-                <img src="/assets/mercado-livre-icone.png" alt="" className="h-7 w-7 rounded-full object-contain" />
+                <img src="/assets/mercado-livre-icone.png" alt="" className="h-8 w-8 rounded-full object-contain" />
                 <span className="leading-tight">
-                  <span className="block text-sm">Comprar no</span>
-                  <span className="block text-[#1f2d70]">Mercado Livre</span>
+                  <span className="block text-xs font-bold">Comprar no</span>
+                  <span className="block text-base text-[#1f2d70]">Mercado Livre</span>
                 </span>
               </a>
             ) : (
               <button
                 type="button"
                 disabled
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl bg-brand px-5 font-black text-white disabled:cursor-default disabled:opacity-90 dark:bg-darkAccent dark:text-darkBg"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-pine px-6 font-extrabold text-white disabled:cursor-default disabled:opacity-90"
               >
                 <ShoppingBag className="h-5 w-5" aria-hidden="true" />
                 Mercado Livre em breve
@@ -125,19 +128,19 @@ export function FeaturedMonster({ selectedMonster, onBackToCollection, onBackToH
                     item: selectedMonster?.name ?? monsterProduct.title,
                   })
                 }
-                className="inline-grid min-h-[56px] grid-cols-[auto_1fr] items-center gap-3 rounded-2xl bg-[#ee4d2d] px-4 text-left font-black text-white shadow-sm transition hover:bg-[#d83f22] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 sm:min-w-[170px]"
+                className="inline-grid min-h-14 grid-cols-[auto_1fr] items-center gap-3 rounded-full bg-[#ee4d2d] px-5 text-left font-extrabold text-white transition hover:-translate-y-0.5 hover:bg-[#d83f22] sm:min-w-[180px]"
               >
-                <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain" />
+                <img src="/assets/shopee-icone-4.png" alt="" className="h-8 w-8 rounded-full bg-white p-1 object-contain" />
                 <span className="leading-tight">
-                  <span className="block text-sm">Comprar na</span>
-                  <span className="block text-white">Shopee</span>
+                  <span className="block text-xs font-bold">Comprar na</span>
+                  <span className="block text-base">Shopee</span>
                 </span>
               </a>
             ) : (
               <button
                 type="button"
                 disabled
-                className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-2xl border border-mist bg-white px-5 font-black text-brand disabled:cursor-default disabled:opacity-75 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
+                className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full border-2 border-pine/20 bg-white px-6 font-extrabold text-pine disabled:cursor-default disabled:opacity-75"
               >
                 <img src="/assets/shopee-icone-4.png" alt="" className="h-7 w-7 object-contain opacity-80" />
                 Shopee em breve
@@ -172,7 +175,7 @@ function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps)
     <button
       type="button"
       onClick={onOpen}
-      className={`${className} group/card overflow-hidden rounded-3xl border border-white/80 bg-white text-left shadow-soft transition duration-300 hover:z-30 hover:-translate-y-3 hover:rotate-0 hover:scale-[1.06] hover:shadow-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCard`}
+      className={`${className} group/card overflow-hidden rounded-2xl border-2 border-snow/80 bg-white text-left shadow-lift transition duration-300 hover:z-30 hover:-translate-y-2 hover:rotate-0`}
       aria-label={`Ampliar ${label}`}
     >
       <video
@@ -186,8 +189,7 @@ function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps)
         controls={shouldReduceMotion}
         aria-label={label}
       />
-      {enhance ? <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-white/10 via-transparent to-white/20 mix-blend-screen" /> : null}
-      <div className="absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-brand shadow-sm dark:bg-darkBg/80 dark:text-darkAccent">
+      <div className="absolute left-2 top-2 grid h-8 w-8 place-items-center rounded-full bg-white/90 text-berry shadow-sm">
         <Play className="h-4 w-4 fill-current" aria-hidden="true" />
       </div>
       <MediaOverlay />
@@ -197,8 +199,8 @@ function VideoPanel({ src, className, label, enhance, onOpen }: VideoPanelProps)
 
 function MediaOverlay() {
   return (
-    <span className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-brand/60 via-transparent to-transparent p-3 opacity-0 transition duration-200 group-hover/card:opacity-100">
-      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-black text-brand shadow-sm">
+    <span className="pointer-events-none absolute inset-0 flex items-end justify-center bg-gradient-to-t from-pine/70 via-transparent to-transparent p-3 opacity-0 transition duration-200 group-hover/card:opacity-100">
+      <span className="inline-flex items-center gap-2 rounded-full bg-white px-3 py-2 text-xs font-extrabold text-pine shadow-sm">
         <Maximize2 className="h-4 w-4" aria-hidden="true" />
         Ver maior
       </span>
@@ -213,16 +215,21 @@ type MediaLightboxProps = {
 
 function MediaLightbox({ preview, onClose }: MediaLightboxProps) {
   return (
-    <div className="fixed inset-0 z-50 grid place-items-center bg-brandDark/80 px-4 py-6 backdrop-blur-sm" role="dialog" aria-modal="true" aria-label={preview.label}>
+    <div
+      className="on-dark fixed inset-0 z-50 grid place-items-center bg-pine-deep/90 px-4 py-6 backdrop-blur-sm"
+      role="dialog"
+      aria-modal="true"
+      aria-label={preview.label}
+    >
       <button
         type="button"
         onClick={onClose}
-        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-brand shadow-soft transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white"
+        className="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-white text-pine shadow-card transition hover:bg-gold-soft"
         aria-label="Fechar visualização"
       >
         <X className="h-5 w-5" aria-hidden="true" />
       </button>
-      <div className="max-h-[86vh] w-full max-w-4xl overflow-hidden rounded-[2rem] border border-white/20 bg-white shadow-2xl dark:bg-darkCard">
+      <div className="max-h-[86vh] w-full max-w-4xl overflow-hidden rounded-[2rem] border-4 border-gold bg-white shadow-2xl">
         {preview.type === "video" ? (
           <video src={preview.src} className="max-h-[86vh] w-full object-contain" autoPlay muted loop playsInline controls />
         ) : (

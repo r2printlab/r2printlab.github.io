@@ -23,7 +23,7 @@ const christmasCampaign: Campaign = {
   active: true,
   startsAt: "2026-10-22T00:00:00-03:00",
   endsAt: "2027-01-06T23:59:59-03:00",
-  logo: "/assets/campaigns/natal-2026/logo-natal-128.webp",
+  logo: "/assets/logo-r2.webp",
   eyebrow: "Presentes criativos para um Natal com personalidade",
   title: "Natal em 3D, do jeito da R2.",
   description:

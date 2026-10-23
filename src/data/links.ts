@@ -73,6 +73,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     url: "https://www.instagram.com/r2printlab/",
     status: "active",
     icon: "instagram",
+    note: "@r2printlab",
   },
   whatsapp: {
     key: "whatsapp",
@@ -88,6 +89,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     url: mercadoLivreStoreUrl,
     status: "active",
     icon: "shoppingBag",
+    note: "Loja oficial no Mercado Livre",
   },
   shopee: {
     key: "shopee",
@@ -95,6 +97,7 @@ export const links: Record<LinkKey, OfficialLink> = {
     url: shopeeStoreUrl,
     status: "active",
     icon: "store",
+    note: "Loja oficial na Shopee",
   },
   tiktok: {
     key: "tiktok",

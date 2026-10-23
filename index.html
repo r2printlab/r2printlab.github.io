@@ -7,9 +7,15 @@
       name="description"
       content="Conheça as coleções da R2 Print Lab e encontre os canais oficiais para comprar produtos criativos em 3D."
     />
-    <meta name="theme-color" content="#1f4564" />
+    <meta name="theme-color" content="#0d3b2e" />
     <link rel="icon" type="image/png" href="/assets/logo-r2-icon.png" />
     <link rel="apple-touch-icon" href="/assets/logo-r2-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Figtree:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://r2printlab.github.io" />
     <meta property="og:title" content="R2 Print Lab | Produtos criativos em 3D" />
@@ -19,14 +25,6 @@
     />
     <meta property="og:image" content="https://r2printlab.github.io/assets/logo-r2.png" />
     <title>R2 Print Lab | Produtos criativos em 3D</title>
-    <script>
-      (() => {
-        const storedTheme = localStorage.getItem("r2-theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const theme = storedTheme || (prefersDark ? "dark" : "light");
-        document.documentElement.classList.toggle("dark", theme === "dark");
-      })();
-    </script>
   </head>
   <body>
     <div id="root"></div>

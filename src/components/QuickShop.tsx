@@ -3,42 +3,28 @@ import { ProductQuickCard } from "./ProductQuickCard";
 
 export function QuickShop() {
   return (
-    <section id="top" className="mx-auto w-full max-w-6xl px-5 pb-8 pt-4 sm:px-6 lg:px-8">
-      <div className="relative overflow-hidden rounded-[2rem] border border-mist bg-white/80 px-5 py-6 text-center shadow-sm dark:border-darkAccent/20 dark:bg-darkCard/70 sm:px-8">
-        <div className="pointer-events-none absolute -right-10 -top-10 h-44 w-44 rounded-full bg-mist/80 blur-3xl dark:bg-darkAccent/10" />
-        <div className="relative flex flex-col gap-5 sm:items-center">
-          <div className="flex flex-col items-center gap-4 sm:flex-row">
-            <img
-              src="/assets/logo-r2.webp"
-              alt="R2 Print Lab"
-              className="h-16 w-16 rounded-full border border-mist bg-white object-cover p-1 shadow-soft dark:border-darkAccent/20 dark:bg-darkCard sm:h-[4.25rem] sm:w-[4.25rem]"
-            />
-            <div className="hidden h-14 w-px bg-mist dark:bg-darkAccent/20 sm:block" />
-            <div className="inline-flex items-center gap-4 rounded-[1.7rem] border border-mist bg-white px-5 py-4 shadow-soft dark:border-darkAccent/20 dark:bg-darkCardAlt">
-              <img
-                src="/assets/logo%20monster.png"
-                alt="Monster"
-                className="h-16 w-20 object-contain drop-shadow-lg sm:h-[4.5rem] sm:w-24"
-              />
-              <div className="text-left">
-                <p className="text-[0.66rem] font-black uppercase tracking-[0.16em] text-brand dark:text-darkAccent">
-                  Coleção original
-                </p>
-                <p className="text-sm font-black text-textMain dark:text-darkText">R2 Monsters</p>
-              </div>
-            </div>
-          </div>
+    <section id="top" className="mx-auto w-full max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+        <div>
+          <p className="flex items-center gap-3 text-xs font-extrabold uppercase tracking-[0.2em] text-berry">
+            <span className="h-0.5 w-8 bg-berry" aria-hidden="true" />
+            Quick Shop Monsters
+          </p>
+          <h1 className="mt-3 font-display text-4xl leading-tight text-pine sm:text-5xl">Escolha seu Monster</h1>
+          <p className="mt-3 max-w-xl text-base leading-7 text-muted">
+            Encontre rápido a cor ou modelo que você viu no Instagram.
+          </p>
+        </div>
+        <div className="inline-flex items-center gap-4 self-start rounded-2xl border border-line bg-paper px-5 py-3 shadow-card md:self-auto">
+          <img src="/assets/logo%20monster.png" alt="Monster" className="h-14 w-16 object-contain" />
           <div>
-            <p className="text-xs font-black uppercase tracking-[0.18em] text-brand dark:text-darkAccent">Quick Shop Monsters</p>
-            <h1 className="mt-2 text-4xl font-black leading-tight text-textMain dark:text-darkText sm:text-5xl">Escolha seu Monster</h1>
-            <p className="mx-auto mt-3 max-w-2xl text-base leading-7 text-textMuted dark:text-darkMuted">
-              Encontre rápido a cor ou modelo que você viu no Instagram.
-            </p>
+            <p className="text-[0.7rem] font-extrabold uppercase tracking-[0.16em] text-berry">Coleção original</p>
+            <p className="font-display text-xl text-pine">R2 Monsters</p>
           </div>
         </div>
       </div>
 
-      <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
+      <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-5">
         {monsterShortcuts.map((item) => (
           <div key={item.name}>
             <ProductQuickCard item={item} />

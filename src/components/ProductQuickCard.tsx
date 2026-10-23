@@ -17,33 +17,32 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
   }, [item.image]);
 
   return (
-    <article
-      className="group overflow-hidden rounded-3xl border border-mist bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-soft dark:border-darkAccent/20 dark:bg-darkCard"
-    >
-      <div className="product-grid flex aspect-square items-center justify-center overflow-hidden bg-gradient-to-br from-white via-mist to-white p-2 dark:from-darkCard dark:via-darkCardAlt dark:to-darkCard">
+    <article className="group overflow-hidden rounded-2xl border border-line bg-paper shadow-card transition duration-200 hover:-translate-y-1 hover:shadow-lift">
+      <div className="flex aspect-square items-center justify-center overflow-hidden bg-[#f1ede4] p-2">
         {imageSrc ? (
           <img
             src={imageSrc}
             alt={item.name}
-            className="h-full w-full object-contain drop-shadow-xl transition duration-300 group-hover:scale-[1.04]"
+            className="h-full w-full object-contain mix-blend-multiply transition duration-300 group-hover:scale-105"
             loading="lazy"
             onError={() => setImageFailed(true)}
           />
         ) : (
-          <div className="grid h-20 w-20 place-items-center rounded-3xl bg-white text-brand shadow-soft dark:bg-darkCardAlt dark:text-darkAccent">
-            <span className="text-2xl font-black">R2</span>
+          <div className="grid h-20 w-20 place-items-center rounded-3xl bg-white text-pine shadow-card">
+            <span className="font-display text-2xl">R2</span>
           </div>
         )}
       </div>
       <div className="p-4">
         <div className="flex items-start justify-between gap-3">
           <div>
-            <h3 className="text-base font-black text-textMain dark:text-darkText">{item.name}</h3>
-            <p className="mt-1 text-xs font-bold uppercase tracking-[0.14em] text-textMuted dark:text-darkMuted">{item.tag}</p>
+            <h3 className="text-base font-extrabold leading-tight text-ink">{item.name}</h3>
+            <p className="mt-1 text-xs font-bold uppercase tracking-[0.12em] text-muted">{item.tag}</p>
           </div>
           <span
-            className="h-6 w-6 shrink-0 rounded-full border border-mist shadow-sm dark:border-darkAccent/30"
+            className="h-6 w-6 shrink-0 rounded-full border border-black/10 shadow-sm"
             style={{ background: item.color }}
+            role="img"
             aria-label={`Cor ${item.tag}`}
           />
         </div>
@@ -55,7 +54,7 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
             onClick={() =>
               trackOutboundClick({ channel: "mercado_livre", placement: "monster_card", item: item.name })
             }
-            className="inline-flex min-h-10 items-center justify-center gap-2 rounded-2xl bg-brand px-3 text-sm font-black text-white transition hover:bg-brandDark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:bg-darkAccent dark:text-darkBg"
+            className="inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full bg-berry px-2 text-[0.8125rem] font-extrabold text-white transition hover:bg-berry-dark sm:px-3 sm:text-sm"
           >
             Ver produto
           </a>
@@ -65,7 +64,7 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => trackOutboundClick({ channel: "shopee", placement: "monster_card", item: item.name })}
-              className="grid h-10 w-10 place-items-center rounded-2xl border border-mist bg-white text-brand transition hover:bg-mist focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-4 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
+              className="grid h-11 w-11 place-items-center rounded-full border-2 border-pine/20 bg-white text-pine transition hover:border-pine hover:bg-pine hover:text-white"
               aria-label={`Ver ${item.name} na Shopee`}
             >
               <Store className="h-5 w-5" aria-hidden="true" />
@@ -74,7 +73,7 @@ export function ProductQuickCard({ item }: ProductQuickCardProps) {
             <button
               type="button"
               disabled
-              className="grid h-10 w-10 place-items-center rounded-2xl border border-mist bg-white text-brand disabled:cursor-default disabled:opacity-70 dark:border-darkAccent/20 dark:bg-darkCardAlt dark:text-darkAccent"
+              className="grid h-11 w-11 place-items-center rounded-full border-2 border-pine/20 bg-white text-pine disabled:cursor-default disabled:opacity-60"
               aria-label="Shopee em breve"
             >
               <ShoppingBag className="h-5 w-5" aria-hidden="true" />
