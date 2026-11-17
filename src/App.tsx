@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { BrandIntro } from "./components/BrandIntro";
+import { ChristmasShop } from "./components/ChristmasShop";
 import { FeaturedMonster } from "./components/FeaturedMonster";
 import { FeaturesSection } from "./components/FeaturesSection";
 import { Footer } from "./components/Footer";
@@ -13,12 +14,13 @@ import { resolveCampaign } from "./config/campaigns";
 import { links } from "./data/links";
 import { trackPageView } from "./lib/analytics";
 
-type Page = "home" | "monsters" | "mascots";
+type Page = "home" | "monsters" | "mascots" | "natal";
 
 const paths: Record<Page, string> = {
   home: "/",
   monsters: "/colecoes/monsters",
   mascots: "/colecoes/mascotes",
+  natal: "/colecoes/natal",
 };
 
 function pageFromPath(pathname: string): Page {
@@ -28,6 +30,10 @@ function pageFromPath(pathname: string): Page {
 
   if (pathname.startsWith(paths.mascots)) {
     return "mascots";
+  }
+
+  if (pathname.startsWith(paths.natal)) {
+    return "natal";
   }
 
   return "home";
@@ -52,6 +58,7 @@ export default function App() {
       home: isChristmas ? "Natal em 3D | R2 Print Lab" : "R2 Print Lab | Produtos criativos em 3D",
       monsters: "Coleção Monsters | R2 Print Lab",
       mascots: "Mascotes de Times | R2 Print Lab",
+      natal: "Presentes de Natal | R2 Print Lab",
     };
 
     const title = titles[page];
@@ -75,7 +82,12 @@ export default function App() {
           {page === "home" ? (
             <>
               {isChristmas ? (
-                <SeasonalHero campaign={campaign} onOpenMonsters={() => navigate("monsters")} />
+                <SeasonalHero
+                  campaign={campaign}
+                  onOpenGifts={() =>
+                    document.getElementById("presentes-natal")?.scrollIntoView({ behavior: "smooth", block: "start" })
+                  }
+                />
               ) : (
                 <BrandIntro
                   onOpenCollections={() =>
@@ -86,6 +98,7 @@ export default function App() {
                   whatsappUrl={links.whatsapp.url}
                 />
               )}
+              {isChristmas ? <ChristmasShop /> : null}
               <OfficialChannels
                 onOpenMonsters={() => navigate("monsters")}
                 onOpenMascots={() => navigate("mascots")}
@@ -102,6 +115,11 @@ export default function App() {
               />
               <QuickShop />
               <MonsterColors />
+              <FeaturesSection />
+            </>
+          ) : page === "natal" ? (
+            <>
+              <ChristmasShop standalone onBackToHome={() => navigate("home")} />
               <FeaturesSection />
             </>
           ) : (

@@ -31,8 +31,9 @@ npm run preview
 - `/` — página principal e canais oficiais
 - `/colecoes/monsters` — coleção Monsters
 - `/colecoes/mascotes` — coleção de mascotes
+- `/colecoes/natal` — vitrine de Natal (os 14 presentes, com filtro por tipo)
 
-O arquivo `public/_redirects` redireciona as rotas de coleção para a aplicação React no Cloudflare Pages, permitindo abrir e recarregar os links diretamente. `public/_headers` centraliza cache e cabeçalhos básicos de segurança.
+No GitHub Pages, o build copia `index.html` para `404.html`, e assim os links diretos das coleções abrem a página certa. O arquivo `public/_redirects` redireciona as rotas de coleção para a aplicação React no Cloudflare Pages, permitindo abrir e recarregar os links diretamente. `public/_headers` centraliza cache e cabeçalhos básicos de segurança.
 
 ## Campanhas sazonais
 
@@ -52,7 +53,10 @@ Os arquivos visuais do Natal usados pelo site ficam em `public/assets/campaigns/
 
 - canais oficiais e contato: `src/data/links.ts`;
 - produtos Monsters: `src/data/monster.ts`;
-- mascotes: `src/data/mascots.ts`.
+- mascotes: `src/data/mascots.ts`;
+- presentes de Natal: `src/data/christmas.ts` (link do Mercado Livre, preço, foto e link opcional da Shopee de cada produto). As fotos ficam em `public/assets/campaigns/natal-2026/produtos/` (720x720, WebP, foto ambientada do anúncio).
+
+Os preços da vitrine de Natal foram copiados dos anúncios em 17/11/2026. Quando mudar a promoção no Mercado Livre, atualize o preço em `src/data/christmas.ts`.
 
 Adicionar novos itens às coleções exige somente incluir os dados e os arquivos visuais correspondentes. Links com `#` permanecem indisponíveis e não são tratados como destino válido.
 

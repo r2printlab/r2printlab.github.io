@@ -6,10 +6,10 @@ import { ChristmasTree } from "./ChristmasTree";
 
 type SeasonalHeroProps = {
   campaign: Campaign;
-  onOpenMonsters: () => void;
+  onOpenGifts: () => void;
 };
 
-export function SeasonalHero({ campaign, onOpenMonsters }: SeasonalHeroProps) {
+export function SeasonalHero({ campaign, onOpenGifts }: SeasonalHeroProps) {
   const [lead, ...rest] = (campaign.title ?? "").split(", ");
   const tail = rest.join(", ");
 
@@ -35,10 +35,10 @@ export function SeasonalHero({ campaign, onOpenMonsters }: SeasonalHeroProps) {
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
               <button
                 type="button"
-                onClick={onOpenMonsters}
+                onClick={onOpenGifts}
                 className="inline-flex min-h-14 items-center justify-center gap-2 rounded-full bg-gold px-7 text-base font-extrabold text-pine-deep transition hover:-translate-y-0.5 hover:bg-gold-soft"
               >
-                Ver presentes R2
+                Ver presentes de Natal
                 <ArrowRight className="h-5 w-5" aria-hidden="true" />
               </button>
               <a
