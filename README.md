@@ -33,7 +33,7 @@ npm run preview
 - `/colecoes/mascotes` — coleção de mascotes
 - `/colecoes/natal` — vitrine de Natal (os 14 presentes, com filtro por tipo)
 
-No GitHub Pages, o build copia `index.html` para `404.html`, e assim os links diretos das coleções abrem a página certa. O arquivo `public/_redirects` redireciona as rotas de coleção para a aplicação React no Cloudflare Pages, permitindo abrir e recarregar os links diretamente. `public/_headers` centraliza cache e cabeçalhos básicos de segurança.
+No GitHub Pages, `scripts/postbuild.mjs` (roda no fim do `npm run build`) cria uma página própria para cada coleção, com título, descrição e imagem de prévia próprios (WhatsApp, Instagram, Google). Assim os links diretos respondem 200. Coleção nova = acrescentar uma entrada nesse script. O `404.html` continua como reserva para qualquer outro endereço. O arquivo `public/_redirects` redireciona as rotas de coleção para a aplicação React no Cloudflare Pages, permitindo abrir e recarregar os links diretamente. `public/_headers` centraliza cache e cabeçalhos básicos de segurança.
 
 ## Campanhas sazonais
 
