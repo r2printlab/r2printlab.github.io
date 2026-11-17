@@ -121,6 +121,11 @@ function ChristmasCard({ item }: { item: ChristmasProduct }) {
           decoding="async"
           className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
         />
+        {item.badge ? (
+          <span className="absolute left-2 top-2 rounded-full bg-berry px-2.5 py-1 text-[0.7rem] font-extrabold uppercase tracking-[0.08em] text-white shadow-sm">
+            {item.badge}
+          </span>
+        ) : null}
         <span className="absolute bottom-2 left-2 rounded-full bg-gold px-2.5 py-1 text-xs font-extrabold text-pine-deep shadow-sm sm:text-sm">
           {item.fromPrice ? <span className="font-bold">a partir de </span> : null}R$ {item.price}
         </span>

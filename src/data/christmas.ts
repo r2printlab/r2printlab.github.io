@@ -13,6 +13,7 @@ export type ChristmasProduct = {
   image: string;
   price: string;
   fromPrice?: boolean;
+  badge?: string;
   mercadoLivreUrl: string;
   shopeeUrl?: string;
 };
@@ -29,6 +30,35 @@ const photo = (file: string) => `/assets/campaigns/natal-2026/produtos/${file}.w
 const ml = (id: string) => `https://www.mercadolivre.com.br/up/${id}`;
 
 export const christmasProducts: ChristmasProduct[] = [
+  // As três mãos são opções do mesmo anúncio; cada link abre a opção certa.
+  {
+    id: "mao-grinch",
+    name: "Mão do Grinch",
+    detail: "Porta-bolinhas grande para parede",
+    category: "porta",
+    image: photo("mao-grinch"),
+    price: "113,90",
+    badge: "Mais vendido",
+    mercadoLivreUrl: ml("MLBU4637641859"),
+  },
+  {
+    id: "mao-papai-noel",
+    name: "Mão do Papai Noel",
+    detail: "Porta-bolinhas grande para parede",
+    category: "porta",
+    image: photo("mao-papai-noel"),
+    price: "119,90",
+    mercadoLivreUrl: ml("MLBU5703076547"),
+  },
+  {
+    id: "kit-maos",
+    name: "Kit Mãos Grinch e Noel",
+    detail: "As duas mãos, uma de cada",
+    category: "porta",
+    image: photo("kit-maos"),
+    price: "193,75",
+    mercadoLivreUrl: ml("MLBU5703408825"),
+  },
   {
     id: "papai-noel-grande",
     name: "Papai Noel Grande",
@@ -46,16 +76,6 @@ export const christmasProducts: ChristmasProduct[] = [
     image: photo("grinch-boneco"),
     price: "64,90",
     mercadoLivreUrl: ml("MLBU4899764420"),
-  },
-  {
-    id: "mao-grinch",
-    name: "Mão do Grinch",
-    detail: "Porta-bolinhas grande para parede",
-    category: "porta",
-    image: photo("mao-grinch"),
-    price: "119,90",
-    fromPrice: true,
-    mercadoLivreUrl: ml("MLBU5703076547"),
   },
   {
     id: "mini-noel-deitado",
